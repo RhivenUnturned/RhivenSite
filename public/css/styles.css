@@ -1,0 +1,28 @@
+header {
+    overflow: hidden;
+}
+
+.jumbotron-banner {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.jumbotron-banner-nepeta {
+    background-image: url("/uploads/rhiven_banner.png");
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+.sidebar-picture {
+    width: 100px;
+    height: 100px;
+}
+
+.bank-stats {
+    background-color: #efd13a;
+    color: black;
+}
