@@ -305,7 +305,7 @@ aside {
 
 .bank-panel {
     color: #fff;
-    background-image: url('/uploads/banque/imperial-black-marble@2x.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url(/uploads/banque/imperial-black-marble@2x.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

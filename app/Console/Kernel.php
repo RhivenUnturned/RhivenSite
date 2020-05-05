@@ -40,12 +40,12 @@ class Kernel extends ConsoleKernel
                     'lastUpdated' => $account->lastUpdated
                 ]);
             }
-        })->dailyAt('12:00');
+        })->dailyAt('3:00');
 
-        $schedule->command('Bank:creditdailypayment')->dailyAt('12:00');
+        $schedule->command('Bank:creditdailypayment')->dailyAt('3:00');
 
-        $schedule->command('Bank:dailycharge')->dailyAt('12:00');
-        $schedule->command('Bank:weeklycharge')->weeklyOn(1, '12:00');
+        $schedule->command('Bank:dailycharge')->dailyAt('3:00');
+        $schedule->command('Bank:weeklycharge')->weeklyOn(1, '18:00');
 
         $schedule->command('Bank:creditdelete')->everyMinute();
     }
