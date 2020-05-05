@@ -274,7 +274,7 @@
   var color = Chart.helpers.color;
   var balanceData = {
     labels: [
-      @foreach($balancehistory->reverse() as $history)
+      @foreach($balanceHistory->reverse() as $history)
       "{{ Carbon\Carbon::parse($history[0]->lastUpdated)->format('d/m/y') }}",
       @endforeach
     ],
