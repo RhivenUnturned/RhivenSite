@@ -16,10 +16,16 @@ class TagController extends Controller
      */
     public function index()
     {
-        $userJobNames = Auth::user()->jobs()->pluck('name')->all();
+        if (Auth::user()) {
+            $userJobNames = Auth::user()->jobs()->pluck('name')->all();
 
-        $category_by_tag = Tag::with('categories')->whereIn('job', $userJobNames)->orWhere('job', null)->orderBy('name', 'desc')->get();
+            $category_by_tag = Tag::with('categories')->whereIn('job', $userJobNames)->orWhere('job', null)->orderBy('name', 'desc')->get();
 
-        return view('forum.home', compact('category_by_tag'));
+            return view('forum.home', compact('category_by_tag'));
+        } else {
+            $category_by_tag = Tag::with('categories')->where('job', null)->orderBy('name', 'desc')->get();
+
+            return view('forum.home', compact('category_by_tag'));
+        }
     }
 }
