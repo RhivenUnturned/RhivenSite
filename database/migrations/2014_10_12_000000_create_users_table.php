@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('steamavatar')->nullable();
             $table->integer('bank_id')->unsigned()->nullable();
             $table->rememberToken();
-            $table->timestamp('last_connected');
+            $table->timestamp('last_connected')->nullable();
             $table->timestamps();
         });
     }
