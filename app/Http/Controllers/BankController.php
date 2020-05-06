@@ -112,7 +112,7 @@ class BankController extends Controller
           'steamId' => $user->steamid,
           'accountId' => $newAccountId,
           'accountName' => $request->name,
-          'balance' => 1500.00,
+          'balance' => 0.00,
           'lastUpdated' => Carbon::now()->toDateTimeString()
         ]
       );
@@ -966,26 +966,42 @@ class BankController extends Controller
       }
 
       if ($diff >= Auth::user()->bank->properties['obligation']) {
-        Auth::user()->bank()->associate($bank)->save();
         if ($bank->properties['opening_costs'] > 0) {
-          $account = DB::table('unt_bs_multi_accounts')
+          $accounts = DB::table('unt_bs_multi_accounts')
             ->where('steamId', Auth::user()->steamid)
             ->orderBy('balance', 'desc')
-            ->first();
+            ->get();
 
-          DB::table('unt_bs_multi_accounts')
-            ->where('accountId', $account->accountId)
-            ->decrement('balance', $bank->properties['opening_costs']);
+          $sumBalance = 0;
+          foreach ($accounts as $account) {
+            $sumBalance += $account->balance;
+          }
 
-          DB::table('unt_bs_account_history')
-            ->insert([
-              [
-                'accountId' => $account->accountId,
-                'text' => '<color=#FF3C3C>-' . round($bank->properties['opening_costs'], 2) . '€</color>: Paiement des frais d\'ouverture de compte',
-                'lastUpdated' => Carbon::now()->toDateTimeString()
-              ]
-            ]);
+          if ($sumBalance >= $bank->properties['opening_costs']) {
+
+            $account = DB::table('unt_bs_multi_accounts')
+              ->where('steamId', Auth::user()->steamid)
+              ->orderBy('balance', 'desc')
+              ->first();
+
+            DB::table('unt_bs_multi_accounts')
+              ->where('accountId', $account->accountId)
+              ->decrement('balance', $bank->properties['opening_costs']);
+
+            DB::table('unt_bs_account_history')
+              ->insert([
+                [
+                  'accountId' => $account->accountId,
+                  'text' => '<color=#FF3C3C>-' . round($bank->properties['opening_costs'], 2) . '€</color>: Paiement des frais d\'ouverture de compte',
+                  'lastUpdated' => Carbon::now()->toDateTimeString()
+                ]
+              ]);
+          } else {
+            return back()->withError('Vous ne possédez pas la somme nécessaire pour payer les frais d\'ouverture de compte');
+          }
         }
+
+        Auth::user()->bank()->associate($bank)->save();
 
         if ($bank->acronym === 'FW') {
           $bodyHeader = 'Bonjour ' . Auth::user()->firstname . ',';

@@ -22,7 +22,7 @@
                 @csrf
                 <div class="form-group">
                   <label for="reasonInput">Raison du refus</label>
-                  <input type="text" class="form-control" id="reasonInput" name="reason" placeholder="Manque d'informations/Autre raison..." required>
+                  <input type="text" class="form-control" id="reasonInput" name="reason" placeholder="ex: Manque d'informations/Autre raison..." required>
                 </div>
                 Un mail expliquant le refus sera immédiatement envoyé à la personne ayant envoyé le message.
                 <div class="bank-modal-footer">
@@ -60,13 +60,13 @@
                 @csrf
                 <div class="form-group">
                   <label for="amountInput">Montant remboursé</label>
-                  <input type="number" class="form-control" id="amountInput" name="amount" placeholder="15000 (en euros)" required>
+                  <input type="number" class="form-control" id="amountInput" name="amount" placeholder="ex: 15000 (en euros)" required>
                   <small id="transferHelp" class="form-text text-muted text-left">Attention de ne pas dépasser le plafond d'assurance de l'utilisateur</small>
                 </div>
                 <p>Si vous avez modifié la somme totale demandée à l'origine, expliquez pourquoi ici:</p>
                 <div class="form-group">
                   <label for="reasonInput">Raison</label>
-                  <input type="text" class="form-control" id="reasonInput" name="reason" placeholder="Plafond de votre assurance/Autre raison..." required>
+                  <input type="text" class="form-control" id="reasonInput" name="reason" placeholder="ex: Plafond de votre assurance/Autre raison..." required>
                 </div>
                 <div class="bank-modal-footer">
                   <div class="d-flex justify-content-between">
@@ -128,15 +128,15 @@
                 @csrf
                 <div class="form-group">
                   <label for="amountInput">Montant du crédit</label>
-                  <input type="number" step="0.01" min="1" class="form-control" id="amountInput" name="amount" placeholder="15000 (en euros)" required>
+                  <input type="number" step="0.01" min="1" class="form-control" id="amountInput" name="amount" placeholder="ex: 15000 (en euros)" required>
                 </div>
                 <div class="form-group">
                   <label for="rateInput">Taux du crédit</label>
-                  <input type="number" step="0.01" min="0" class="form-control" id="rateInput" name="rate" placeholder="2.36 (en pourcentage)" required>
+                  <input type="number" step="0.01" min="0" class="form-control" id="rateInput" name="rate" placeholder="ex: 2.36 (en pourcentage)" required>
                 </div>
                 <div class="form-group">
                   <label for="periodInput">Période d'étalement</label>
-                  <input type="number" class="form-control" id="periodInput" name="period" placeholder="6 (en jours)" required>
+                  <input type="number" class="form-control" id="periodInput" name="period" placeholder="ex: 6 (en jours)" required>
                 </div>
                 <input type="text" style="display:none" name="name" value="entreprise">
                 <input type="number" style="display:none" name="mail" value="{{ $mail->id }}">

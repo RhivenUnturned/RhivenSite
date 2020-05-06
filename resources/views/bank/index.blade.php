@@ -99,10 +99,10 @@
           <div class="text-right row no-gutters w-50">
             <div class="col-lg-12">
               <div class="col-md-2 p-0 float-right ml-2">
-                <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($credit->bank->name, '-') }}.svg" class="card-img float-left" alt="Logo banque parente du crédit" height="70px" width="70px">
+                <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($credit->bank->name, '-') }}-sm.svg" class="card-img float-left" alt="Logo banque parente du crédit" height="70px" width="70px">
               </div>
               <p class="m-0">{{ number_format($credit->properties['amount'], 2, ',', ' ') }} €</p>
-              <p class="m-0"><small>{{ number_format((($credit->properties['amount']+($credit->properties['amount']/100*$credit->properties['rate']))/$credit->properties['period']), 0, ',', ' ') }}€/j - Expire dans {{ $credit->pivot->created_at->addDays($credit->properties['period'])->shortAbsoluteDiffForHumans() }}</small></p>
+              <p class="m-0"><small>{{ number_format((($credit->properties['amount']+($credit->properties['amount']/100*$credit->properties['rate']))/$credit->properties['period']), 0, ',', ' ') }}€/j - {{ $credit->pivot->created_at->addDays($credit->properties['period'])->diffInDays() }}j</small></p>
             </div>
           </div>
         </div>
@@ -130,7 +130,7 @@
         <ul class="bank-operations-list mb-3">
           @foreach ($transactions as $transaction)
 
-          @if (floatval(\Illuminate\Support\Str::beforeLast(\Illuminate\Support\Str::after($transaction->text, '>'), '<'))> 0)
+          @if(floatval(\Illuminate\Support\Str::beforeLast(\Illuminate\Support\Str::after($transaction->text, '>'), '<'))> 0)
 
             <li class="bank-operations-item">
               <div class="row">
@@ -139,7 +139,6 @@
                 <div class="col text-right font-weight-bold bank-text-colored mr-1">{{ \Illuminate\Support\Str::beforeLast(\Illuminate\Support\Str::after($transaction->text, '>'), '<') }}</div>
               </div>
             </li>
-            <hr class="mx-4 my-1">
 
             @else
 
@@ -150,9 +149,10 @@
                 <div class="col text-right font-weight-bold mr-1">{{ \Illuminate\Support\Str::beforeLast(\Illuminate\Support\Str::after($transaction->text, '>'), '<') }}</div>
               </div>
             </li>
-            <hr class="mx-4 my-1">
 
             @endif
+            
+            <hr class="mx-4 my-1">
 
             @endforeach
         </ul>

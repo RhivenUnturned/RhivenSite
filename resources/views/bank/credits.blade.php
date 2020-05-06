@@ -129,7 +129,7 @@
                 <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($credit->bank->name, '-') }}.svg" class="card-img float-left" alt="Logo banque parente du crédit" height="70px" width="70px">
               </div>
               <p class="m-0">{{ number_format($credit->properties['amount'], 2, ',', ' ') }} €</p>
-              <p class="m-0"><small>{{ number_format((($credit->properties['amount']+($credit->properties['amount']/100*$credit->properties['rate']))/$credit->properties['period']), 0, ',', ' ') }}€/j - Expire dans {{ $credit->pivot->created_at->addDays($credit->properties['period'])->shortAbsoluteDiffForHumans() }}</small></p>
+              <p class="m-0"><small>{{ number_format((($credit->properties['amount']+($credit->properties['amount']/100*$credit->properties['rate']))/$credit->properties['period']), 0, ',', ' ') }}€/j - {{ $credit->pivot->created_at->addDays($credit->properties['period'])->diffInDays() }}j</small></p>
             </div>
           </div>
         </div>
@@ -158,7 +158,7 @@
               </div>
               <div class="bank-modal-body row">
                 <div class="col-lg-7">
-                  <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($credit->bank->name, '-') }}.svg" class="float-left" alt="Logo banque parente du crédit" height="180px" width="180px">
+                  <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($credit->bank->name, '-') }}-sm.svg" class="float-left" alt="Logo banque parente du crédit" height="180px" width="180px">
                   <h3 class="card-title text-right m-0 text-uppercase bank-letter-space font-weight-bolder">{{ $credit->name }}</h3>
                   <p class="text-right m-0">{{ number_format($credit->properties['amount'], 2, ',', ' ') }}€ sur {{ $credit->properties['period'] }} jours</p>
                   <p class="text-right text-muted m-0">TAUX: {{ $credit->properties['rate'] }}%</p>

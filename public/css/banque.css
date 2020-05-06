@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'banque';
-  src: url('../font/banque.eot?98276578');
-  src: url('../font/banque.eot?98276578#iefix') format('embedded-opentype'),
-       url('../font/banque.woff2?98276578') format('woff2'),
-       url('../font/banque.woff?98276578') format('woff'),
-       url('../font/banque.ttf?98276578') format('truetype'),
-       url('../font/banque.svg?98276578#banque') format('svg');
+  src: url('../font/banque.eot?44553959');
+  src: url('../font/banque.eot?44553959#iefix') format('embedded-opentype'),
+       url('../font/banque.woff2?44553959') format('woff2'),
+       url('../font/banque.woff?44553959') format('woff'),
+       url('../font/banque.ttf?44553959') format('truetype'),
+       url('../font/banque.svg?44553959#banque') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -54,23 +54,24 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-network:before { content: '\e800'; } /* '' */
-.icon-drawer:before { content: '\e801'; } /* '' */
-.icon-table:before { content: '\e802'; } /* '' */
-.icon-letter:before { content: '\e803'; } /* '' */
-.icon-arrows:before { content: '\e804'; } /* '' */
-.icon-schedule:before { content: '\e805'; } /* '' */
 .icon-previous:before { content: '\e806'; } /* '' */
 .icon-bill:before { content: '\e807'; } /* '' */
 .icon-costs:before { content: '\e808'; } /* '' */
 .icon-cash:before { content: '\e809'; } /* '' */
 .icon-transfer:before { content: '\e80a'; } /* '' */
 .icon-user:before { content: '\e80b'; } /* '' */
-.icon-gear:before { content: '\e80c'; } /* '' */
-.icon-exit:before { content: '\e80d'; } /* '' */
 .icon-next:before { content: '\e80e'; } /* '' */
 .icon-plus:before { content: '\e80f'; } /* '' */
 .icon-minus:before { content: '\e810'; } /* '' */
+.icon-rising:before { content: '\e811'; } /* '' */
+.icon-network:before { content: '\e812'; } /* '' */
+.icon-schedule:before { content: '\e813'; } /* '' */
+.icon-letter:before { content: '\e814'; } /* '' */
+.icon-gear:before { content: '\e815'; } /* '' */
+.icon-exit:before { content: '\e816'; } /* '' */
+.icon-arrows:before { content: '\e817'; } /* '' */
+.icon-table:before { content: '\e818'; } /* '' */
+.icon-drawer:before { content: '\e819'; } /* '' */
 .icon-down:before { content: '\f175'; } /* '' */
 .icon-up:before { content: '\f176'; } /* '' */
 

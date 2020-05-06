@@ -151,21 +151,21 @@ foreach($mails as $mail) {
                   <div class="form-group row">
                     <label for="inputAddress" class="col-sm-2 col-form-label">Adresse du siège</label>
                     <div class="col-sm-10">
-                      <input type="text" name="address" class="form-control" id="inputAddress" placeholder="12 Rue de la paix, Adviska" required>
+                      <input type="text" name="address" class="form-control" id="inputAddress" placeholder="ex: 12 Rue de la paix, Adviska" required>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPeriod" class="col-sm-2 col-form-label">Étalement</label>
                     <div class="col-sm-10">
-                      <input type="number" min="1" max="10" name="period" class="form-control" id="inputPeriod" placeholder="10 (en jours)" required>
+                      <input type="number" min="1" max="10" name="period" class="form-control" id="inputPeriod" placeholder="ex: 10 (en jours)" required>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputAmount" class="col-sm-2 col-form-label">Montant</label>
                     <div class="col-sm-10">
-                      <input type="currency" name="amount" class="form-control" id="inputAmount" placeholder="89000 (en euros)" required>
+                      <input type="currency" name="amount" class="form-control" id="inputAmount" placeholder="ex: 89000 (en euros)" required>
                     </div>
                   </div>
 
@@ -248,7 +248,7 @@ foreach($mails as $mail) {
               <p>NOTE: Vous ne pouvez pas faire une seule demande pour plusieurs évenements.</p>
               <div class="form-group">
                 <label for="inputBody" class="form-label">Détails supplémentaires (obligatoires):</label>
-                <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="inputBody" rows="6" required></textarea>
+                <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="inputBody" rows="6"></textarea>
               </div>
 
               <div class="bank-modal-footer">

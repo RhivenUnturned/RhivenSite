@@ -128,7 +128,6 @@ class CreditController extends Controller
             Vous serez facturé du premier versement dès demain.
             Nous vous remercions pour votre confiance, et nous nous tenons à votre service si vous avez besoin de renseignements.
             
-            
             Cordialement,
             Lucious NEXUM, votre référent NOVA Crédit';
 
@@ -200,7 +199,6 @@ class CreditController extends Controller
             
             Vous serez facturé du premier versement dès demain.
             Nous vous remercions pour votre confiance, et nous nous tenons à votre service si vous avez besoin de renseignements.
-
 
             Cordialement,
 

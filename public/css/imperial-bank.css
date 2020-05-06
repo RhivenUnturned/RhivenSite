@@ -33,9 +33,17 @@ body {
     margin-right: 15px;
 }
 
+.bank-logo {
+    display: none;
+}
+
 @media (min-width: 992px) {
     .bank-chart {
         max-width: calc((100vw - 270px)/2);
+    }
+
+    .bank-logo {
+        display: block;
     }
 }
 
@@ -186,7 +194,7 @@ aside {
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
-    width: 90%;
+    width: 100%;
     text-align: center;
     text-transform: uppercase;
     border-radius: 0;

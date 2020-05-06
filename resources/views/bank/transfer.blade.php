@@ -160,6 +160,10 @@
 
     function onFocus(e) {
       var value = e.target.value;
+      var last2 = value.slice(-4, -2);
+      if (last2 === '00') {
+        value = value.slice(0, -4);
+      }
       e.target.value = value ? localStringToNumber(value) : '';
     }
 

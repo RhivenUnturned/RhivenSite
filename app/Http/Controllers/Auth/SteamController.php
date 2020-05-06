@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use DB;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -112,6 +113,26 @@ class SteamController extends Controller
                 'amount' => 0
             ]
         ]);
+
+        $newAccountId = $user->steamid . '-00';
+
+        DB::table('unt_bs_multi_accounts')->insert(
+            [
+                'steamId' => $user->steamid,
+                'accountId' => $newAccountId,
+                'accountName' => 'Nouveau compte',
+                'balance' => 1500.00,
+                'lastUpdated' => Carbon::now()->toDateTimeString()
+            ]
+        );
+
+        DB::table('unt_bs_account_info')->insert(
+            [
+                'steamId' => $user->steamid,
+                'accountId' => $newAccountId,
+                'lastUpdated' => Carbon::now()->toDateTimeString()
+            ]
+        );
 
         return $user;
     }
