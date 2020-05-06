@@ -1016,7 +1016,7 @@ class BankController extends Controller
 
         return redirect()->route('bank.index');
       } else {
-        return back()->withError('Votre obligation dans votre banque actuelle n\'est pas encore passée');
+        return back()->withError('Vous êtes encore soumis à votre engagement de ' . Auth::user()->bank->properties['obligation'] . ' jours. Vous pourrez changer à nouveau le ' . Carbon::now()->subDays($diff)->addDays(Auth::user()->bank->properties['obligation'])->format('d/m/y') . '.');
       }
     } else {
       return redirect('/');
