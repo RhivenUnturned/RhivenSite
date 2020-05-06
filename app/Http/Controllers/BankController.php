@@ -25,7 +25,7 @@ class BankController extends Controller
 
     $this->middleware('App\Http\Middleware\SteamId');
 
-    $this->middleware('App\Http\Middleware\BankOverdraft', ['except' => ['overdraft', 'liquidation', 'nova']]);
+    $this->middleware('App\Http\Middleware\BankOverdraft', ['except' => ['overdraft', 'liquidation', 'nova', 'administration']]);
   }
 
   /**
@@ -436,12 +436,12 @@ class BankController extends Controller
                 ->insert([
                   [
                     'accountId' => $request->from,
-                    'text' => '<color=#FF3C3C>-' . round($amount, 2) . '€</color>: Virement à ' . $to->accountName,
+                    'text' => '<color=#FF3C3C>-' . round($amount, 2) . '€</color>: Virement à ' . $toUser->firstname . ' ' . $toUser->lastname,
                     'lastUpdated' => Carbon::now()->toDateTimeString()
                   ],
                   [
                     'accountId' => $request->to,
-                    'text' => '<color=#FF3C3C>+' . round(($amount - $amount_costs), 2) . '€</color>: Virement de ' . $from->accountName,
+                    'text' => '<color=#FF3C3C>+' . round(($amount - $amount_costs), 2) . '€</color>: Virement de ' . Auth::user()->firstname . ' ' . Auth::user()->lastname,
                     'lastUpdated' => Carbon::now()->toDateTimeString()
                   ]
                 ]);
@@ -737,7 +737,7 @@ class BankController extends Controller
 
       $bankmail = new Bankmail;
       $bankmail->category = 'confirmation';
-      $bankmail->title = 'Message bien envoyé';
+      $bankmail->title = 'Confirmation d\'envoi';
       $bankmail->body = 'Bonjour,
       
       Votre demande de prêt a bien été envoyé. Une réponse vous sera envoyée dans les plus brefs délais.
@@ -778,7 +778,7 @@ class BankController extends Controller
 
       $bankmail = new Bankmail;
       $bankmail->category = 'confirmation';
-      $bankmail->title = 'Message bien envoyé';
+      $bankmail->title = 'Confirmation d\'envoi';
       $bankmail->body = 'Bonjour,
       
       Votre réclamation a bien été envoyé à votre assurance. Une réponse vous sera envoyée dans les plus brefs délais.

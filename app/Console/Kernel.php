@@ -29,18 +29,7 @@ class Kernel extends ConsoleKernel
             ->everyThirtyMinutes()
             ->appendOutputTo('D:\Programmes\XAMPP\sousdomaines\rhiven\test.txt');
 
-        $schedule->call(function () {
-            $accounts = DB::table('unt_bs_multi_accounts')->get();
-
-            foreach ($accounts as $account) {
-                DB::table('balance_history')->insert([
-                    'steamId' => $account->steamId,
-                    'accountId' => $account->accountId,
-                    'balance' => $account->balance,
-                    'lastUpdated' => $account->lastUpdated
-                ]);
-            }
-        })->dailyAt('3:00');
+        $schedule->command('Bank:balancehistory')->everyFiveMinutes();
 
         $schedule->command('Bank:creditdailypayment')->dailyAt('3:00');
 

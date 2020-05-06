@@ -35,7 +35,7 @@ foreach($mails as $mail) {
                 <div class="bank-modal-body">
                   <div class="d-flex flex-row mb-3">
                     <div>
-                      <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($mail->bank->name, '-') }}.svg" class="d-inline" alt="Logo banque parente du crédit" height="100px" width="100px">
+                      <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($mail->bank->name, '-') }}-sm.svg" class="d-inline" alt="Logo banque parente du crédit" height="100px" width="100px">
                     </div>
                     <div class="pl-2 pt-4">
                       <p class="d-inline">{{ $mail->bank->name }}</p>
@@ -108,8 +108,8 @@ foreach($mails as $mail) {
                 <div class="col-2 text-left bank-text-colored">{{ Carbon\Carbon::parse($mail->updated_at)->format('d/m') }}</div>
                 <div class="col-auto text-left">{{ $mail->title }}</div>
                 <div class="col text-right font-weight-bold bank-text-colored mr-1">
-                  <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($mail->bank->name, '-') }}-sm.svg" class="d-inline" alt="Logo banque parente du crédit" height="40px" width="40px">
-                  <p class="d-inline align-middle">{{ $mail->bank->name }}</p>
+                    <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($mail->bank->name, '-') }}-sm.svg" class="d-inline" alt="Logo banque parente du crédit" height="40px" width="40px">
+                    <p class="d-inline align-middle">{{ $mail->bank->name }}</p>
                 </div>
               </div>
             </a>
@@ -206,12 +206,10 @@ foreach($mails as $mail) {
             <h4 class="d-inline align-middle">À: {{ auth()->user()->bank->name }}</h4>
             <p class="d-inline align-middle text-muted">{{ '<contact@' . auth()->user()->bank->acronym . '.net>' }}</p>
             <hr class="mx-4 my-1">
-            <form class="pt-2" action="{{ route('bank.storeMail') }}" method="POST">
+            <form class="pt-2" action="{{ route('bank.storeMail') }}" onsubmit="return validation()" method="POST">
               @csrf
-
-
               <!-- Editable table -->
-              <div class="card mb-4">
+              <div class="card mb-2">
                 <div class="card-body">
                   <div id="table" class="table-editable">
                     <span class="table-add float-right mb-3 mr-2"><a href="#!" class="bank-text-colored"><i class="bank-icon icon-plus" style="font-size:25px;"></i></a></span>
@@ -228,11 +226,11 @@ foreach($mails as $mail) {
                       </thead>
                       <tbody>
                         <tr>
-                          <td class="pt-3" contenteditable="true">Voiture de sport</td>
-                          <td class="pt-3" contenteditable="true">150000</td>
-                          <td class="pt-3" contenteditable="true">https://ibb.co/FYkx6WM</td>
-                          <td class="pt-3" contenteditable="true">https://ibb.co/58H8Ssb</td>
-                          <td class="pt-3" contenteditable="true">Stockée dans mon garage, porte fermée, achetée hier vers 14h...</td>
+                          <td class="pt-3" contenteditable="true"></td>
+                          <td class="pt-3" contenteditable="true"></td>
+                          <td class="pt-3" contenteditable="true"></td>
+                          <td class="pt-3" contenteditable="true"></td>
+                          <td class="pt-3" contenteditable="true"></td>
                           <td>
                             <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Retirer</button></span>
                           </td>
@@ -244,18 +242,13 @@ foreach($mails as $mail) {
               </div>
               <!-- Editable table -->
 
-              <div class="text-center">
-                <p>Avant d'envoyer le message, n'oubliez pas de valider vos données à l'aide du bouton ci-dessous.</p>
-                <button type="button" id="export-btn" class="bank-button bank-button-colored px-2 w-50">Valider mes données</button>
-              </div>
-
               <input type="text" name="complaint" class="invisible" id="inputComplaint">
 
               <p>Complétez ici votre demande avec des informations supplémentaires sur la perte des biens.</p>
               <p>NOTE: Vous ne pouvez pas faire une seule demande pour plusieurs évenements.</p>
               <div class="form-group">
                 <label for="inputBody" class="form-label">Détails supplémentaires (obligatoires):</label>
-                <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="inputBody" placeholder="Bonjour,..." rows="6" required></textarea>
+                <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="inputBody" rows="6" required></textarea>
               </div>
 
               <div class="bank-modal-footer">
@@ -302,6 +295,55 @@ foreach($mails as $mail) {
 
 @section('extra-js')
 <script type="text/javascript">
+  function string_to_slug(str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to = "aaaaeeeeiiiioooouuuunc------";
+    for (var i = 0, l = from.length; i < l; i++) {
+      str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+      .replace(/\s+/g, '') // collapse whitespace and replace by ''
+      .replace(/-+/g, ''); // collapse dashes
+
+    return str;
+  }
+
+  function validation() {
+    const $rows = $('#table').find('tr:not(:hidden)');
+    const headers = [];
+    const data = [];
+
+    // Get the headers (add special header logic here)
+    $($rows.shift()).find('th:not(:empty)').each(function() {
+      headers.push(string_to_slug($(this).text().toLowerCase()));
+    });
+
+    console.log(headers);
+
+    // Turn all existing rows into a loopable array
+    $rows.each(function() {
+      const $td = $(this).find('td');
+      const h = {};
+
+      // Use the headers from earlier to name our hash keys
+      headers.forEach((header, i) => {
+        h[header] = $td.eq(i).text();
+      });
+
+      data.push(h);
+    });
+
+    // Output the result
+    $('#inputComplaint').val(JSON.stringify(data));
+
+    return true;
+  }
+
   window.onload = function() {
 
     $('.bank-operations-list').on('click', 'a', function(e) {
@@ -339,24 +381,6 @@ foreach($mails as $mail) {
         ''
     }
 
-    function string_to_slug(str) {
-      str = str.replace(/^\s+|\s+$/g, ''); // trim
-      str = str.toLowerCase();
-
-      // remove accents, swap ñ for n, etc
-      var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
-      var to = "aaaaeeeeiiiioooouuuunc------";
-      for (var i = 0, l = from.length; i < l; i++) {
-        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-      }
-
-      str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-        .replace(/\s+/g, '') // collapse whitespace and replace by ''
-        .replace(/-+/g, ''); // collapse dashes
-
-      return str;
-    }
-
     // DÉBUT Tableau
 
     const $tableID = $('#table');
@@ -365,11 +389,11 @@ foreach($mails as $mail) {
 
     const newTr = `
 <tr class="hide">
-  <td class="pt-3-half" contenteditable="true">Voiture de sport</td>
-  <td class="pt-3-half" contenteditable="true">150000</td>
-  <td class="pt-3-half" contenteditable="true">https://ibb.co/FYkx6WM</td>
-  <td class="pt-3-half" contenteditable="true">https://ibb.co/58H8Ssb</td>
-  <td class="pt-3-half" contenteditable="true">Stockée dans mon garage, porte fermée, achetée hier vers 14h...</td>
+  <td class="pt-3-half" contenteditable="true"></td>
+  <td class="pt-3-half" contenteditable="true"></td>
+  <td class="pt-3-half" contenteditable="true"></td>
+  <td class="pt-3-half" contenteditable="true"></td>
+  <td class="pt-3-half" contenteditable="true"></td>
   <td>
     <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0 waves-effect waves-light">Retirer</button></span>
   </td>
@@ -393,36 +417,6 @@ foreach($mails as $mail) {
     // A few jQuery helpers for exporting only
     jQuery.fn.pop = [].pop;
     jQuery.fn.shift = [].shift;
-
-    $BTN.on('click', () => {
-
-      const $rows = $tableID.find('tr:not(:hidden)');
-      const headers = [];
-      const data = [];
-
-      // Get the headers (add special header logic here)
-      $($rows.shift()).find('th:not(:empty)').each(function() {
-        headers.push(string_to_slug($(this).text().toLowerCase()));
-      });
-
-      console.log(headers);
-
-      // Turn all existing rows into a loopable array
-      $rows.each(function() {
-        const $td = $(this).find('td');
-        const h = {};
-
-        // Use the headers from earlier to name our hash keys
-        headers.forEach((header, i) => {
-          h[header] = $td.eq(i).text();
-        });
-
-        data.push(h);
-      });
-
-      // Output the result
-      $EXPORT.val(JSON.stringify(data));
-    });
 
     // FIN tableau
 

@@ -18,7 +18,7 @@
 @endphp
 
 @section('content')
-<div class="bank-nova-bg text-center bank-font-size-lg">
+<div class="bank-nova-bg text-center">
   <h1 class="text-uppercase text-light py-3 font-weight-bold bank-nova-title" style="letter-spacing: 3px;">Consolidation de dette</h1>
   <img class="d-inline my-4" src="/uploads/banque/credit-nova.svg" alt="Logo du crédit Nova" height="" width="">
   @if (session('error'))

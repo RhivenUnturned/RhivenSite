@@ -150,8 +150,8 @@
       <h3 class="text-uppercase text-center bank-colored-title my-4">Votre dette est de {{ number_format((-$sumBalance + $sumCredit), 2, ',', ' ') }} €</h3>
       <p>Vous retrouverez un accès à vos comptes et à toutes les fonctionnalités de votre banque dès que votre dette aura été remboursée.</p>
     </div>
-    <div class="col-lg">
-      <img src="/uploads/banque/bank-overdraft-process-{{ auth()->user()->bank->acronym }}.png" alt="Procédure saisie">
+    <div class="col-lg text-center">
+      <img src="/uploads/banque/bank-overdraft-process-{{ strtolower(auth()->user()->bank->acronym) }}.png" alt="Procédure saisie">
     </div>
   </div>
 </div>
