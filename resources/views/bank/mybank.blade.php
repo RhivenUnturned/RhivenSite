@@ -10,8 +10,7 @@
     <div class="alert alert-danger mt-1">{{ session('error') }}</div>
     @endif
   </div>
-  <div class="bank-main-body">
-    <div class="text-center">
+  <div class="bank-main-body text-center">
       <div class="row">
         <div class="col-md pr-4 border-right">
           <img src="/uploads/banque/fastwallet-lg.svg" alt="Logo FastWallet" height="100px" width="250px">
@@ -19,7 +18,7 @@
           <p>La taille de notre réseau et l'acceptation grandissante de notre produit nous ont permis de devenir l'un des principaux réseaux de paiement pour les sites marchants.</p>
           <p class="mb-4">Contrairement à la plupart des offres des services de paiement en ligne, nous vous proposons également une carte bancaire et des prêts à la consommation.</p>
 
-          <button type="button" class="bank-button bank-button-colored px-2 my-3" style="border-radius:20px;">Brochure</button>
+          <a href="/uploads/banque/BrochureFW.pdf" type="button" class="bank-button bank-button-colored px-2 my-3" style="border-radius:20px;">Brochure</a>
           @if(auth()->user()->bank->name != 'FastWallet')
           <button type="button" class="bank-button bank-button-colored px-2" data-toggle="modal" data-target="#fastWalletModal">Choisir l'offre</button>
           @else
@@ -32,7 +31,7 @@
           <p>La banque de détail à l'international, l'assurance et les services financiers aux entreprises, avec des réseaux présents en Europe, en Russie et en Afrique et des métiers spécialisés leaders dans leurs marchés.</p>
           <p class="mb-4">Nos services comprennent la vente d'actions et les investissements nationaux et internationaux.</p>
 
-          <button type="button" class="bank-button bank-button-colored px-2 my-3" style="border-radius:20px;">Brochure</button>
+          <a href="/uploads/banque/BrochureBUC.pdf" type="button" class="bank-button bank-button-colored px-2 my-3" style="border-radius:20px;">Brochure</a>
           @if(auth()->user()->bank->name != 'Brastal United Credit')
           <button type="button" class="bank-button bank-button-colored px-2" data-toggle="modal" data-target="#brastalModal">Choisir l'offre</button>
           @else
@@ -46,7 +45,7 @@
           <p>L’offre Premium s’adresse aux grands clients du Groupe Imperial Bank pour lesquels une approche globale sur les métiers de banque de financement et d’investissement, d’asset servicing et de gestion de fortune peut être proposée.</p>
           <p class="mb-4">Viennent s'ajouter nos offres des placements financiers avancés, dont l'achat d'actions.</p>
 
-          <button type="button" class="bank-button bank-button-colored px-2 my-3" style="border-radius:20px;">Brochure</button>
+          <a href="/uploads/banque/BrochureIMPERIAL.pdf" type="button" class="bank-button bank-button-colored px-2 my-3" style="border-radius:20px;">Brochure</a>
           @if(auth()->user()->bank->name != 'Imperial Bank')
           <button type="button" class="bank-button bank-button-colored px-2" data-toggle="modal" data-target="#imperialModal">Choisir l'offre</button>
           @else
@@ -54,7 +53,6 @@
           @endif
         </div>
       </div>
-    </div>
   </div>
 </div>
 

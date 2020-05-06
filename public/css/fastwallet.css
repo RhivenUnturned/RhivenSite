@@ -334,7 +334,7 @@ letter-spacing: 4px;
 
 .bank-operations-container {
     max-height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     font-size: 0.9em;
 }
@@ -360,7 +360,7 @@ letter-spacing: 4px;
 .bank-history-container {
     max-height: 85vh;
     padding: 0 0 0 15px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     font-size: 0.9em;
 }

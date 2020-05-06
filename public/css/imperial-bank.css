@@ -15,7 +15,7 @@
 
 html,
 body {
-    background-image: url('/uploads/banque/imperial-white-marble@2x.png');
+    background-image: url('/uploads/banque/imperial-white-marble@2x.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -342,7 +342,7 @@ aside {
 
 .bank-operations-container {
     max-height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     font-size: 0.9em;
 }
@@ -368,7 +368,7 @@ aside {
 .bank-history-container {
     max-height: 85vh;
     padding: 0 0 0 15px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     font-size: 0.9em;
 }

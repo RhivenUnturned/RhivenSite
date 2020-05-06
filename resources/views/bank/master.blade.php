@@ -18,9 +18,9 @@
   <div class="container-fluid">
     <div class="row min-vh-100 flex-column flex-lg-row">
       <aside class="col-12 col-lg-2 p-0 flex-shrink-1">
-        <div class="bank-info p-3 pl-5">
-          <img class="d-inline mx-3" src="/uploads/banque/user.svg" alt="Logo utilisateur" height="60" width="60">
-          <h2 class="d-inline align-middle">{{ auth()->user()->name }}</h2>
+        <div class="bank-info py-3">
+          <img class="d-inline mx-3" src="/uploads/banque/user.svg" alt="Logo utilisateur" height="50" width="50">
+          <h3 class="d-inline align-middle">{{ auth()->user()->lastname }}</h3>
           <a class="float-right bank-home-link" href="/"><i class="bank-icon icon-previous" style="font-size: 40px;color:#fff;"></i></a>
         </div>
         <nav class="navbar navbar-expand flex-lg-column flex-row align-items-start py-2">
@@ -54,8 +54,14 @@
         </nav>
       </aside>
       <main class="col bg-faded py-3 flex-grow-1">
-        <div class="pt-3 bank-top-bar">
-          <a href="/"><i class="bank-icon icon-previous" style="font-size: 40px"></i></a>
+        <div class="pt-3 bank-top-bar d-flex justify-content-between">
+          <a href="{{ url()->previous() }}"><i class="bank-icon icon-previous" style="font-size: 40px"></i></a>
+          <a href="/" class="pr-3">
+            <div class="d-flex justify-content-between text-light text-right">
+              <p class="d-inline">RETOUR<br>MENU</p>
+              <i class="d-inline bank-icon icon-exit text-light" style="font-size: 42px"></i>
+            </div>
+          </a>
         </div>
         <div id="app">
           @yield('content')

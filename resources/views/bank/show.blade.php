@@ -32,16 +32,19 @@
       @foreach($accounts as $account)
       @if ($account->accountName === $activeAccount->accountName)
       <li class="list-group-item p-4 bank-bg-active">
-          @else
-          <li class="list-group-item p-4">
-          @endif
+        @else
+      <li class="list-group-item p-4">
+        @endif
         <div class="d-flex justify-content-between">
           <p class="m-0">{{ $account->accountName }}</p>
-          @if ($account->balance > $overdraft)
-          <p class="m-0 d-inline">{{ number_format($account->balance, 2, ',', ' ') }} €</p>
-          @else
-          <p class="m-0 text-danger d-inline">{{ number_format($account->balance, 2, ',', ' ') }} €</p>
-          @endif
+          <div>
+            @if($account->balance >= $overdraft)
+            <p class="m-0 d-inline">{{ number_format($account->balance, 2, ',', ' ') }} €</p>
+            @else
+            <p class="m-0 d-inline text-danger">{{ number_format($account->balance, 2, ',', ' ') }} €</p>
+            @endif
+            <a href="{{ route('bank.show', $account->accountId) }}"><i class="bank-icon icon-next"></i></a>
+          </div>
         </div>
       </li>
       @endforeach
@@ -190,7 +193,7 @@
       lineTension: 0,
       data: [
         @foreach($balancehistory->reverse() as $balance => $transactions) 
-        {{ floatval($balance) }},
+        {{floatval($balance)}},
         @endforeach
       ]
     }]

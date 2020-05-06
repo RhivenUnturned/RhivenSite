@@ -11,14 +11,13 @@
 }
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
-/*
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'banque';
     src: url('../font/banque.svg?98276578#banque') format('svg');
   }
 }
-*/
  
  [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "banque";
@@ -74,3 +73,7 @@
 .icon-minus:before { content: '\e810'; } /* '' */
 .icon-down:before { content: '\f175'; } /* '' */
 .icon-up:before { content: '\f176'; } /* '' */
+
+button:disabled {
+  cursor: auto;
+}

@@ -49,6 +49,11 @@
     </div>
 
     <ul class="list-group bank-list my-3">
+      @if(count($credits) === 0)
+      <li class="list-group-item p-2 text-center">
+        <p class="m-0">Vous n'avez pas de crédit en cours</p>
+      </li>
+      @else
       @foreach($credits as $credit)
       @unless ($credit->pivot->created_at->addDays($credit->properties['period'])->diffInSeconds(Carbon\Carbon::now(), false) > 0)
       <!-- Modal CREDIT -->
@@ -131,6 +136,7 @@
       </li>
       @endunless
       @endforeach
+      @endif
     </ul>
 
   </div>
@@ -141,6 +147,7 @@
       </div>
       <div class="bank-main-body">
         @foreach(auth()->user()->bank->credits as $credit)
+        @unless(strpos($credit->name, 'Entreprise') !== false )
         <!-- Modal CREDIT -->
         <div class="modal fade" id="creditModal{{ $loop->index }}" tabindex="-1" role="dialog" aria-labelledby="creditModalLabel{{ $loop->index }}" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -190,7 +197,7 @@
               </div>
               <div class="bank-modal-footer">
                 <div class="d-flex justify-content-between">
-                @if($dailySolvency >= (($credit->properties['amount']+($credit->properties['amount']/100*$credit->properties['rate']))/$credit->properties['period']))
+                  @if($dailySolvency >= (($credit->properties['amount']+($credit->properties['amount']/100*$credit->properties['rate']))/$credit->properties['period']))
                   <form action="{{ route('bank.addCredit', $credit->name) }}" method="POST" style="display: contents;">
                     @csrf
                     <input type="text" style="display:none" name="name" value="{{ $credit->name }}">
@@ -210,7 +217,7 @@
           <div class="row no-gutters">
             <div class="col-lg-12">
               <div class="col-md-4 p-0">
-                <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($credit->bank->name, '-') }}.svg" class="card-img float-left m-4" alt="Logo banque parente du crédit" style="max-width=200px;">
+                <img src="/uploads/banque/{{ Illuminate\Support\Str::slug($credit->bank->name, '-') }}-sm.svg" class="card-img float-left m-4" alt="Logo banque parente du crédit" style="max-width:65px;">
               </div>
               <div class="card-body">
                 <h3 class="card-title text-right m-0 text-uppercase bank-letter-space font-weight-bolder">{{ $credit->name }}</h3>
@@ -222,9 +229,10 @@
             </div>
           </div>
           <div class="card-footer text-center">
-            <button class="bank-button bank-button-colored px-2 ml-3" data-toggle="modal" data-target="#creditModal{{ $loop->index }}">Demander</button>
+            <button class="bank-button bank-button-colored px-2 ml-3" data-toggle="modal" data-target="#creditModal{{ $loop->index }}">Sélectionner</button>
           </div>
         </div>
+        @endunless
         @endforeach
       </div>
     </div>

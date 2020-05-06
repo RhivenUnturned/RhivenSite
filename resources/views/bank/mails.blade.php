@@ -16,7 +16,7 @@ foreach($mails as $mail) {
 @section('content')
 <div class="row">
   <div class="col-lg mb-3 pr-1">
-    <div class="bank-main-container">
+    <div class="bank-main-container" style="height: 100%;">
       <div class="bank-main-header">
         <h3 class="text-uppercase text-center bank-colored-title">Boîte de réception</h3>
       </div>

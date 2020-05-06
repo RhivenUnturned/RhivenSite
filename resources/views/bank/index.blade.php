@@ -38,17 +38,14 @@
       <li class="list-group-item p-4">
         <div class="d-flex justify-content-between">
           <p class="m-0">{{ $account->accountName }}</p>
-          @if ($account->balance > $overdraft)
           <div>
+            @if($account->balance >= $overdraft)
             <p class="m-0 d-inline">{{ number_format($account->balance, 2, ',', ' ') }} €</p>
+            @else
+            <p class="m-0 d-inline text-danger">{{ number_format($account->balance, 2, ',', ' ') }} €</p>
+            @endif
             <a href="{{ route('bank.show', $account->accountId) }}"><i class="bank-icon icon-next"></i></a>
           </div>
-          @else
-          <div>
-            <p class="m-0 text-danger d-inline">{{ number_format($account->balance, 2, ',', ' ') }} €</p>
-            <a href="{{ route('bank.show', $account->accountId) }}"><i class="bank-icon icon-next"></i></a>
-          </div>
-          @endif
         </div>
       </li>
       @endforeach
@@ -121,6 +118,13 @@
         <h3 class="text-uppercase m-0">Dernières opérations</h3>
       </div>
       <div class="bank-card-body bank-operations-container">
+        @if(count($accountsHistory) === 0)
+        <ul class="bank-operations-list my-1 text-center">
+          <li class="bank-operations-item">
+            <p class="m-0">Vous n'avez pas d'historique d'opération</p>
+          </li>
+        </ul>
+        @else
         @foreach ($accountsHistory as $day => $transactions)
         <h4 class="mt-2 bank-text-colored">{{ $day }}</h4>
         <ul class="bank-operations-list mb-3">
@@ -153,6 +157,7 @@
             @endforeach
         </ul>
         @endforeach
+        @endif
       </div>
     </div>
   </div>
