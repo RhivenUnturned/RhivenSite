@@ -1,17 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap');
-@font-face {
-    font-family: 'Bahnschrift Regular';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Bahnschrift Regular'), url('../font/BAHNSCHRIFT.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Selawik Regular';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Selawik Regular'), url('../font/selawk.ttf') format('ttf');
-}
+/* || IMPERIAL style */
 
 html,
 body {
@@ -19,18 +6,6 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    font-size: 1.1em;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-}
-
-.bank-list {
-    font-size: 1.1em;
-}
-
-.bank-icon {
-    font-size: 1.1em;
-    margin-right: 15px;
 }
 
 .bank-logo {
@@ -38,377 +13,86 @@ body {
 }
 
 @media (min-width: 992px) {
-    .bank-chart {
-        max-width: calc((100vw - 270px)/2);
-    }
-
     .bank-logo {
         display: block;
     }
 }
 
 .bank-hr {
-    width: calc(100% + 40px);
-    height: 4px;
     background-color: #000;
-    margin: 10px -20px 20px -20px;
-    border: 0 none;
 }
-
-a {
-    color: #000;
-    text-decoration: none !important
-}
-
-
-/* A PARTIR DE LÀ C'EST PROPRE OK ?! */
-
-
-/* || General style */
 
 .bank-main-container {
-    color: #000;
-    background-color: #fff;
-    border: 1px solid #707070;
     border-top: 12px solid #000;
-    overflow: hidden;
 }
 
 .bank-main-header {
-    padding: 15px 20px 10px;
-    color: #A2A2A2;
     border-bottom: 4px solid #000;
-}
-
-.bank-main-body {
-    padding: 10px 20px;
-}
-
-.bank-bg-active {
-    background-color: #E8E8E8;
-}
-
-.bank-letter-space {
-letter-spacing: 4px;
 }
 
 .bank-box {
     border: solid 1px #000;
 }
 
-.bank-border-left {
-    border-left: #fff solid 3px;
-    padding-left: 10px;
-}
-
 .bank-border-left-colored {
     border-left: #000 solid 3px;
-    padding-left: 10px;
 }
-
-.ui-front {
-    z-index: 1051;
-}
-
-/* || Nav style */
-
-aside,
-.nav-link {
-    background-color: #2A2A2A;
-    color: #F2F2F2;
-    font-size: 1.2em;
-}
-
-.nav-link:hover {
-    color: #fff;
-}
-
-aside {
-    min-width: 250px;
-    min-width: 270px;
-}
-
-.bank-info {
-    background-color: #000;
-    min-height: 96px;
-}
-
-.bank-top-bar {
-    min-height:96px;
-    background-color:#C9C9C9;
-    margin: -1rem -15px 15px -15px;
-    display: none;
-}
-
-.bank-home-link {
-    display: block;
-}
-
-@media (min-width: 992px) {
-    .bank-top-bar {
-        display: block;
-    }
-
-    .bank-home-link {
-        display: none;
-    }
-}
-
-/* || Text style */
 
 .bank-colored-title {
     color: #000;
-    font-size: 1.6em;
-    text-transform: uppercase;
 }
 
 .bank-text-colored {
     color: #000;
 }
 
-.bank-font-size-sm {
-    font-size: 0.8em;
+aside,
+.nav-link {
+    background-color: #2A2A2A;
 }
 
-.bank-font-size-lg {
-    font-size: 1.2em;
-}
-
-
-/* || Button style */
-
-.bank-button {
-    padding: 6px 12px;
-    margin-bottom: 0;
-    display: inline-block;
-    text-decoration: none;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    width: 100%;
-    text-align: center;
-    text-transform: uppercase;
-    border-radius: 0;
+.bank-info {
+    background-color: #000;
 }
 
 .bank-button:focus,
 .bank-button:active:focus {
-    outline: thin dotted;
     outline: 4px solid #999999b3;
-    outline-offset: -2px;
 }
-
-.bank-button:hover,
-.bank-button:focus {
-    color: #333;
-    text-decoration: none;
-}
-
-.bank-button:active {
-    background-image: none;
-    outline: 0;
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
-}
-
-
-/* default */
 
 .bank-button-colored {
-    color: #fff;
     background-color: #2A2A2A;
-    border-color: #ccc;
 }
 
 .bank-button-colored:focus {
-    color: #fff;
     background-color: #000;
-    border-color: #8c8c8c;
 }
 
 .bank-button-colored:hover {
-    color: #fff;
     background-color: #000;
-    border-color: #adadad;
 }
 
 .bank-button-colored:active {
-    color: #fff;
     background-color: #000;
-    border-color: #adadad;
 }
-
-
-/* || Modal style */
 
 .bank-modal {
-    background-color: #fff;
     border-top: 15px solid #000!important;
-    padding: 3px 30px 15px;
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 100%;
-    pointer-events: auto;
-    background-clip: padding-box;
-    outline: 0;
 }
-
-.bank-modal-header {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    padding-top: 5px;
-}
-
-.bank-modal-body {
-    position: relative;
-    -ms-flex: 1 1 auto;
-    flex: 1 1 auto;
-}
-
-.bank-modal-footer {
-    margin-top: 8px;
-    padding: .25rem;
-    border-top: 1px solid #dee2e6;
-}
-
-
-/* || Card style */
 
 .bank-card {
-    color: #000;
-    background-color: #fff;
-    margin-bottom: 2rem;
-    border: 1px solid #707070;
     border-top: 12px solid #000;
 }
 
-.bank-card-header {
-    padding: 15px 20px 10px;
-    color: #A2A2A2;
-    border-bottom: 1px solid #707070;
-}
-
-.bank-card-body {
-    padding: 10px 20px;
-}
-
-
-/* || Panel style */
-
 .bank-panel {
-    color: #fff;
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url(/uploads/banque/imperial-black-marble@2x.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    padding: 20px;
-    font-family: 'Bahnschrift Regular';
-    font-weight: normal;
 }
-
-.bank-panel-info-title {
-    font-weight: 300;
-}
-
-.bank-panel-info {
-    font-size: 1.4em;
-}
-
-
-/* || Title style */
 
 .bank-title {
-    color: #F2F2F2;
     background-color: #000;
-    padding: 1px;
-    margin-bottom: 10px;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 300;
-    font-size: 1.2em;
-    margin-top: 25px;
 }
 
-
-/* || Last operations style (index) */
-
-.bank-operations-container {
-    max-height: 500px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-size: 0.9em;
-}
-
-.bank-operations-list {
-    list-style-type: none;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    padding-left: 0;
-    margin-bottom: 0;
-}
-
-.bank-operations-item {
-    position: relative;
-    display: block;
-}
-
-
-/* || Transaction history style */
-
-.bank-history-container {
-    max-height: 85vh;
-    padding: 0 0 0 15px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-size: 0.9em;
-}
-
-/* || Nova style */
-
-.bank-nova-bg {
-    height: 100vh;
-    margin: -1rem -15px;
-    background-image: url('/uploads/banque/nova-bg.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.bank-nova-title {
-    letter-spacing: 3px;
-    background-color: #5B5B5B;
-}
-
-.bank-nova-body {
-    padding-left: 15%;
-}
-
-@media (min-width: 700px) {
-    .bank-nova-title {
-        background-color: transparent;
-    }
-}
-
-@media (max-width: 1400px) {
-    .bank-nova-body {
-        padding-left: 0;
-    }
-}
+/* || FIN IMPERIAL style */

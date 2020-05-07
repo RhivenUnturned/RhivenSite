@@ -1,80 +1,508 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap');
 @font-face {
-  font-family: 'banque';
-  src: url('../font/banque.eot?44553959');
-  src: url('../font/banque.eot?44553959#iefix') format('embedded-opentype'),
-       url('../font/banque.woff2?44553959') format('woff2'),
-       url('../font/banque.woff?44553959') format('woff'),
-       url('../font/banque.ttf?44553959') format('truetype'),
-       url('../font/banque.svg?44553959#banque') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Bahnschrift Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Bahnschrift Regular'), url('../font/BAHNSCHRIFT.woff') format('woff');
 }
+
+@font-face {
+    font-family: 'Selawik Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Selawik Regular'), url('../font/selawk.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'banque';
+    src: url('../font/banque.eot?44553959');
+    src: url('../font/banque.eot?44553959#iefix') format('embedded-opentype'), url('../font/banque.woff2?44553959') format('woff2'), url('../font/banque.woff?44553959') format('woff'), url('../font/banque.ttf?44553959') format('truetype'), url('../font/banque.svg?44553959#banque') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+
+
 /* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-  @font-face {
-    font-family: 'banque';
-    src: url('../font/banque.svg?98276578#banque') format('svg');
-  }
+    @font-face {
+        font-family: 'banque';
+        src: url('../font/banque.svg?98276578#banque') format('svg');
+    }
 }
- 
- [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "banque";
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
- 
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  /* opacity: .8; */
- 
-  /* For safety - reset parent styles, that can break glyph codes*/
-  font-variant: normal;
-  text-transform: none;
- 
-  /* fix buttons height, for twitter bootstrap */
-  line-height: 1em;
- 
-  /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed */
-  margin-left: .2em;
- 
-  /* you can be more comfortable with increased icons size */
-  /* font-size: 120%; */
- 
-  /* Font smoothing. That was taken from TWBS */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
- 
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    font-family: "banque";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
- 
-.icon-previous:before { content: '\e806'; } /* '' */
-.icon-bill:before { content: '\e807'; } /* '' */
-.icon-costs:before { content: '\e808'; } /* '' */
-.icon-cash:before { content: '\e809'; } /* '' */
-.icon-transfer:before { content: '\e80a'; } /* '' */
-.icon-user:before { content: '\e80b'; } /* '' */
-.icon-next:before { content: '\e80e'; } /* '' */
-.icon-plus:before { content: '\e80f'; } /* '' */
-.icon-minus:before { content: '\e810'; } /* '' */
-.icon-rising:before { content: '\e811'; } /* '' */
-.icon-network:before { content: '\e812'; } /* '' */
-.icon-schedule:before { content: '\e813'; } /* '' */
-.icon-letter:before { content: '\e814'; } /* '' */
-.icon-gear:before { content: '\e815'; } /* '' */
-.icon-exit:before { content: '\e816'; } /* '' */
-.icon-arrows:before { content: '\e817'; } /* '' */
-.icon-table:before { content: '\e818'; } /* '' */
-.icon-drawer:before { content: '\e819'; } /* '' */
-.icon-down:before { content: '\f175'; } /* '' */
-.icon-up:before { content: '\f176'; } /* '' */
+
+.icon-previous:before {
+    content: '\e806';
+}
+
+.icon-bill:before {
+    content: '\e807';
+}
+
+.icon-costs:before {
+    content: '\e808';
+}
+
+.icon-cash:before {
+    content: '\e809';
+}
+
+.icon-transfer:before {
+    content: '\e80a';
+}
+
+.icon-user:before {
+    content: '\e80b';
+}
+
+.icon-next:before {
+    content: '\e80e';
+}
+
+.icon-plus:before {
+    content: '\e80f';
+}
+
+.icon-minus:before {
+    content: '\e810';
+}
+
+.icon-rising:before {
+    content: '\e811';
+}
+
+.icon-network:before {
+    content: '\e812';
+}
+
+.icon-schedule:before {
+    content: '\e813';
+}
+
+.icon-letter:before {
+    content: '\e814';
+}
+
+.icon-gear:before {
+    content: '\e815';
+}
+
+.icon-exit:before {
+    content: '\e816';
+}
+
+.icon-arrows:before {
+    content: '\e817';
+}
+
+.icon-table:before {
+    content: '\e818';
+}
+
+.icon-drawer:before {
+    content: '\e819';
+}
+
+.icon-down:before {
+    content: '\f175';
+}
+
+.icon-up:before {
+    content: '\f176';
+}
 
 button:disabled {
-  cursor: auto;
+    cursor: auto;
+}
+
+
+/* || General style */
+
+html,
+body {
+    background-color: #F2F2F2;
+    font-size: 1.1em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.bank-hr {
+    width: calc(100% + 40px);
+    height: 4px;
+    margin: 10px -20px 20px -20px;
+    border: 0 none;
+}
+
+.bank-bg-active {
+    background-color: #E8E8E8;
+}
+
+.bank-border-left {
+    border-left: #fff solid 3px;
+    padding-left: 10px;
+}
+
+.bank-border-left-colored {
+    padding-left: 10px;
+}
+
+.ui-front {
+    z-index: 1051;
+}
+
+
+/* || Main style */
+
+.bank-main-container {
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #707070;
+    overflow: hidden;
+}
+
+.bank-main-header {
+    padding: 15px 20px 10px;
+    color: #A2A2A2;
+}
+
+.bank-main-body {
+    padding: 10px 20px;
+}
+
+
+/* || Text style */
+
+.bank-title {
+    color: #F2F2F2;
+    padding: 1px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 1.2em;
+    margin-top: 25px;
+}
+
+a {
+    color: #000;
+    text-decoration: none !important
+}
+
+.bank-letter-space {
+    letter-spacing: 4px;
+}
+
+.bank-colored-title {
+    font-size: 1.6em;
+    text-transform: uppercase;
+}
+
+.bank-font-size-sm {
+    font-size: 0.8em;
+}
+
+.bank-font-size-lg {
+    font-size: 1.2em;
+}
+
+
+/* || List style */
+
+.bank-list {
+    font-size: 1.1em;
+}
+
+
+/* || Image style */
+
+.bank-icon {
+    font-size: 1.1em;
+    margin-right: 15px;
+}
+
+
+/* || Nav style */
+
+aside,
+.nav-link {
+    color: #F2F2F2;
+    font-size: 1.2em;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+aside {
+    min-width: 250px;
+    min-width: 270px;
+}
+
+.bank-info {
+    min-height: 96px;
+}
+
+.bank-top-bar {
+    min-height: 96px;
+    background-color: #C9C9C9;
+    margin: -1rem -15px 15px -15px;
+    display: none;
+}
+
+
+/* || Button style */
+
+.bank-button {
+    padding: 6px 12px;
+    margin-bottom: 0;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+.bank-button:focus,
+.bank-button:active:focus {
+    outline: thin dotted;
+    outline-offset: -2px;
+}
+
+.bank-button:hover,
+.bank-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.bank-button:active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+
+.bank-button-colored {
+    color: #fff;
+    border-color: #ccc;
+}
+
+.bank-button-colored:focus {
+    color: #fff;
+    border-color: #8c8c8c;
+}
+
+.bank-button-colored:hover {
+    color: #fff;
+    border-color: #adadad;
+}
+
+.bank-button-colored:active {
+    color: #fff;
+    border-color: #adadad;
+}
+
+
+/* || Modal style */
+
+.bank-modal {
+    background-color: #fff;
+    padding: 3px 30px 15px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-clip: padding-box;
+    outline: 0;
+}
+
+.bank-modal-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+
+.bank-modal-body {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.bank-modal-footer {
+    margin-top: 8px;
+    padding: .25rem;
+    border-top: 1px solid #dee2e6;
+}
+
+
+/* || Card style */
+
+.bank-card {
+    color: #000;
+    background-color: #fff;
+    margin-bottom: 2rem;
+    border: 1px solid #707070;
+}
+
+.bank-card-header {
+    padding: 15px 20px 10px;
+    color: #A2A2A2;
+    border-bottom: 1px solid #707070;
+}
+
+.bank-card-body {
+    padding: 10px 20px;
+}
+
+
+/* || Panel style */
+
+.bank-panel {
+    color: #fff;
+    padding: 20px;
+    font-family: 'Bahnschrift Regular';
+    font-weight: normal;
+}
+
+.bank-panel-info-title {
+    font-weight: 300;
+}
+
+.bank-panel-info {
+    font-size: 1.4em;
+}
+
+
+/* || Last operations style (index) */
+
+.bank-operations-container {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 0.9em;
+}
+
+.bank-operations-list {
+    list-style-type: none;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.bank-operations-item {
+    position: relative;
+    display: block;
+}
+
+
+/* || Transaction history style */
+
+.bank-history-container {
+    max-height: 85vh;
+    padding: 0 0 0 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 0.9em;
+}
+
+
+/* || Nova style */
+
+.bank-nova-bg {
+    height: 100vh;
+    margin: -1rem -15px;
+    background-image: url('/uploads/banque/nova-bg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bank-nova-title {
+    letter-spacing: 3px;
+    background-color: #5B5B5B;
+}
+
+.bank-nova-body {
+    padding-left: 15%;
+}
+
+@media (min-width: 700px) {
+    .bank-nova-title {
+        background-color: transparent;
+    }
+}
+
+@media (max-width: 1400px) {
+    .bank-nova-body {
+        padding-left: 0;
+    }
+}
+
+
+/* || Responsive style */
+
+@media (min-width: 992px) {
+    .bank-chart {
+        max-width: calc((100vw - 270px)/2);
+    }
+    .bank-top-bar {
+        display: block;
+    }
+    .bank-home-link {
+        display: none;
+    }
 }
