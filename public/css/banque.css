@@ -249,7 +249,6 @@ a {
 
 .bank-icon {
     font-size: 1.1em;
-    margin-right: 15px;
 }
 
 
@@ -263,11 +262,6 @@ aside,
 
 .nav-link:hover {
     color: #fff;
-}
-
-aside {
-    min-width: 250px;
-    min-width: 270px;
 }
 
 .bank-info {
@@ -493,7 +487,6 @@ aside {
 }
 
 
-
 /* || Responsive style */
 
 @media (min-width: 992px) {
@@ -503,7 +496,10 @@ aside {
     .bank-top-bar {
         display: block;
     }
-    .bank-home-link {
-        display: none;
+}
+
+@media (max-width: 992px) {
+    .bank-info {
+        max-height: 96px;
     }
 }
