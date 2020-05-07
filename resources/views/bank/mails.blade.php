@@ -15,7 +15,7 @@ foreach($mails as $mail) {
 
 @section('content')
 <div class="row">
-  <div class="col-lg mb-3 pr-1">
+  <div class="col-lg mb-3">
     <div class="bank-main-container" style="height: 100%;">
       <div class="bank-main-header">
         <h3 class="text-uppercase text-center bank-colored-title">Boîte de réception</h3>
@@ -122,7 +122,7 @@ foreach($mails as $mail) {
       </div>
     </div>
   </div>
-  <div class="col-lg-auto mb-3 pl-1">
+  <div class="col-lg-auto mb-3">
 
     <!-- Modal EMPRUNT ENTREPRISE -->
     <div class="modal fade" id="entrepriseModal" tabindex="-1" role="dialog" aria-labelledby="entrepriseModalLabel" aria-hidden="true">
