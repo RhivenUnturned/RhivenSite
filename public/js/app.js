@@ -48421,7 +48421,7 @@ var render = function() {
         _c("input", {
           ref: "image",
           staticClass: "custom-file-input",
-          attrs: { type: "file", name: "image", id: "image", required: "" }
+          attrs: { type: "file", name: "image", id: "image" }
         }),
         _vm._v(" "),
         _c("label", { staticClass: "custom-file-label" }, [
@@ -64312,8 +64312,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Programmes\XAMPP\htdocs\rhiven\cms\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Programmes\XAMPP\htdocs\rhiven\cms\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Programmes\XAMPP\sousdomaines\rhiven\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Programmes\XAMPP\sousdomaines\rhiven\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

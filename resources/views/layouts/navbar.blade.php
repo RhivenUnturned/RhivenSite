@@ -15,6 +15,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('bank.index') }}">Banque</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('immo.index') }}">Immobilier</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         @auth

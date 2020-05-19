@@ -128,4 +128,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bankmail::class);
     }
+
+    public function adresses()
+    {
+        return $this->hasMany(Adress::class);
+    }
 }

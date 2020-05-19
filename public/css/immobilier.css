@@ -1,0 +1,837 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+/* || Base */
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    height: 100%;
+    background-image: url('../uploads/immobilier/fond.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+ul {
+    list-style: none;
+    padding-inline-start: 0px;
+}
+
+h3,
+p {
+    margin: 5px 0;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.animationCarte {
+    transition: transform 0.5s ease;
+}
+
+.pasClic {
+    pointer-events: none;
+}
+
+a {
+    color: #00AF80;
+    text-decoration: none;
+}
+
+a:active {
+    color: #1D71B8;
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'fleches';
+    src: url('../font/fleches.eot?95820059');
+    src: url('../font/fleches.eot?95820059#iefix') format('embedded-opentype'), url('../font/fleches.woff?95820059') format('woff'), url('../font/fleches.ttf?95820059') format('truetype'), url('../font/fleches.svg?95820059#fleches') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icone-custom {
+    font-family: "fleches";
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+    /* You can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+
+/* || Header */
+
+header {
+    background-color: #fff;
+    top: 0;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-menisk {
+    margin: 10px 0px 20px;
+    height: 125px;
+    width: 500px;
+    max-width: 90vw;
+}
+
+.logo-carte {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    height: 130px;
+    width: 300px;
+}
+
+
+/* --------------- */
+
+
+/*     ACCUEIL     */
+
+
+/* --------------- */
+
+
+/* ZONE RECHERCHE */
+
+.zone-recherche {
+    background-color: #00AF80;
+    text-align: center;
+    padding: 15px 10px 15px;
+}
+
+.formulaire-recherche {
+    width: calc(90vw + 10px);
+    height: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: repeat(3, 33%);
+}
+
+.formulaire-barre-recherche {
+    margin: 5px;
+    padding: 7px 10px;
+    font-size: large;
+}
+
+
+/* BOÎTES À COCHER PERSONNALISÉES */
+
+
+/* Customize the label (the container) */
+
+.formulaire-boite-parent,
+.formulaire-etoile-parent {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-size: large;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #fff;
+    color: #00AF80;
+    margin: 5px;
+    padding: 7px 0 7px 35px;
+    border: solid 1px #b3b3b3;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.formulaire-boite-parent input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    border-radius: 5px;
+    left: 5px;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border: solid 3px #00AF80;
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.formulaire-boite-parent:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.formulaire-boite-parent input:checked~.checkmark {
+    background-color: #00AF80;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.formulaire-boite-parent input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.formulaire-boite-parent .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+/* FIN BOÎTES À COCHER PERSONNALISÉES */
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(0, 0, 0, 0.5);
+    /* Firefox */
+    opacity: 1;
+}
+
+ :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+ ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#form-adresse {
+    grid-area: 1 / 1 / 1 / 4;
+}
+
+#form-quartier {
+    grid-area: 2 / 1 / 2 / 3;
+}
+
+#form-ville {
+    grid-area: 2 / 3 / 2 / 4;
+    cursor: pointer;
+}
+
+#form-prix-min,
+#form-prix-max {
+    border-radius: 20px;
+    border: solid 1px #b3b3b3;
+    text-align: center;
+    margin: 5px 20% 5px;
+    -webkit-transition: margin .35s ease-in-out;
+    transition: margin .35s ease-in-out;
+}
+
+#form-prix-min:focus,
+#form-prix-max:focus {
+    margin: 5px 5% 5px;
+}
+
+#form-envoi {
+    grid-area: 3 / 4 / 3 / 6;
+    margin: 5px 5px 5px;
+    font-size: 20px;
+    color: #00AF80;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+#form-envoi:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+#form-envoi:focus {
+    border: solid 2px rgb(75, 75, 75);
+}
+
+#form-envoi:active {
+    background-color: #00AF80;
+    color: rgb(250, 250, 250);
+    border: solid 3px white;
+    outline: none;
+}
+
+.formulaire-barre-recherche:focus {
+    border: solid 2px rgb(75, 75, 75);
+}
+
+#form-ville:focus {
+    margin: 4px;
+}
+
+.star {
+    visibility: hidden;
+    font-size: 35px;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: -11px;
+    color: #00AF80;
+}
+
+.star:before {
+    content: "\2605";
+    position: absolute;
+    visibility: visible;
+    cursor: pointer;
+}
+
+.star:checked:before {
+    content: "\2606";
+    position: absolute;
+}
+
+
+/* || Expo maisons */
+
+.expo-maison {
+    width: 90vw;
+    margin: 15px auto;
+    display: grid;
+    grid-template-areas: "a a a b b b c c c c" "a a a b b b c c c c" "d d e e f f c c c c";
+}
+
+.expo-carte {
+    background-color: white;
+    margin: 10px 5px 0 0;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 8px 10px;
+    transition: all .3s ease-in-out;
+}
+
+.expo-carte:hover {
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+    transform: translate3d(0px, -1px, 0px);
+}
+
+.expo-image {
+    max-width: 100%;
+}
+
+.expo-haut {
+    position: relative;
+    text-align: center;
+    color: rgb(228, 228, 228);
+    cursor: pointer;
+}
+
+.expo-haut:after {
+    content: '\A';
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 3px);
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+.expo-invitation {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    -webkit-transition: opacity 600ms, visibility 600ms;
+    transition: opacity 600ms, visibility 600ms;
+}
+
+.expo-carte:hover .expo-invitation,
+.expo-carte:hover .expo-haut:after {
+    visibility: visible;
+    opacity: 1;
+}
+
+.expo-contenu {
+    padding: 2px 5px;
+}
+
+.expo-type,
+.expo-statut {
+    border: 3px solid #00AF80;
+    border-radius: 9px;
+    color: #00AF80;
+    float: left;
+    padding: 1px 8px;
+}
+
+.expo-statut {
+    margin-left: 15px;
+}
+
+.expo-caddie {
+    float: right;
+    margin: 9px 10px 0 0;
+}
+
+.expo-prix {
+    float: right;
+    font-weight: bold;
+    margin-top: 9px;
+    color: black;
+}
+
+.expo-prix:hover {
+    color: #00AF80;
+    text-decoration: underline;
+}
+
+.expo-prix:active {
+    color: #1D71B8;
+}
+
+.expo-description {
+    align-self: center;
+    overflow-wrap: break-word;
+}
+
+#carte-0 {
+    grid-area: a;
+}
+
+#carte-1 {
+    grid-area: b;
+}
+
+#carte-2 {
+    grid-area: c;
+}
+
+#carte-3 {
+    grid-area: d;
+}
+
+#carte-4 {
+    grid-area: e;
+}
+
+#carte-5 {
+    grid-area: f;
+}
+
+#carte-3 p.expo-description,
+#carte-4 p.expo-description,
+#carte-5 p.expo-description {
+    display: none;
+}
+
+.statut-occupe {
+    border-color: #b8b8b8;
+    color: #b8b8b8;
+}
+
+#dir-achat {
+    cursor: pointer;
+}
+
+
+/* --------------- */
+
+
+/*      CARTE      */
+
+
+/* --------------- */
+
+
+/* || CARTE */
+
+.carte {
+    text-align: center;
+    height: calc(100vh - 162px);
+    /* Hauteur de l'écran moins la hauteur du header moins la hauteur de la bordure de la carte (2 * 1px = 2px) */
+}
+
+#limit-svg {
+    height: inherit;
+    max-width: 100vw;
+}
+
+.carte #Logement>rect:hover,
+.carte #Logement>polygon:hover,
+.carte #Logement>g:hover rect,
+.carte #Logement>g:hover polygon {
+    fill: #00AF80;
+    transition: fill 0.3s;
+    cursor: help;
+}
+
+.marqueursMaisons {
+    pointer-events: none;
+}
+
+
+/* Style de la carte sur les plus grands écrans */
+
+@media screen and (min-width: 740px) {
+    .redimension {
+        width: calc(100vw - 600px);
+        /* 600px = largeur panneau latéral */
+        margin-left: 600px;
+    }
+    #limit-svg {
+        border: 1px solid black;
+        width: calc(100vw - 2px);
+        transition: 500ms all;
+    }
+}
+
+
+/* || PANNEAU LATÉRAL */
+
+#panneau-lateral {
+    background-color: #ebebeb;
+    /* Black*/
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidebar */
+}
+
+.left-shadow-overlay {
+    box-shadow: 2px 0px 20px 1px #585858;
+}
+
+#panneau-lateral .handle {
+    background-color: #444444;
+    color: #fff;
+    right: -40px;
+    padding: 23px 15px 0px;
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 42px;
+    cursor: pointer;
+    margin-top: -20px;
+    -moz-transition: 200ms ease all;
+    -webkit-transition: 200ms ease all;
+    -o-transition: 200ms ease all;
+    transition: 200ms ease all;
+    border-bottom-right-radius: 15px;
+}
+
+#panneau-lateral .handle:hover {
+    width: 30px;
+    right: -50px;
+    color: rgba(255, 255, 255, 0.918);
+    box-shadow: 2px 0px 20px 1px #585858;
+}
+
+.titre-panneau {
+    height: 50px;
+    text-align: center;
+    font-weight: 300;
+    font-size: x-large;
+    color: #fff;
+    background-color: #444444;
+    padding: 15px 0 0 0;
+    margin: 0;
+}
+
+
+/* LISTE DES MAISONS */
+
+.liste {
+    padding-left: 5px;
+    overflow: auto;
+    height: calc(100vh - 109px);
+    direction: rtl;
+}
+
+#maisonListe {
+    direction: ltr;
+}
+
+.card {
+    background-color: white;
+    padding: 11px;
+    margin: 10px 5px 0 0;
+    box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.is-active {
+    border: 9px solid #00AF80;
+    border-radius: 2%;
+    padding: 1px;
+    fill: #00AF80;
+}
+
+
+/* BARRE DE RECHERCHE */
+
+#barre-recherche {
+    background-image: url('../uploads/immobilier/icone-recherche.png');
+    /* Add a search icon to input */
+    background-position: 10px 12px;
+    /* Position the search icon */
+    background-repeat: no-repeat;
+    /* Do not repeat the icon image */
+    width: 538px;
+    /* Full-width */
+    font-size: 16px;
+    /* Increase font-size */
+    padding: 12px 20px 12px 40px;
+    /* Add some padding */
+    border: 1px solid #ddd;
+    /* Add a grey border */
+}
+
+#barre-recherche-mobile {
+    display: none;
+}
+
+
+/* --------------- */
+
+
+/*   PAGE  ACHAT   */
+
+
+/* --------------- */
+
+#boite-achat-image {
+    position: relative;
+    overflow: hidden;
+    height: 350px;
+}
+
+#achat-fond-image {
+    position: absolute;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    width: 100vw;
+    height: 350px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#achat-image {
+    position: absolute;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.contenu-principal {
+    margin: auto;
+    width: 60vw;
+    max-width: 1550px;
+    min-height: calc(100vh - 350px - 160px - 10px);
+    background-color: rgb(238, 238, 238);
+    padding: 5px 30px;
+    position: relative;
+}
+
+.presentation-maison {
+    width: 70%;
+    float: left;
+}
+
+.titre-adresse {
+    font-weight: 400;
+    font-size: xx-large;
+    text-transform: uppercase;
+}
+
+.achat-infos-statut-type {
+    font-size: large;
+}
+
+.achat-description {
+    float: left;
+    font-size: large;
+    margin: 1.75em 2px;
+}
+
+.achat-infos-nombres,
+.expo-portes,
+.expo-fenetres {
+    float: left;
+}
+
+.expo-fenetres {
+    margin-left: 25px;
+}
+
+.formulaire-achat {
+    float: right;
+    background-color: rgb(248, 248, 248);
+    border-radius: 15px;
+    box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.5);
+    height: calc(100% - 70px);
+    width: calc(30% - 60px);
+    padding: 25px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.titre-formulaire-achat {
+    margin: 0 0 15px 0;
+    font-size: x-large;
+    text-transform: uppercase;
+}
+
+
+/* --------------- */
+
+
+/*   RESPONSIVE    */
+
+
+/* --------------- */
+
+@media screen and (max-width: 800px) {
+    .logo-carte {
+        display: none;
+    }
+    .logo-menisk {
+        height: 90px;
+    }
+    header {
+        height: auto;
+    }
+    /* ZONE RECHERCHE */
+    .formulaire-recherche {
+        grid-template-columns: repeat(5, 50%);
+        grid-template-rows: repeat(7, 1fr);
+        grid-template-areas: "a a" "b c" "d e" "f g" "h h" "i j" "k k";
+    }
+    #form-adresse {
+        grid-area: a;
+    }
+    #form-quartier {
+        grid-area: b;
+    }
+    #form-ville {
+        grid-area: c;
+    }
+    #boite-form-appartement {
+        grid-area: d;
+    }
+    #boite-form-industrie {
+        grid-area: g;
+    }
+    #boite-form-maison {
+        grid-area: e;
+    }
+    #boite-form-commerce {
+        grid-area: f;
+    }
+    #boite-form-offres {
+        grid-area: h;
+    }
+    #form-prix-min {
+        grid-area: i;
+        margin: 5px 15px 5px;
+    }
+    #form-prix-max {
+        grid-area: j;
+        margin: 5px 15px 5px;
+    }
+    #form-envoi {
+        grid-area: k;
+    }
+    /* EXPO MAISONS */
+    .expo-maison {
+        display: block;
+    }
+    #carte-3 p.expo-description,
+    #carte-4 p.expo-description,
+    #carte-5 p.expo-description {
+        display: block;
+    }
+    /* CARTE */
+    .carte {
+        height: calc(100vh - 123px);
+    }
+    #panneau-lateral {
+        display: none;
+    }
+    #barre-recherche-mobile {
+        display: block;
+        background-image: url('../uploads/immobilier/icone-recherche.png');
+        /* Add a search icon to input */
+        background-position: 10px 12px;
+        /* Position the search icon */
+        background-repeat: no-repeat;
+        /* Do not repeat the icon image */
+        width: calc(100% - 61px);
+        /* Full-width */
+        font-size: 16px;
+        /* Increase font-size */
+        padding: 12px 20px 12px 40px;
+        /* Add some padding */
+        border: 1px solid #ddd;
+        /* Add a grey border */
+    }
+}

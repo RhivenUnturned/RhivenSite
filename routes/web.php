@@ -70,3 +70,5 @@ Route::get('/bank/mybank', function () {return view('bank.mybank');})->name('ban
 Route::post('/bank/mybank/{bank}', 'BankController@changeBank')->name('bank.changeBank');
 Route::get('/bank/administration', 'BankController@administration')->name('bank.administration');
 Route::resource('bank', 'BankController');
+
+Route::get('/immobilier','ImmoController@index')->name('immo.index');
