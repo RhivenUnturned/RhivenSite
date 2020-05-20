@@ -2,361 +2,301 @@ window.onbeforeunload = function () {
   window.localStorage.clear(); // Nettoyage du localstorage si rechargement de la page
 }
 
-//  |************************|
-//  |* LA LISTE DES MAISONS *|
-//  |************************|
+//  |**********|
+//  |* DIVERS *|
+//  |**********|
 
-var requestURL = 'data/adresses.json'; // URL du fichier json à charger, mis dans une variable
-var request = new XMLHttpRequest(); // Création d'un nouvel objet XMLHttpRequest avec le mot clé "new"
+function zoomMaison(event) { // zommer sur la maison selectionnée: id maison liste > id élément calque > coodrdonées élément calque > panTo coordonées
+  var e = event.currentTarget.id.replace("liste-Log", ""); // liste-LogX > X
+  activeArea(e); // On surligne la maison sélectionnée
 
-request.open('GET', requestURL); // Avec la méthode HTTP GET, on crée une requête afin de récupérer les données situé à l'adresse requestURL
-request.responseType = 'json'; // On indique le type de réponse attendue
-request.send(); // Puis on envoie la requête
+  // On remet à zéro le zoom de la carte, on la fait tenir en entier dans le cadre et on la met au zoom 1, initial
+  panZoomSRP.fit();
+  panZoomSRP.center();
+  panZoomSRP.zoom(1);
 
-var cardsData, slider
+  var zoneCarteElements = Array.from(document.getElementsByClassName("svg-pan-zoom_viewport"));
+  zoneCarteElements.map(element => element.classList.add("animationCarte"));
 
-request.onload = function () {
-  cardsData = request.response; // On stocke nos données dans la constante "adresses"
-  créerListe(cardsData);
+  // http://jsfiddle.net/mgv5fuyw/3/
+  var bb = $("#Log" + e)[0].getBBox(); // getBBox() permet d'obtenir le plus petit rectangle dans lequel notre élément peut tenir
+  var vbb = panZoomSRP.getSizes().viewBox; // getSizes().viewBox permet d'obtenir la hauteur et la largeur du cadre de la carte
+  var x = vbb.width / 2 - bb.x - bb.width / 2;
+  var y = vbb.height / 2 - bb.y - bb.height / 2;
+  var rz = panZoomSRP.getSizes().realZoom;
+  var zoom = 5;
+  panZoomSRP.panBy({ x: x * rz, y: y * rz });
+  panZoomSRP.zoom(zoom);
 
-  function créerListe(cardsData) {
-    new Vue({
-      el: '#app',
-      data: {
-        cards: cardsData,
-        scrollPosition: 0
-      },
-      filters: {
-        versMonnaie: function (valeur) {
-          if (typeof valeur !== "number") {
-            return valeur;
-          }
-          var format = new Intl.NumberFormat('fr-FR', {
-            style: 'currency',
-            currency: 'EUR',
-            minimumFractionDigits: 0
-          });
-          return format.format(valeur);
-        }
-      },
-      methods: {
-        zoomMaison: function (event) { // zommer sur la maison selectionnée: id maison liste > id élément calque > coodrdonées élément calque > panTo coordonées
-          var e = event.currentTarget.id.replace("liste-Log", ""); // liste-LogX > X
-          activeArea(e); // On surligne la maison sélectionnée
-
-          // On remet à zéro le zoom de la carte, on la fait tenir en entier dans le cadre et on la met au zoom 1, initial
-          panZoomSRP.fit();
-          panZoomSRP.center();
-          panZoomSRP.zoom(1);
-
-          var zoneCarteElements = Array.from(document.getElementsByClassName("svg-pan-zoom_viewport"));
-          zoneCarteElements.map(element => element.classList.add("animationCarte"));
-
-          // http://jsfiddle.net/mgv5fuyw/3/
-          var bb = $("#Log" + e)[0].getBBox(); // getBBox() permet d'obtenir le plus petit rectangle dans lequel notre élément peut tenir
-          var vbb = panZoomSRP.getSizes().viewBox; // getSizes().viewBox permet d'obtenir la hauteur et la largeur du cadre de la carte
-          var x = vbb.width / 2 - bb.x - bb.width / 2;
-          var y = vbb.height / 2 - bb.y - bb.height / 2;
-          var rz = panZoomSRP.getSizes().realZoom;
-          var zoom = 5;
-          panZoomSRP.panBy({ x: x * rz, y: y * rz });
-          panZoomSRP.zoom(zoom);
-
-          document.getElementById('limit-svg').addEventListener("transitionend", function () {
-            zoneCarteElements.map(element => element.classList.remove("animationCarte"));
-          });
-        },
-        type: function (e) {
-          if (cardsData[e].commerce === "1") {
-            return "Commerce";
-          } else if (cardsData[e].appartement === "1") {
-            return "Appartement";
-          } else if (cardsData[e].maison === "1") {
-            return "Maison";
-          } else if (cardsData[e].industrie === "1") {
-            return "Industrie";
-          } else {
-            return "Inconnu";
-          }
-        },
-        statut: function (e) {
-          if (cardsData[e].ouvert === "1") {
-            return "Libre";
-          } else if (cardsData[e].ouvert === "0") {
-            return 'Occupé';
-          } else {
-            return "Inconnu";
-          }
-        }
-      }
-    })
-  }
-
-  //  |**********|
-  //  |* DIVERS *|
-  //  |**********|
-
-
-  // Polyfill classlist pour adapter la fonction à tous les navigateurs
-  if ("document" in self) {
-    if (!("classList" in document.createElement("_")) || document.createElementNS && !("classList" in document.createElementNS("http://www.w3.org/2000/svg", "g"))) {
-      (function (t) {
-        "use strict";
-        if (!("Element" in t)) return;
-        var e = "classList",
-          i = "prototype",
-          n = t.Element[i],
-          s = Object,
-          r = String[i].trim || function () { return this.replace(/^\s+|\s+$/g, "") },
-          a = Array[i].indexOf || function (t) {
-            var e = 0,
-              i = this.length;
-            for (; e < i; e++) { if (e in this && this[e] === t) { return e } }
-            return -1
-          },
-          o = function (t, e) {
-            this.name = t;
-            this.code = DOMException[t];
-            this.message = e
-          },
-          l = function (t, e) { if (e === "") { throw new o("SYNTAX_ERR", "An invalid or illegal string was specified") } if (/\s/.test(e)) { throw new o("INVALID_CHARACTER_ERR", "String contains an invalid character") } return a.call(t, e) },
-          c = function (t) {
-            var e = r.call(t.getAttribute("class") || ""),
-              i = e ? e.split(/\s+/) : [],
-              n = 0,
-              s = i.length;
-            for (; n < s; n++) { this.push(i[n]) }
-            this._updateClassName = function () { t.setAttribute("class", this.toString()) }
-          },
-          u = c[i] = [],
-          f = function () { return new c(this) };
-        o[i] = Error[i];
-        u.item = function (t) { return this[t] || null };
-        u.contains = function (t) { t += ""; return l(this, t) !== -1 };
-        u.add = function () {
-          var t = arguments,
-            e = 0,
-            i = t.length,
-            n, s = false;
-          do {
-            n = t[e] + "";
-            if (l(this, n) === -1) {
-              this.push(n);
-              s = true
-            }
-          } while (++e < i);
-          if (s) { this._updateClassName() }
-        };
-        u.remove = function () {
-          var t = arguments,
-            e = 0,
-            i = t.length,
-            n, s = false,
-            r;
-          do {
-            n = t[e] + "";
-            r = l(this, n);
-            while (r !== -1) {
-              this.splice(r, 1);
-              s = true;
-              r = l(this, n)
-            }
-          } while (++e < i);
-          if (s) { this._updateClassName() }
-        };
-        u.toggle = function (t, e) {
-          t += "";
-          var i = this.contains(t),
-            n = i ? e !== true && "remove" : e !== false && "add";
-          if (n) { this[n](t) }
-          if (e === true || e === false) { return e } else { return !i }
-        };
-        u.toString = function () { return this.join(" ") };
-        if (s.defineProperty) {
-          var h = { get: f, enumerable: true, configurable: true };
-          try { s.defineProperty(n, e, h) } catch (d) {
-            if (d.number === -2146823252) {
-              h.enumerable = false;
-              s.defineProperty(n, e, h)
-            }
-          }
-        } else if (s[i].__defineGetter__) { n.__defineGetter__(e, f) }
-      })(self)
-    } else {
-      (function () {
-        "use strict";
-        var t = document.createElement("_");
-        t.classList.add("c1", "c2");
-        if (!t.classList.contains("c2")) {
-          var e = function (t) {
-            var e = DOMTokenList.prototype[t];
-            DOMTokenList.prototype[t] = function (t) {
-              var i, n = arguments.length;
-              for (i = 0; i < n; i++) {
-                t = arguments[i];
-                e.call(this, t)
-              }
-            }
-          };
-          e("add");
-          e("remove")
-        }
-        t.classList.toggle("c3", false);
-        if (t.classList.contains("c3")) {
-          var i = DOMTokenList.prototype.toggle;
-          DOMTokenList.prototype.toggle = function (t, e) { if (1 in arguments && !this.contains(t) === !e) { return e } else { return i.call(this, t) } }
-        }
-        t = null
-      })()
-    }
-  }
-
-  // Code pour lier les maisons à la liste, et vice-versa
-  var map = document.querySelector("main"),
-    paths = map.querySelectorAll("#Logement>polygon, #Logement>rect"),
-    pathsGroups = map.querySelectorAll("#Logement>g>polygon, #Logement>g>rect"),
-    markers = map.querySelectorAll("#groupeMarqueurs>use");
-  void 0 === NodeList.prototype.forEach && (NodeList.prototype.forEach = function (e) {
-    [].forEach.call(this, e)
+  document.getElementById('limit-svg').addEventListener("transitionend", function () {
+    zoneCarteElements.map(element => element.classList.remove("animationCarte"));
   });
+}
 
-  var activeArea = function (e) {
-    if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 800) { // Si jamais on est sur un écran large (ordi) on appelle le panneau latéral
-      slider.slideReveal("show");
-    }
-    map.querySelectorAll(".is-active").forEach(function (e) {
-      e.classList.remove("is-active")
-    })
-    if (e !== undefined) {
-      document.querySelector("#liste-Log" + e).classList.add("is-active");
-      document.querySelector("#Log" + e).classList.add("is-active");
-
-      scrollToActive("#liste-Log" + e); // lorsqu'une maison ou une carte de la liste a été séléctionnée, on défile la liste jusqu'à la carte correspondante
-
-      var nodes = document.querySelector("#Log" + e).children; // Appliquer une classe à tous les enfants d'un élément
-      for (var i = 0; i < nodes.length; i++) {
-        nodes[i].classList.add("is-active");
+// Polyfill classlist pour adapter la fonction à tous les navigateurs
+if ("document" in self) {
+  if (!("classList" in document.createElement("_")) || document.createElementNS && !("classList" in document.createElementNS("http://www.w3.org/2000/svg", "g"))) {
+    (function (t) {
+      "use strict";
+      if (!("Element" in t)) return;
+      var e = "classList",
+        i = "prototype",
+        n = t.Element[i],
+        s = Object,
+        r = String[i].trim || function () { return this.replace(/^\s+|\s+$/g, "") },
+        a = Array[i].indexOf || function (t) {
+          var e = 0,
+            i = this.length;
+          for (; e < i; e++) { if (e in this && this[e] === t) { return e } }
+          return -1
+        },
+        o = function (t, e) {
+          this.name = t;
+          this.code = DOMException[t];
+          this.message = e
+        },
+        l = function (t, e) { if (e === "") { throw new o("SYNTAX_ERR", "An invalid or illegal string was specified") } if (/\s/.test(e)) { throw new o("INVALID_CHARACTER_ERR", "String contains an invalid character") } return a.call(t, e) },
+        c = function (t) {
+          var e = r.call(t.getAttribute("class") || ""),
+            i = e ? e.split(/\s+/) : [],
+            n = 0,
+            s = i.length;
+          for (; n < s; n++) { this.push(i[n]) }
+          this._updateClassName = function () { t.setAttribute("class", this.toString()) }
+        },
+        u = c[i] = [],
+        f = function () { return new c(this) };
+      o[i] = Error[i];
+      u.item = function (t) { return this[t] || null };
+      u.contains = function (t) { t += ""; return l(this, t) !== -1 };
+      u.add = function () {
+        var t = arguments,
+          e = 0,
+          i = t.length,
+          n, s = false;
+        do {
+          n = t[e] + "";
+          if (l(this, n) === -1) {
+            this.push(n);
+            s = true
+          }
+        } while (++e < i);
+        if (s) { this._updateClassName() }
+      };
+      u.remove = function () {
+        var t = arguments,
+          e = 0,
+          i = t.length,
+          n, s = false,
+          r;
+        do {
+          n = t[e] + "";
+          r = l(this, n);
+          while (r !== -1) {
+            this.splice(r, 1);
+            s = true;
+            r = l(this, n)
+          }
+        } while (++e < i);
+        if (s) { this._updateClassName() }
+      };
+      u.toggle = function (t, e) {
+        t += "";
+        var i = this.contains(t),
+          n = i ? e !== true && "remove" : e !== false && "add";
+        if (n) { this[n](t) }
+        if (e === true || e === false) { return e } else { return !i }
+      };
+      u.toString = function () { return this.join(" ") };
+      if (s.defineProperty) {
+        var h = { get: f, enumerable: true, configurable: true };
+        try { s.defineProperty(n, e, h) } catch (d) {
+          if (d.number === -2146823252) {
+            h.enumerable = false;
+            s.defineProperty(n, e, h)
+          }
+        }
+      } else if (s[i].__defineGetter__) { n.__defineGetter__(e, f) }
+    })(self)
+  } else {
+    (function () {
+      "use strict";
+      var t = document.createElement("_");
+      t.classList.add("c1", "c2");
+      if (!t.classList.contains("c2")) {
+        var e = function (t) {
+          var e = DOMTokenList.prototype[t];
+          DOMTokenList.prototype[t] = function (t) {
+            var i, n = arguments.length;
+            for (i = 0; i < n; i++) {
+              t = arguments[i];
+              e.call(this, t)
+            }
+          }
+        };
+        e("add");
+        e("remove")
       }
-    }
-  };
+      t.classList.toggle("c3", false);
+      if (t.classList.contains("c3")) {
+        var i = DOMTokenList.prototype.toggle;
+        DOMTokenList.prototype.toggle = function (t, e) { if (1 in arguments && !this.contains(t) === !e) { return e } else { return i.call(this, t) } }
+      }
+      t = null
+    })()
+  }
+}
 
-  paths.forEach(function (e) {
-    e.addEventListener("click", function () {
-      var e = this.id.replace("Log", ""); // LogX > X
-      activeArea(e);
-    })
-  }), pathsGroups.forEach(function (e) {
-    e.addEventListener("click", function () {
-      var e = this.id.slice(3, -2); // LogX-Y > X /!\ Cela peut poser problème lorsqu'il y a plus de 10 enfants dans un groupe
-      activeArea(e);
-    })
-  }), markers.forEach(function (e) {
-    e.addEventListener("click", function () {
-      var e = this.id.slice(3, -9); // LogX-marqueur > X
-      activeArea(e);
-    })
-  });
+// Code pour lier les maisons à la liste, et vice-versa
+var map = document.querySelector("main"),
+  paths = map.querySelectorAll("#Logement>polygon, #Logement>rect"),
+  pathsGroups = map.querySelectorAll("#Logement>g>polygon, #Logement>g>rect"),
+  markers = map.querySelectorAll("#groupeMarqueurs>use");
+void 0 === NodeList.prototype.forEach && (NodeList.prototype.forEach = function (e) {
+  [].forEach.call(this, e)
+});
 
-  var clicExpoMaison = JSON.parse(localStorage.getItem('clicExpoMaison'));
+var activeArea = function (e) {
+  if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 800) { // Si jamais on est sur un écran large (ordi) on appelle le panneau latéral
+    slider.slideReveal("show");
+  }
+  map.querySelectorAll(".is-active").forEach(function (e) {
+    e.classList.remove("is-active")
+  })
+  if (e !== undefined) {
+    var element = document.querySelector("#liste-Log" + e);
 
-  if (clicExpoMaison != null) {
-    function filtrerParRecherche(liste, critere) {
-      // .filter() permet de garder les éléments passant le test passé en paramêtre
-      return liste.filter(
-        candidat => candidat.titre === critere.adresse
-      );
-    }
+    element.classList.add("is-active");
+    document.querySelector("#Log" + e).classList.add("is-active");
 
-    var maisonSelectionnee = filtrerParRecherche(cardsData, clicExpoMaison);
+    // smooth scroll to element and align it to the center of scrollable parent
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-    let calqueMaison = maisonSelectionnee.map(a => a.id_calque);
-    // ["Log0", "Log1", "Log2", "Log3", "Log4", "Log5", "Log6", "Log7", "Log8", "Log9", "Log10", "Log11", "Log12", "Log13", "Log14", "Log15"]
-    var initial = document.getElementById('initial');
-    var marqueurInitial = document.getElementById('marqueurInitial');
-
-    for (const calque of calqueMaison) {
-
-      var calqueSvg = document.getElementById(calque);
-      var groupeMarqueurs = document.getElementById('groupeMarqueurs');
-
-      let bb = initial.getBBox();
-      let boiteCalqueSvg = calqueSvg.getBBox();
-      let centreCalqueSvgX = boiteCalqueSvg.x + boiteCalqueSvg.width / 2;
-      let centreCalqueSvgY = boiteCalqueSvg.y + boiteCalqueSvg.height / 2;
-
-      let x = centreCalqueSvgX - bb.x - bb.width / 2;
-      let y = centreCalqueSvgY - bb.y - bb.height / 2;
-
-      var marqueur = marqueurInitial.cloneNode(true);  // <use id="theUse" xlink:href="#initial" />
-      marqueur.setAttributeNS(null, "id", calque + "-marqueur");
-      marqueur.setAttributeNS(null, "style", "visibility: visible;");
-      marqueur.setAttributeNS(null, "class", "marqueursMaisons");
-      marqueur.setAttributeNS(null, "x", x);
-      marqueur.setAttributeNS(null, "y", y);
-
-      groupeMarqueurs.appendChild(marqueur);
-
-      var e = calque.replace("Log", ""); // LogX > X
-      activeArea(e);
+    var nodes = document.querySelector("#Log" + e).children; // Appliquer une classe à tous les enfants d'un élément
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].classList.add("is-active");
     }
   }
+};
 
-  // Recherche des maisons correspondant à la requête sur index.php 
-  // https://stackoverflow.com/questions/52489741/filter-json-object-array-on-multiple-values-or-arguments-javascript
+paths.forEach(function (e) {
+  e.addEventListener("click", function () {
+    var e = this.id.replace("Log", ""); // LogX > X
+    activeArea(e);
+  })
+}), pathsGroups.forEach(function (e) {
+  e.addEventListener("click", function () {
+    var e = this.id.slice(3, -2); // LogX-Y > X /!\ Cela peut poser problème lorsqu'il y a plus de 10 enfants dans un groupe
+    activeArea(e);
+  })
+}), markers.forEach(function (e) {
+  e.addEventListener("click", function () {
+    var e = this.id.slice(3, -9); // LogX-marqueur > X
+    activeArea(e);
+  })
+});
 
-  var paramRecherche = JSON.parse(localStorage.getItem('paramRecherche'));
-  var paramExtra = JSON.parse(localStorage.getItem('paramExtra'));
+var clicExpoMaison = JSON.parse(localStorage.getItem('clicExpoMaison'));
 
-  if (paramRecherche != null) {
+if (clicExpoMaison != null) {
+  function filtrerParRecherche(liste, critere) {
+    // .filter() permet de garder les éléments passant le test passé en paramêtre
+    return liste.filter(
+      candidat => candidat.titre === critere.adresse
+    );
+  }
 
-    // On retire les valeurs vides "null" du tableau
-    Object.keys(paramRecherche).forEach((key) => (paramRecherche[key] == null) && delete paramRecherche[key]);
+  var maisonSelectionnee = filtrerParRecherche(adresses, clicExpoMaison);
 
-    // CE QU'IL RESTE A FAIRE; ANALYSER OFFRE ET PRIX
-    function filtrerParRecherche(liste, critere, critere2) {
-      // .filter() permet de garder les éléments passant le test passé en paramêtre
-      return liste.filter(
-        // Candidat au test = chaque objet avec chaque critère, et il passe le test si chaque test suivant est passé
-        candidat => Object.keys(critere).every(
-          // On vérifie si le candidat contient le paramêtre passé "criteria" avec .indexOf()
-          key => candidat[key].toLowerCase().indexOf(critere[key].toLowerCase()) > -1
-        )
-          && parseInt(candidat.prix) <= parseInt(critere2.prixmax)
-          && parseInt(candidat.prix) >= parseInt(critere2.prixmin)
-          && Math.sign(parseInt(candidat.offre)) <= Math.sign(parseInt(critere2.offre)) // Grâce à Math.sign, on obtient une seule valeur quelque soit la valeur entrée, tout dépend de son signe. "<=" car on souhaite inclure les bâtiments en promo, même si l'utilisateur ne cherche pas uniquement ceux en promo
-          && (candidat.appartement == critere2.appartement || candidat.maison == critere2.maison || candidat.industrie == critere2.industrie || candidat.commerce == critere2.commerce)
-      );
-    }
+  let calqueMaison = maisonSelectionnee.map(a => a.id_calque);
+  // ["Log0", "Log1", "Log2", "Log3", "Log4", "Log5", "Log6", "Log7", "Log8", "Log9", "Log10", "Log11", "Log12", "Log13", "Log14", "Log15"]
+  var initial = document.getElementById('initial');
+  var marqueurInitial = document.getElementById('marqueurInitial');
 
-    var listeMaisons = filtrerParRecherche(cardsData, paramRecherche, paramExtra);
+  for (const calque of calqueMaison) {
 
-    let listeCalques = listeMaisons.map(a => a.id_calque);
-    // ["Log0", "Log1", "Log2", "Log3", "Log4", "Log5", "Log6", "Log7", "Log8", "Log9", "Log10", "Log11", "Log12", "Log13", "Log14", "Log15"]
-    var initial = document.getElementById('initial');
-    var marqueurInitial = document.getElementById('marqueurInitial');
+    var calqueSvg = document.getElementById(calque);
+    var groupeMarqueurs = document.getElementById('groupeMarqueurs');
 
-    for (const calque of listeCalques) {
+    let bb = initial.getBBox();
+    let boiteCalqueSvg = calqueSvg.getBBox();
+    let centreCalqueSvgX = boiteCalqueSvg.x + boiteCalqueSvg.width / 2;
+    let centreCalqueSvgY = boiteCalqueSvg.y + boiteCalqueSvg.height / 2;
 
-      var calqueSvg = document.getElementById(calque);
-      var groupeMarqueurs = document.getElementById('groupeMarqueurs');
+    let x = centreCalqueSvgX - bb.x - bb.width / 2;
+    let y = centreCalqueSvgY - bb.y - bb.height / 2;
 
-      let bb = initial.getBBox();
-      let boiteCalqueSvg = calqueSvg.getBBox();
-      let centreCalqueSvgX = boiteCalqueSvg.x + boiteCalqueSvg.width / 2;
-      let centreCalqueSvgY = boiteCalqueSvg.y + boiteCalqueSvg.height / 2;
+    var marqueur = marqueurInitial.cloneNode(true);  // <use id="theUse" xlink:href="#initial" />
+    marqueur.setAttributeNS(null, "id", calque + "-marqueur");
+    marqueur.setAttributeNS(null, "style", "visibility: visible;");
+    marqueur.setAttributeNS(null, "class", "marqueursMaisons");
+    marqueur.setAttributeNS(null, "x", x);
+    marqueur.setAttributeNS(null, "y", y);
 
-      let x = centreCalqueSvgX - bb.x - bb.width / 2;
-      let y = centreCalqueSvgY - bb.y - bb.height / 2;
+    groupeMarqueurs.appendChild(marqueur);
 
-      var marqueur = marqueurInitial.cloneNode(true);  // <use id="theUse" xlink:href="#initial" />
-      marqueur.setAttributeNS(null, "id", calque + "-marqueur");
-      marqueur.setAttributeNS(null, "style", "visibility: visible;");
-      marqueur.setAttributeNS(null, "class", "marqueursMaisons");
-      marqueur.setAttributeNS(null, "x", x);
-      marqueur.setAttributeNS(null, "y", y);
+    var e = calque.replace("Log", ""); // LogX > X
+    activeArea(e);
+  }
+}
 
-      groupeMarqueurs.appendChild(marqueur);
-    }
+// Recherche des maisons correspondant à la requête sur index.php 
+// https://stackoverflow.com/questions/52489741/filter-json-object-array-on-multiple-values-or-arguments-javascript
+
+var paramRecherche = JSON.parse(localStorage.getItem('paramRecherche'));
+var paramExtra = JSON.parse(localStorage.getItem('paramExtra'));
+
+if (paramRecherche != null) {
+
+  // On retire les valeurs vides "null" du tableau
+  Object.keys(paramRecherche).forEach((key) => (paramRecherche[key] == null) && delete paramRecherche[key]);
+
+  // CE QU'IL RESTE A FAIRE; ANALYSER OFFRE ET PRIX
+  function filtrerParRecherche(liste, critere, critere2) {
+    // .filter() permet de garder les éléments passant le test passé en paramêtre
+    console.log(critere);
+    return liste.filter(
+      // Candidat au test = chaque objet avec chaque critère, et il passe le test si chaque test suivant est passé
+      candidat => Object.keys(critere).every(
+        // On vérifie si le candidat contient le paramêtre passé "critere" avec .indexOf()
+        key => candidat[key].toLowerCase().indexOf(critere[key].toLowerCase()) > -1,
+        console.log(candidat)
+      )
+        && parseInt(candidat.prix) <= parseInt(critere2.prixmax)
+        && parseInt(candidat.prix) >= parseInt(critere2.prixmin)
+        && Math.sign(parseInt(candidat.offre)) <= Math.sign(parseInt(critere2.offre)) // Grâce à Math.sign, on obtient une seule valeur quelque soit la valeur entrée, tout dépend de son signe. "<=" car on souhaite inclure les bâtiments en promo, même si l'utilisateur ne cherche pas uniquement ceux en promo
+        && (candidat.appartement == critere2.appartement || candidat.maison == critere2.maison || candidat.industrie == critere2.industrie || candidat.commerce == critere2.commerce)
+    );
+  }
+
+  var listeMaisons = filtrerParRecherche(adresses, paramRecherche, paramExtra);
+
+  let listeCalques = listeMaisons.map(a => a.id_calque);
+  // ["Log0", "Log1", "Log2", "Log3", "Log4", "Log5", "Log6", "Log7", "Log8", "Log9", "Log10", "Log11", "Log12", "Log13", "Log14", "Log15"]
+  var initial = document.getElementById('initial');
+  var marqueurInitial = document.getElementById('marqueurInitial');
+
+  for (const calque of listeCalques) {
+
+    var calqueSvg = document.getElementById(calque);
+    var groupeMarqueurs = document.getElementById('groupeMarqueurs');
+
+    let bb = initial.getBBox();
+    let boiteCalqueSvg = calqueSvg.getBBox();
+    let centreCalqueSvgX = boiteCalqueSvg.x + boiteCalqueSvg.width / 2;
+    let centreCalqueSvgY = boiteCalqueSvg.y + boiteCalqueSvg.height / 2;
+
+    let x = centreCalqueSvgX - bb.x - bb.width / 2;
+    let y = centreCalqueSvgY - bb.y - bb.height / 2;
+
+    var marqueur = marqueurInitial.cloneNode(true);  // <use id="theUse" xlink:href="#initial" />
+    marqueur.setAttributeNS(null, "id", calque + "-marqueur");
+    marqueur.setAttributeNS(null, "style", "visibility: visible;");
+    marqueur.setAttributeNS(null, "class", "marqueursMaisons");
+    marqueur.setAttributeNS(null, "x", x);
+    marqueur.setAttributeNS(null, "y", y);
+
+    groupeMarqueurs.appendChild(marqueur);
   }
 }
 
@@ -366,8 +306,13 @@ request.onload = function () {
 
 function rechercher() {
   // Declare variables
-  var input, filter, ul, li, titlehouse, i, txtValue;
-  input = document.getElementById('barre-recherche');
+  if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 800) {
+    var input = document.getElementById('barre-recherche');
+  }else{
+    var input = document.getElementById('barre-recherche-mobile');
+  }
+
+  var filter, ul, li, titlehouse, i, txtValue;
   filter = input.value.toUpperCase();
   ul = document.getElementById("maisonListe");
   li = ul.getElementsByTagName('li');
@@ -380,6 +325,7 @@ function rechercher() {
       titlehouse = li[i].getElementsByTagName("h3")[0];
       txtValue = titlehouse.textContent || titlehouse.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        console.log('test');
         li[i].style.display = "";
 
         var calque = li[i].id.replace("liste-", ""); // liste-LogX > LogX
@@ -461,47 +407,6 @@ $(window).on("resize", function () {
     });
   }
 }).resize();
-
-// Code pour faire défiler la liste à la maison selectionnée
-
-const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0); // Obtenir la taille de l'écran de l'utilisateur
-
-var scrollToActive = function (id) { // Fonction à appeller pour défiler l'élément "#app" jusqu'à la partie haute de l'élément dont l'id est renseigné en paramêtre
-  document.getElementById("app").classList.add("pasClic");
-  var elem = document.querySelector(id);
-  var topPos = elem.offsetTop;
-  scrollTo(document.getElementById('app'), topPos - (vh / 100 * 30), 600); // on défile tel élément, vers tel élément, pendant tant de temps
-  setTimeout(function () { document.getElementById("app").classList.remove("pasClic") }, 550);
-}
-
-function scrollTo(element, to, duration) {
-  var start = element.scrollTop,
-    change = to - start,
-    currentTime = 0,
-    increment = 20;
-
-  var animateScroll = function () {
-    currentTime += increment;
-    var val = Math.easeInOutQuad(currentTime, start, change, duration);
-    element.scrollTop = val;
-    if (currentTime < duration) {
-      setTimeout(animateScroll, increment);
-    }
-  };
-  animateScroll();
-}
-
-//t = current time
-//b = start value
-//c = change in value
-//d = duration
-Math.easeInOutQuad = function (t, b, c, d) {
-  t /= d / 2;
-  if (t < 1) return c / 2 * t * t + b;
-  t--;
-  return -c / 2 * (t * (t - 2) - 1) + b;
-};
-
 
 // Obtention du navigateur, et message aux non-utilisateurs de Chrome
 

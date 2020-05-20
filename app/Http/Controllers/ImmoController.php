@@ -18,4 +18,16 @@ class ImmoController extends Controller
 
         return view('immo.index', compact('adresses'));
     }
+
+    /**
+     * Show the application map.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function carte(Request $request)
+    {
+        $adresses = Adress::all();
+
+        return view('immo.carte', compact('adresses'));
+    }
 }

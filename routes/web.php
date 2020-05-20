@@ -72,3 +72,5 @@ Route::get('/bank/administration', 'BankController@administration')->name('bank.
 Route::resource('bank', 'BankController');
 
 Route::get('/immobilier','ImmoController@index')->name('immo.index');
+Route::get('/immobilier/carte','ImmoController@carte')->name('immo.carte');
+Route::get('/immobilier/achat','ImmoController@achat')->name('immo.achat');

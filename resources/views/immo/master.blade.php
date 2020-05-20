@@ -8,10 +8,9 @@
   <meta name="author" content="Ceans">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Immobilier | Rhiven RP</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('css/immobilier.css') }}" rel="stylesheet" type="text/css">
   @yield('extra-css')
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
   <style>
     html,
     body {
@@ -28,7 +27,7 @@
     </div>
   </noscript>
   <header>
-    <a href="index.php">
+    <a href="/immobilier">
       <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" width="587.62mm" height="186.3mm" viewBox="0 0 1665.69 528.1" class="logo-menisk">
         <title>Logo menisk</title>
         <g>
@@ -58,7 +57,7 @@
       </svg>
     </a>
 
-    <a href="carte.php">
+    <a href="immobilier/carte">
       <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" width="587.62mm" height="186.3mm" viewBox="0 0 100 300" class="logo-carte">
         <path d="M289.393,28.273L197.759,6.211c-1.518-0.366-3.077-0.358-4.561-0.017c-0.013,0.003-0.024,0.001-0.037,0.004l-91.568,21.522
 				L12.258,6.211C9.299,5.497,6.177,6.18,3.786,8.064C1.394,9.948,0,12.824,0,15.868V223.26c0,4.591,3.144,8.583,7.607,9.657
@@ -80,7 +79,7 @@
       </svg>
     </a>
   </header>
-  <main>
+  <main id="app">
     @yield('content')
   </main>
 

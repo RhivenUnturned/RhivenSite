@@ -53,7 +53,7 @@ request.onload = function () {
               "adresse": $(event.currentTarget).parent().find("h3").text() || null,
             }
             localStorage.setItem('clicExpoMaison', JSON.stringify(clicExpoMaison));
-            window.location.href = "carte.php"; // Direction la carte
+            window.location.href = "immobilier/carte"; // Direction la carte
           },
           type: function () {
             if (cardsData[0].commerce === "1") {

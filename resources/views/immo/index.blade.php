@@ -2,13 +2,13 @@
 
 @php
 function type($adress) {
-if ($adress->commerce === "1") {
+if ($adress->commerce === 1) {
 return "Commerce";
-} else if ($adress->appartement === "1") {
+} else if ($adress->appartement === 1) {
 return "Appartement";
-} else if ($adress->maison === "1") {
+} else if ($adress->maison === 1) {
 return "Maison";
-} else if ($adress->industrie === "1") {
+} else if ($adress->industrie === 1) {
 return "Industrie";
 } else {
 return "Inconnu";
@@ -50,19 +50,19 @@ $adresses = $adresses->shuffle()->slice(0, 6);
     </label>
     <input type="text" class="formulaire-barre-recherche" id="form-prix-min" placeholder="Prix min" name="prix-min" pattern="[0-9]+">
     <input type="text" class="formulaire-barre-recherche" id="form-prix-max" placeholder="Prix max" name="prix-max">
-    <button type="button" id="form-envoi" name="recherche-maison"><i class="fas fa-search"></i> RECHERCHER</button>
+    <button type="button" id="form-envoi" name="recherche-maison">RECHERCHER</button>
   </form>
 </div>
 
 <div class="expo-maison">
   @foreach($adresses as $adress)
   <div class="expo-carte" id="carte-{{ $loop->index }}">
-    <div class="expo-haut" onClick="redirectionCarte">
+    <div class="expo-haut" onclick="redirectionCarte(event)">
       <img src="/uploads/immobilier/maisons/{{ Illuminate\Support\Str::slug($adress->image, '-') }}.jpg" class="expo-image" alt="Image de la maison en vente">
       <div class="expo-invitation">Voir sur la carte</div>
     </div>
     <div class="expo-contenu">
-      <h3>{{ $adress->titre }}</h3>
+      <h3>{{ $adress->adresse }}</h3>
       <p class="expo-description">{{ $adress->description }}</p>
       <div>
         <p class="expo-type">{{ type($adress) }}</p>
@@ -71,9 +71,9 @@ $adresses = $adresses->shuffle()->slice(0, 6);
         @else
         <p class="expo-statut statut-occupe">Occupé</p>
         @endif
-        <a title="Accéder à la page d'achat" onClick="redirectionAchat">
+        <a title="Accéder à la page d'achat" onclick="redirectionAchat(event)">
           <div id="dir-achat">
-            <p class="expo-prix">{{ number_format(($adress->prix - ($adress->prix / 100  * ($adress->offre * -1))), 2, ',', ' ') }}€</p>
+            <p class="expo-prix">{{ number_format(($adress->prix - ($adress->prix / 100  * ($adress->offre * -1))), 0, ',', ' ') }}€</p>
             <i class="icone-custom expo-caddie">&#xe802;</i>
           </div>
         </a>
@@ -85,7 +85,6 @@ $adresses = $adresses->shuffle()->slice(0, 6);
 @endsection
 
 @section('extra-js')
-<script src="{!! mix('js/app.js') !!}"></script>
 <script type="text/javascript" src="{{ asset('js/immo/immo-main.js') }}"></script>
 <script type="text/javascript">
   setInputFilter(document.getElementById("form-prix-min"), function(value) {
@@ -121,7 +120,7 @@ $adresses = $adresses->shuffle()->slice(0, 6);
 
         localStorage.setItem('paramRecherche', JSON.stringify(paramRecherche));
         localStorage.setItem('paramExtra', JSON.stringify(paramExtra));
-        window.location.href = "carte.php"; // Direction la carte
+        window.location.href = "immobilier/carte"; // Direction la carte
       }
 
       $(document).on("keypress", "input", function(e) { // Utilisation touche "entrée"
