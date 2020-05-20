@@ -49,9 +49,14 @@ return "Inconnu";
     <div class="alert alert-danger mt-1">{{ session('error') }}</div>
     @endif
     @if($adress->libre === 1)
-    <form class="pt-2" action="{{ route('immo.store', $adress->id) }}" method="POST">
+    <form class="" action="{{ route('immo.store', $adress->id) }}" method="POST">
       @csrf
       <button id="form-envoi">ACHETER</button>
+    </form>
+    @elseif($adress->owner_id === auth()->user()->id)
+    <form class="" action="{{ route('immo.sell', $adress->id) }}" method="POST">
+      @csrf
+      <button id="form-envoi">VENDRE</button>
     </form>
     @else
     <p class="expo-statut statut-occupe">Occupé</p>

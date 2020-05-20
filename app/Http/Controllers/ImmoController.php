@@ -106,4 +106,49 @@ class ImmoController extends Controller
             return redirect('/login');
         }
     }
+
+    /**
+     * Sell and remove an adress of user account
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function sell($id)
+    {
+        if (Auth::user()) {
+            if (Auth::user()->steamid) {
+                $adress = Adress::where('id', $id)->first();
+                if ($adress->libre === 0 && $adress->owner_id === Auth::user()->id) {
+                    $account = DB::table('unt_bs_multi_accounts')
+                        ->where('steamId', Auth::user()->steamid)
+                        ->orderBy('balance', 'desc')
+                        ->first();
+
+                    DB::table('unt_bs_multi_accounts')
+                        ->where('accountId', $account->accountId)
+                        ->increment('balance', ($adress->prix - ($adress->prix / 100  * ($adress->offre * -1))));
+
+                    DB::table('unt_bs_account_history')
+                        ->insert([
+                            [
+                                'accountId' => $account->accountId,
+                                'text' => '<color=#FF3C3C>+' . round(($adress->prix - ($adress->prix / 100  * ($adress->offre * -1))), 2) . '€</color>: Vente d\'un bien immobilier',
+                                'lastUpdated' => Carbon::now()->toDateTimeString()
+                            ]
+                        ]);
+
+                    $adress->owner()->dissociate(auth()->user())->save();
+                    $adress->update(['libre' => 1]);
+
+                    return redirect()->route('immo.achat', $id);
+                } else {
+                    return redirect('/');
+                }
+            } else {
+                return redirect('/steam');
+            }
+        } else {
+            return redirect('/login');
+        }
+    }
 }
