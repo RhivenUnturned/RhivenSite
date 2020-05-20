@@ -39,7 +39,7 @@ return "Inconnu";
             @else
             <p class="expo-statut statut-occupe">Occupé</p>
             @endif
-            <a href="immobilier/achat" title="Accéder à la page d'achat">
+            <a href="{{ route('immo.achat', $adress->id) }}" title="Accéder à la page d'achat">
               <div>
                 <p class="expo-prix">{{ number_format(($adress->prix - ($adress->prix / 100  * ($adress->offre * -1))), 0, ',', ' ') }}€</p>
                 <i class="icone-custom expo-caddie">&#xe802;</i>

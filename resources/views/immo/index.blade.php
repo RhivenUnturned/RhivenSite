@@ -71,7 +71,7 @@ $adresses = $adresses->shuffle()->slice(0, 6);
         @else
         <p class="expo-statut statut-occupe">Occupé</p>
         @endif
-        <a title="Accéder à la page d'achat" onclick="redirectionAchat(event)">
+        <a href="{{ route('immo.achat', $adress->id) }}" title="Accéder à la page d'achat">
           <div id="dir-achat">
             <p class="expo-prix">{{ number_format(($adress->prix - ($adress->prix / 100  * ($adress->offre * -1))), 0, ',', ' ') }}€</p>
             <i class="icone-custom expo-caddie">&#xe802;</i>

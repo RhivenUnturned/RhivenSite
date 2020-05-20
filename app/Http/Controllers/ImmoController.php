@@ -12,7 +12,7 @@ class ImmoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $adresses = Adress::all();
 
@@ -24,10 +24,23 @@ class ImmoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function carte(Request $request)
+    public function carte()
     {
         $adresses = Adress::all();
 
         return view('immo.carte', compact('adresses'));
+    }
+
+    /**
+     * Show the page to buy an adress.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function achat($id)
+    {
+        $adress = Adress::where('id', $id)->first();
+
+        return view('immo.achat', compact('adress'));
     }
 }
