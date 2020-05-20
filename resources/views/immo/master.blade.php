@@ -50,7 +50,7 @@
       </svg>
     </a>
 
-    <a href="immobilier/carte">
+    <a href="/immobilier/carte">
       <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" width="587.62mm" height="186.3mm" viewBox="0 0 100 300" class="logo-carte">
         <path d="M289.393,28.273L197.759,6.211c-1.518-0.366-3.077-0.358-4.561-0.017c-0.013,0.003-0.024,0.001-0.037,0.004l-91.568,21.522
 				L12.258,6.211C9.299,5.497,6.177,6.18,3.786,8.064C1.394,9.948,0,12.824,0,15.868V223.26c0,4.591,3.144,8.583,7.607,9.657
