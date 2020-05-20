@@ -6,6 +6,44 @@ window.onbeforeunload = function () {
 //  |* DIVERS *|
 //  |**********|
 
+// Panneau latéral
+var slider = $("#panneau-lateral").slideReveal({
+  push: false,
+  position: "left",
+  width: 600,
+  speed: 400,
+  trigger: $(".handle"),
+  show: function () {
+    var element = document.getElementById("limit-svg");
+    // Instead of .addClass("newclass")
+    element.setAttribute("style", "width: calc(100vw - 602px); margin-left: 600px;");
+
+    redimensionCarte();
+  },
+  shown: function (obj) {
+    obj.find(".handle").html('<i class="icone-custom icon-left-open">&#xe800;</i>');
+    obj.addClass("left-shadow-overlay");
+
+    redimensionCarte();
+  },
+  hide: function () {
+    var element = document.getElementById("limit-svg");
+    // Instead of .addClass("newclass")
+    element.setAttribute("style", "width: calc(100vw - 100px);");
+    redimensionCarte();
+  },
+  hidden: function (obj) {
+    obj.find(".handle").html('<i class="icone-custom icon-right-open">&#xe801;</i>');
+    obj.removeClass("left-shadow-overlay");
+
+    var element = document.getElementById("limit-svg");
+    // Instead of .addClass("newclass")
+    element.setAttribute("style", "");
+    redimensionCarte();
+
+  }
+});
+
 function zoomMaison(event) { // zommer sur la maison selectionnée: id maison liste > id élément calque > coodrdonées élément calque > panTo coordonées
   var e = event.currentTarget.id.replace("liste-Log", ""); // liste-LogX > X
   activeArea(e); // On surligne la maison sélectionnée
@@ -202,7 +240,7 @@ if (clicExpoMaison != null) {
   function filtrerParRecherche(liste, critere) {
     // .filter() permet de garder les éléments passant le test passé en paramêtre
     return liste.filter(
-      candidat => candidat.titre === critere.adresse
+      candidat => candidat.adresse === critere.adresse
     );
   }
 
@@ -254,13 +292,11 @@ if (paramRecherche != null) {
   // CE QU'IL RESTE A FAIRE; ANALYSER OFFRE ET PRIX
   function filtrerParRecherche(liste, critere, critere2) {
     // .filter() permet de garder les éléments passant le test passé en paramêtre
-    console.log(critere);
     return liste.filter(
       // Candidat au test = chaque objet avec chaque critère, et il passe le test si chaque test suivant est passé
       candidat => Object.keys(critere).every(
         // On vérifie si le candidat contient le paramêtre passé "critere" avec .indexOf()
         key => candidat[key].toLowerCase().indexOf(critere[key].toLowerCase()) > -1,
-        console.log(candidat)
       )
         && parseInt(candidat.prix) <= parseInt(critere2.prixmax)
         && parseInt(candidat.prix) >= parseInt(critere2.prixmin)
@@ -308,7 +344,7 @@ function rechercher() {
   // Declare variables
   if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 800) {
     var input = document.getElementById('barre-recherche');
-  }else{
+  } else {
     var input = document.getElementById('barre-recherche-mobile');
   }
 
@@ -325,7 +361,6 @@ function rechercher() {
       titlehouse = li[i].getElementsByTagName("h3")[0];
       txtValue = titlehouse.textContent || titlehouse.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        console.log('test');
         li[i].style.display = "";
 
         var calque = li[i].id.replace("liste-", ""); // liste-LogX > LogX
@@ -365,46 +400,9 @@ function rechercher() {
   }
 }
 
-
-// Panneau latéral
 $(window).on("resize", function () {
   if (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) > 800) {
-    slider = $("#panneau-lateral").slideReveal({
-      push: false,
-      position: "left",
-      width: 600,
-      speed: 400,
-      trigger: $(".handle"),
-      show: function () {
-        var element = document.getElementById("limit-svg");
-        // Instead of .addClass("newclass")
-        element.setAttribute("style", "width: calc(100vw - 602px); margin-left: 600px;");
-
-        redimensionCarte();
-      },
-      shown: function (obj) {
-        obj.find(".handle").html('<i class="icone-custom icon-left-open">&#xe800;</i>');
-        obj.addClass("left-shadow-overlay");
-
-        redimensionCarte();
-      },
-      hide: function () {
-        var element = document.getElementById("limit-svg");
-        // Instead of .addClass("newclass")
-        element.setAttribute("style", "width: calc(100vw - 100px);");
-        redimensionCarte();
-      },
-      hidden: function (obj) {
-        obj.find(".handle").html('<i class="icone-custom icon-right-open">&#xe801;</i>');
-        obj.removeClass("left-shadow-overlay");
-
-        var element = document.getElementById("limit-svg");
-        // Instead of .addClass("newclass")
-        element.setAttribute("style", "");
-        redimensionCarte();
-
-      }
-    });
+    slider.slideReveal("hide");
   }
 }).resize();
 

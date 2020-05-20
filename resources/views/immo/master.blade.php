@@ -11,13 +11,6 @@
   <link href="{{ asset('css/immobilier.css') }}" rel="stylesheet" type="text/css">
   @yield('extra-css')
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-  <style>
-    html,
-    body {
-      background-color: #fdfdff;
-      padding-bottom: 60px;
-    }
-  </style>
 </head>
 
 <body>
