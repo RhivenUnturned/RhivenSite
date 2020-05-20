@@ -45,6 +45,17 @@ return "Inconnu";
   <div class="formulaire-achat">
     <h3 class="titre-formulaire-achat">Acheter le bien</h3>
     <p class="">PRIX : {{ number_format(($adress->prix - ($adress->prix / 100  * ($adress->offre * -1))), 0, ',', ' ') }}€</p>
+    @if (session('error'))
+    <div class="alert alert-danger mt-1">{{ session('error') }}</div>
+    @endif
+    @if($adress->libre === 1)
+    <form class="pt-2" action="{{ route('immo.store', $adress->id) }}" method="POST">
+      @csrf
+      <button id="form-envoi">ACHETER</button>
+    </form>
+    @else
+    <p class="expo-statut statut-occupe">Occupé</p>
+    @endif
   </div>
 </div>
 @endsection

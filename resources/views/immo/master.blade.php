@@ -8,8 +8,8 @@
   <meta name="author" content="Ceans">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Immobilier | Rhiven RP</title>
-  <link href="{{ asset('css/immobilier.css') }}" rel="stylesheet" type="text/css">
   @yield('extra-css')
+  <link href="{{ asset('css/immobilier.css') }}" rel="stylesheet" type="text/css">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 </head>
 
