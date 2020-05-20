@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('inspire')
-            ->everyThirtyMinutes()
-            ->appendOutputTo('D:\Programmes\XAMPP\sousdomaines\rhiven\test.txt');
+            ->everyThirtyMinute()
+            ->appendOutputTo(base_path().'\test.txt');
 
         $schedule->command('Bank:balancehistory')->everyFiveMinutes();
 
