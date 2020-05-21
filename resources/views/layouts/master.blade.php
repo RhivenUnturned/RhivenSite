@@ -36,7 +36,7 @@
       <div class="col-md-9" id="app">
         @yield('content')
       </div>
-      <div class="col-md-3 bg-dark text-white rounded">@yield('sidebar', View::make('layouts.sidebar'))</div>
+      <div class="col-md-3 p-0">@yield('sidebar', View::make('layouts.sidebar'))</div>
     </div>
     @else
     <div id="app">

@@ -1,4 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="ip bg-dark">IP: 000.000.000.000</div>
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">
       <img src="/uploads/Logo_Rhiven_Transparent.png" width="30" height="30" class="d-inline-block align-top" alt="Logo de Rhiven">
