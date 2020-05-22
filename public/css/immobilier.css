@@ -102,8 +102,8 @@ header {
     color: #444444;
     position: absolute;
     left: 10px;
-    top: 15px;
-    height: 130px;
+    top: 27px;
+    height: 100px;
     width: 300px;
     transform: rotate(180deg);
 }

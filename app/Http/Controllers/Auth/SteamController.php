@@ -69,6 +69,14 @@ class SteamController extends Controller
             $info = $this->steam->getUserInfo();
 
             if (!is_null($info)) {
+                $uniqueSteamID = DB::table('users')
+                    ->where('steamid', $info->steamid)
+                    ->get();
+
+                if (!is_null($uniqueSteamID)) {
+                    return redirect('/');
+                }
+
                 $user = $this->findOrNewUser($info);
 
                 Auth::login($user, true);

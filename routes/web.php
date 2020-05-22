@@ -73,6 +73,6 @@ Route::resource('bank', 'BankController');
 
 Route::get('/immobilier','ImmoController@index')->name('immo.index');
 Route::get('/immobilier/carte','ImmoController@map')->name('immo.map');
-Route::get('/immobilier/achat/{id}','ImmoController@achat')->name('immo.achat');
-Route::post('/immobilier/store/{id}','ImmoController@store')->name('immo.store');
-Route::post('/immobilier/sell/{id}','ImmoController@sell')->name('immo.sell');
+Route::get('/immobilier/achat/{id}','ImmoController@achat')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.achat');
+Route::post('/immobilier/store/{id}','ImmoController@store')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.store');
+Route::post('/immobilier/sell/{id}','ImmoController@sell')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.sell');
