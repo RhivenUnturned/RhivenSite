@@ -51,7 +51,7 @@
     <div class="form-group">
       <label for="password" class="col-lg-3 control-label">Nouveau mot de passe:</label>
       <div class="col-lg-8">
-        <input id="password" class="form-control @error('password') is-invalid @enderror" type="password" name="password">
+        <input id="password" class="form-control @error('password') is-invalid @enderror" aria-describedby="passwordHelp" type="password" name="password">
         @error('password')
         <div class="invalid-feedback">{{ $errors->first('password') }}</div>
         @enderror
