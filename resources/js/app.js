@@ -1,6 +1,4 @@
 require('./bootstrap');
-require('hammerjs');
-require('./node_modules/svg-pan-zoom');
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'

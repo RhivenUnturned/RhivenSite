@@ -15,6 +15,9 @@ Auth::routes();
 
 Route::get('/posts/{post}', 'PostController@single');
 
+Route::get('/profil/{user}', 'UserController@edit')->name('user.edit');
+Route::patch('/profil/{user}', 'UserController@update')->name('user.update');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');

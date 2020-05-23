@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" placeholder="{{ __('Prénom RP') }}" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname">
+                        <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" placeholder="{{ __('Prénom RP') }}" name="firstname" value="{{ old('firstname') }}" required autocomplete="given-name">
                         @error('firstname')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                        <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="{{ __('Nom RP') }}" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname">
+                        <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" placeholder="{{ __('Nom RP') }}" name="lastname" value="{{ old('lastname') }}" required autocomplete="family-name">
                         @error('lastname')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
