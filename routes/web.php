@@ -46,9 +46,9 @@ Route::get('/forum/{category}', 'CategoryController@index')->name('forum.categor
 Route::get('/steam', 'Auth\SteamController@redirectToSteam')->name('auth.steam');
 Route::get('/steam/handle', 'Auth\SteamController@handle')->name('auth.steam.handle');
 
-Route::get('/bank/overdraft','BankController@overdraft')->name('bank.overdraft');
-Route::post('/bank/transfer/getAccounts','BankController@getAccounts')->name('bank.getAccounts');
-Route::post('/bank/groups/getUsers','BankGroupController@getUsers')->name('bank.getUsers');
+Route::get('/bank/overdraft', 'BankController@overdraft')->name('bank.overdraft');
+Route::post('/bank/transfer/getAccounts', 'BankController@getAccounts')->name('bank.getAccounts');
+Route::post('/bank/groups/getUsers', 'BankGroupController@getUsers')->name('bank.getUsers');
 Route::get('/bank/transfer', 'BankController@transfer')->name('bank.transfer');
 Route::post('/bank/transfer', 'BankController@exchange')->name('bank.exchange');
 Route::get('/bank/credits', 'CreditController@index')->name('bank.credits');
@@ -69,13 +69,21 @@ Route::post('/bank/mails/read', 'BankController@readMail')->name('bank.readMail'
 Route::post('/bank/mails/store', 'BankController@storeMail')->name('bank.storeMail');
 Route::post('/bank/mails/refuse/{mail}', 'BankController@refuseMail')->name('bank.refuseMail');
 Route::post('/bank/mails/accept/{mail}', 'BankController@acceptMail')->name('bank.acceptMail');
-Route::get('/bank/mybank', function () {return view('bank.mybank');})->name('bank.myBank');
+Route::get('/bank/mybank', function () {
+  return view('bank.mybank');
+})->name('bank.myBank');
 Route::post('/bank/mybank/{bank}', 'BankController@changeBank')->name('bank.changeBank');
 Route::get('/bank/administration', 'BankController@administration')->name('bank.administration');
 Route::resource('bank', 'BankController');
 
-Route::get('/immobilier','ImmoController@index')->name('immo.index');
-Route::get('/immobilier/carte','ImmoController@map')->name('immo.map');
-Route::get('/immobilier/achat/{id}','ImmoController@achat')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.achat');
-Route::post('/immobilier/store/{id}','ImmoController@store')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.store');
-Route::post('/immobilier/sell/{id}','ImmoController@sell')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.sell');
+Route::get('/immobilier', 'ImmoController@index')->name('immo.index');
+Route::get('/immobilier/carte', 'ImmoController@map')->name('immo.map');
+Route::get('/immobilier/achat/{id}', 'ImmoController@achat')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.achat');
+Route::post('/immobilier/store/{id}', 'ImmoController@store')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.store');
+Route::post('/immobilier/sell/{id}', 'ImmoController@sell')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.sell');
+
+Route::get('/livemap', function () {
+  return view('livemap.show');
+})->name('livemap.show');
+Route::get('/livemap/server', 'LivemapController@server');
+Route::get('/livemap/refresh', 'LivemapController@refresh');

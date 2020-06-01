@@ -1,0 +1,9 @@
+.map-parent {
+  position:relative;
+}
+
+.map-player {
+  position:absolute;
+  left:50px;
+  top:20px;
+}
