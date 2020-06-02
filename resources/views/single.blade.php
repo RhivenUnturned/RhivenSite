@@ -12,7 +12,7 @@
     <hr>
     <p>Posté {{ $post->created_at->diffForHumans() }}</p>
     <hr>
-    <img class="img-fluid rounded" src="{!! !empty($post->image) ? '/uploads/posts/' . $post->image : 'http://placehold.it/750x300' !!}" alt="">
+    <img class="img-fluid rounded" src="{!! !empty($post->image) ? '/uploads/posts/' . $post->image : 'https://placehold.it/750x300' !!}" alt="">
     <hr>
     <div>
       <p>{!! nl2br($post->body) !!}</p>
