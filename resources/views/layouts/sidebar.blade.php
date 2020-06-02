@@ -15,7 +15,7 @@ $from = DB::table('unt_bs_multi_accounts')
     <h5 class="card-title">{{ Auth::user()->name }}</h5>
     <h6 class="card-subtitle mb-2">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}</h6>
     <p class="card-text">Délivrée le: {{ Carbon\Carbon::parse(Auth::user()->created_at)->format('d/m/y') }}</p>
-    <a href="{{ route('user.edit', auth()->user()->id) }}" class="btn btn-outline-light m-1">Modifier</a>
+    <a href="{{ route('user.edit') }}" class="btn btn-outline-light m-1">Modifier</a>
   </div>
 </div>
 

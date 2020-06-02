@@ -5,13 +5,13 @@
   <h1>Modifier mon profil</h1>
   <hr>
 
-  <form action="{{ route('user.update', $user) }}" method="POST">
+  <form action="{{ route('user.update') }}" method="POST">
     @csrf
     @method('PATCH')
     <div class="form-group">
       <label for="name" class="col-lg-3 control-label">Pseudo:</label>
       <div class="col-lg-8">
-        <input id="name" class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ $user->name }}">
+        <input id="name" class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ Auth::user()->name }}">
         @error('name')
         <div class="invalid-feedback">{{ $errors->first('name') }}</div>
         @enderror
@@ -21,7 +21,7 @@
     <div class="form-group">
       <label for="firstname" class="col-lg-3 control-label">Prénom RP:</label>
       <div class="col-lg-8">
-        <input id="firstname" class="form-control @error('firstname') is-invalid @enderror" type="text" name="firstname" value="{{ $user->firstname }}">
+        <input id="firstname" class="form-control @error('firstname') is-invalid @enderror" type="text" name="firstname" value="{{ Auth::user()->firstname }}">
         @error('firstname')
         <div class="invalid-feedback">{{ $errors->first('firstname') }}</div>
         @enderror
@@ -31,7 +31,7 @@
     <div class="form-group">
       <label for="lastname" class="col-lg-3 control-label">Nom RP:</label>
       <div class="col-lg-8">
-        <input id="lastname" class="form-control @error('lastname') is-invalid @enderror" type="text" name="lastname" value="{{ $user->lastname }}">
+        <input id="lastname" class="form-control @error('lastname') is-invalid @enderror" type="text" name="lastname" value="{{ Auth::user()->lastname }}">
         @error('lastname')
         <div class="invalid-feedback">{{ $errors->first('lastname') }}</div>
         @enderror
@@ -41,7 +41,7 @@
     <div class="form-group">
       <label for="email" class="col-lg-3 control-label">Adresse email:</label>
       <div class="col-lg-8">
-        <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{ $user->email }}">
+        <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" name="email" value="{{ Auth::user()->email }}">
         @error('email')
         <div class="invalid-feedback">{{ $errors->first('email') }}</div>
         @enderror

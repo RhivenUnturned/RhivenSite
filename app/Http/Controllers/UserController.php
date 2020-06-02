@@ -10,31 +10,16 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        if (Auth::user()->id === $user->id) {
-            return view('user.edit', compact('user'));
-        } else {
-            return redirect('/');
-        }
-    }
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
+        $user = Auth::user();
+
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
@@ -56,6 +41,6 @@ class UserController extends Controller
 
         $user->save();
 
-        return view('user.edit', compact('user'));
+        return redirect()->route('user.edit');
     }
 }
