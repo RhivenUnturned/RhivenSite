@@ -26,7 +26,7 @@ $from = DB::table('unt_bs_multi_accounts')
     <form class="pt-2" action="{{ route('bank.exchange') }}" method="POST">
       @csrf
       <input type="hidden" name="from" value="{{ $from->accountId }}" readonly>
-      <input type="hidden" id='account_id' name="to" readonly>
+      <input type="hidden" id="account_id" name="to" readonly>
       <div class="form-group">
         <input type="text" class="form-control" id="account_search" placeholder="Destinataire" required>
       </div>
@@ -59,6 +59,7 @@ $from = DB::table('unt_bs_multi_accounts')
 <script src="{{asset('js/jqueryui/jquery-ui.min.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
   $(document).ready(function() {
 
     $("#account_search").autocomplete({

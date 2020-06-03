@@ -74,7 +74,7 @@
       <div class="col-md-8">
         <button type="submit" class="btn btn-primary">{{ __('Sauvegarder') }}</button>
         <span></span>
-        <a class="ml-4" href="/">Annuler</a>
+        <a class="ml-4" href="{{ URL::previous() }}">Annuler</a>
       </div>
     </div>
     <hr>
