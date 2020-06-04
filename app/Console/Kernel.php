@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
             ->everyThirtyMinutes()
-            ->appendOutputTo(base_path().'\test.txt');
+            ->appendOutputTo(base_path().'/test.txt');
 
         $schedule->command('Bank:balancehistory')->everyFiveMinutes();
 
