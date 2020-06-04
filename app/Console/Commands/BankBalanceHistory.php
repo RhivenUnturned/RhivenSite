@@ -43,18 +43,18 @@ class BankBalanceHistory extends Command
         $accounts = DB::table('unt_bs_multi_accounts')->get();
 
         foreach ($accounts as $account) {
-            $dailyLog = DB::table('balance_history')->where('lastUpdated', '>=', Carbon::today())->where('accountId', $account->accountId)->first();
+            $dailyLog = DB::table('balance_history')->whereDate('lastUpdated', Carbon::today())->where('accountId', $account->accountId)->first();
 
             if (isset($dailyLog)) {
                 DB::table('balance_history')
                 ->where('lastUpdated', $dailyLog->lastUpdated)
-                ->update(['balance' => $account->balance]);
+                ->update(['balance' => $account->balance, 'lastUpdated' => Carbon::now()]);
             } else {
                 DB::table('balance_history')->insert([
                     'steamId' => $account->steamId,
                     'accountId' => $account->accountId,
                     'balance' => $account->balance,
-                    'lastUpdated' => $account->lastUpdated
+                    'lastUpdated' => Carbon::now()
                 ]);
             }
         }
