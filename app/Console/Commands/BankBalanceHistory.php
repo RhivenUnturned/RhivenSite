@@ -47,10 +47,11 @@ class BankBalanceHistory extends Command
 
             if (isset($dailyLog)) {
                 DB::table('balance_history')
-                ->where('lastUpdated', $dailyLog->lastUpdated)
+                ->where('accountId', $account->accountId)
                 ->update(['balance' => $account->balance, 'lastUpdated' => Carbon::now()]);
             } else {
-                DB::table('balance_history')->insert([
+                DB::table('balance_history')
+                ->insert([
                     'steamId' => $account->steamId,
                     'accountId' => $account->accountId,
                     'balance' => $account->balance,
