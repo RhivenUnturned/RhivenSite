@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
   <h1>Modifier mon profil</h1>
   <hr>
 
@@ -79,5 +78,4 @@
     </div>
     <hr>
   </form>
-</div>
 @endsection

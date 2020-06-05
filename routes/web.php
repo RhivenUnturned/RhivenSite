@@ -87,3 +87,7 @@ Route::get('/livemap', function () {
 })->name('livemap.show');
 Route::get('/livemap/server', 'LivemapController@server');
 Route::get('/livemap/refresh', 'LivemapController@refresh');
+
+Route::get('/videos', function () {
+  return view('misc.videos');
+})->name('misc.videos');
