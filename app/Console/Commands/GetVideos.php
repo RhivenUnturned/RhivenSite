@@ -55,7 +55,7 @@ class GetVideos extends Command
 
         $queryParams = [
             'maxResults' => 15,
-            'q' => 'rhiven Unturned -omega -layoka -gadu -mg',
+            'q' => 'Rhiven Unturned|Serveur Rhiven RP -omega -layoka -gadu -mg',
             'regionCode' => 'FR',
             'relevanceLanguage' => 'fr',
             'type' => 'video'
@@ -63,6 +63,19 @@ class GetVideos extends Command
 
         $response = $service->search->listSearch('snippet', $queryParams);
 
-        Storage::disk('public')->put('videos.json', json_encode($response));
+        $response = json_encode($response['items']);
+        $response = json_decode($response, true);
+
+        $videosIdsToExclude = array('s8Ph9nmphyQ');
+
+        foreach ($response as $key => $item) {
+            if (in_array($item['id']['videoId'], $videosIdsToExclude, true)) {
+                unset($response[$key]);
+            }
+        }
+
+        $response = json_encode($response);
+
+        Storage::disk('public')->put('videos.json', $response);
     }
 }
