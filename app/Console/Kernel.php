@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
             ->everyThirtyMinutes()
             ->appendOutputTo(base_path() . '/test.txt');
 
-        $schedule->command('Misc:videos')->weeklyOn(1, '18:00');
+        $schedule->command('Misc:videos')->everyThirtyMinutes();
 
         $schedule->command('Bank:balancehistory')->everyFiveMinutes();
 
