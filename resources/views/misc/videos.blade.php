@@ -26,7 +26,7 @@ return $b['snippet']['publishedAt'] <=> $a['snippet']['publishedAt'];
     <div class="card invitation-parent">
       <a href="https://www.youtube.com/watch?v={{$item['id']['videoId']}}" target="_blank" rel="noopener noreferrer">
         <div class="invitation-container">
-          <img class="card-img-top" src="{{ $item['snippet']['thumbnails']['medium']['url'] }}" alt="Minitature vidéo youtube sur Rhiven">
+          <img class="card-img-top" src="{{ $item['snippet']['thumbnails']['medium']['url'] }}" alt="Minitature vidéo {{ htmlspecialchars_decode($item['snippet']['title'], ENT_QUOTES) }}">
           <div class="invitation">Voir la vidéo</div>
         </div>
       </a>

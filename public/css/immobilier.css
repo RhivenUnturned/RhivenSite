@@ -761,7 +761,7 @@ header {
 /* --------------- */
 
 @media screen and (max-width: 800px) {
-    .logo-carte {
+    .logo-carte, .logo-retour {
         display: none;
     }
     .logo-menisk {

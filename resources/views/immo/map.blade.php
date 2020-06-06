@@ -28,7 +28,7 @@ return "Inconnu";
       @foreach($adresses as $adress)
 
       <li class="expo-carte card" id="liste-{{ $adress->id_calque }}" onclick="zoomMaison(event)">
-        <img src="/uploads/immobilier/maisons/{{ Illuminate\Support\Str::slug($adress->image, '-') }}.jpg" class="expo-image" alt="Image de la maison en vente">
+        <img data-src="/uploads/immobilier/maisons/{{ Illuminate\Support\Str::slug($adress->image, '-') }}.jpg" class="lozad expo-image" alt="Image de la maison en vente">
         <div class="expo-contenu">
           <h3>{{ $adress->adresse }}</h3>
           <p class="expo-description">{{ $adress->description }}</p>
@@ -143,12 +143,16 @@ return "Inconnu";
 @endsection
 
 @section('extra-js')
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 <script type="text/javascript" src="{{ asset('js/immo/hammer.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/immo/svg-pan-zoom.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/immo/slidereveal.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/immo/carte.js') }}"></script>
 <script type="text/javascript">
-    var adresses = {!! json_encode($adresses->toArray(), JSON_HEX_TAG) !!};
+  const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+  observer.observe();
+
+  var adresses = {!!json_encode($adresses->toArray(), JSON_HEX_TAG) !!};
 </script>
 <script type="text/javascript" src="{{ asset('js/immo/carte-main.js') }}"></script>
 @endsection
