@@ -10,9 +10,18 @@ return $b['snippet']['publishedAt'] <=> $a['snippet']['publishedAt'];
   @endphp
 
   @section('content')
+  <p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#videosExplanations" role="button" aria-expanded="false" aria-controls="collapseExample">Faire apparaître ma vidéo sur cette page</a>
+  </p>
+  <div class="collapse" id="videosExplanations">
+    <div class="card card-body">
+      Vous souhaitez faire apparaître votre vidéo sur cette page ? Il vous suffit de poster une vidéo sur Youtube avec comme sujet les serveurs Rhiven, et elle sera automatiquement ajoutée à la liste !
+    </div>
+  </div>
+
+<hr>
 
   <div class="card-columns">
-
     @foreach($json as $item)
     <div class="card invitation-parent">
       <a href="https://www.youtube.com/watch?v={{$item['id']['videoId']}}" target="_blank" rel="noopener noreferrer">
@@ -27,7 +36,6 @@ return $b['snippet']['publishedAt'] <=> $a['snippet']['publishedAt'];
       </div>
     </div>
     @endforeach
-
   </div>
 
   @endsection
