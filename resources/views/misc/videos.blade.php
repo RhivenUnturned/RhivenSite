@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @php
-$path = storage_path() . "\app\public/videos.json";
+$path = storage_path() . "/app/public/videos.json";
 $json = json_decode(file_get_contents($path), true);
 
 usort($json, function($a, $b) {
