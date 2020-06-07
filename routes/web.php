@@ -10,84 +10,86 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes(['reset' => false,'register' => false,'confirm' => false,'verify' => false]);
 
-Auth::routes();
+Route::group(['middleware' => ['auth']], function () {
 
-Route::get('/posts/{post}', 'PostController@single');
+  Route::get('/posts/{post}', 'PostController@single');
 
-Route::view('/profil', 'user.edit')->name('user.edit');
-Route::patch('/profil', 'UserController@update')->name('user.update');
+  Route::view('/profil', 'user.edit')->name('user.edit');
+  Route::patch('/profil', 'UserController@update')->name('user.update');
 
-Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');
+  Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');
 
-Route::get('/', 'PostController@all');
+  Route::get('/', 'PostController@all');
 
-Route::get('/{post}/comments', 'CommentController@index');
-Route::post('/{post}/comments', 'CommentController@store');
+  Route::get('/{post}/comments', 'CommentController@index');
+  Route::post('/{post}/comments', 'CommentController@store');
 
-Route::get('/topics', 'TopicController@index');
-Route::get('/topics/show/{topic}', 'TopicController@show')->name('topics.show');
-Route::get('/topics/{category}/create', 'TopicController@create')->name('topics.create');
-Route::post('/topics/{category}', 'TopicController@store')->name('topics.store');
-Route::get('/topics/edit/{topic}', 'TopicController@edit')->name('topics.edit');
-Route::delete('/topics/{topic}', 'TopicController@destroy')->name('topics.destroy');
-Route::patch('/topics/{topic}', 'TopicController@update')->name('topics.update');
+  Route::get('/topics', 'TopicController@index');
+  Route::get('/topics/show/{topic}', 'TopicController@show')->name('topics.show');
+  Route::get('/topics/{category}/create', 'TopicController@create')->name('topics.create');
+  Route::post('/topics/{category}', 'TopicController@store')->name('topics.store');
+  Route::get('/topics/edit/{topic}', 'TopicController@edit')->name('topics.edit');
+  Route::delete('/topics/{topic}', 'TopicController@destroy')->name('topics.destroy');
+  Route::patch('/topics/{topic}', 'TopicController@update')->name('topics.update');
 
-Route::post('/replies/{topic}', 'ReplyController@store')->name('replies.store');
-Route::post('/commentReply/{reply}', 'ReplyController@storeCommentReply')->name('replies.storeReply');
+  Route::post('/replies/{topic}', 'ReplyController@store')->name('replies.store');
+  Route::post('/commentReply/{reply}', 'ReplyController@storeCommentReply')->name('replies.storeReply');
 
-Route::get('/showFromNotification/{topic}/{notification}', 'TopicController@showFromNotification')->name('topics.showFromNotification');
+  Route::get('/showFromNotification/{topic}/{notification}', 'TopicController@showFromNotification')->name('topics.showFromNotification');
 
-Route::get('/forum', 'TagController@index')->name('forum.index');
-Route::get('/forum/{category}', 'CategoryController@index')->name('forum.category');
+  Route::get('/forum', 'TagController@index')->name('forum.index');
+  Route::get('/forum/{category}', 'CategoryController@index')->name('forum.category');
 
-Route::get('/steam', 'Auth\SteamController@redirectToSteam')->name('auth.steam');
-Route::get('/steam/handle', 'Auth\SteamController@handle')->name('auth.steam.handle');
+  Route::get('/steam', 'Auth\SteamController@redirectToSteam')->name('auth.steam');
+  Route::get('/steam/handle', 'Auth\SteamController@handle')->name('auth.steam.handle');
 
-Route::get('/bank/overdraft', 'BankController@overdraft')->name('bank.overdraft');
-Route::post('/bank/transfer/getAccounts', 'BankController@getAccounts')->name('bank.getAccounts');
-Route::post('/bank/groups/getUsers', 'BankGroupController@getUsers')->name('bank.getUsers');
-Route::get('/bank/transfer', 'BankController@transfer')->name('bank.transfer');
-Route::post('/bank/transfer', 'BankController@exchange')->name('bank.exchange');
-Route::get('/bank/credits', 'CreditController@index')->name('bank.credits');
-Route::post('/bank/credits', 'CreditController@add')->name('bank.addCredit');
-Route::post('/bank/credits/pay', 'CreditController@pay')->name('bank.payCredit');
-Route::get('/bank/groups', 'BankGroupController@index')->name('bank.groupIndex');
-Route::post('/bank/groups', 'BankGroupController@store')->name('bank.groupStore');
-Route::get('/bank/groups/{group}', 'BankGroupController@show')->name('bank.groupShow');
-Route::delete('/bank/groups/{group}', 'BankGroupController@destroy')->name('bank.groupDestroy');
-Route::patch('/bank/groups/{group}', 'BankGroupController@update')->name('bank.groupUpdate');
-Route::post('/bank/groups/{group}', 'BankGroupController@quit')->name('bank.groupQuit');
-Route::post('/bank/groups/{group}/add', 'BankGroupController@add')->name('bank.groupAdd');
-Route::post('/bank/groups/{group}/manage', 'BankGroupController@manage')->name('bank.groupManage');
-Route::post('/bank/liquidation', 'BankController@liquidation')->name('bank.liquidation');
-Route::get('/bank/nova', 'BankController@nova')->name('bank.nova');
-Route::get('/bank/mails', 'BankController@mails')->name('bank.mails');
-Route::post('/bank/mails/read', 'BankController@readMail')->name('bank.readMail');
-Route::post('/bank/mails/store', 'BankController@storeMail')->name('bank.storeMail');
-Route::post('/bank/mails/refuse/{mail}', 'BankController@refuseMail')->name('bank.refuseMail');
-Route::post('/bank/mails/accept/{mail}', 'BankController@acceptMail')->name('bank.acceptMail');
-Route::get('/bank/mybank', function () {
-  return view('bank.mybank');
-})->name('bank.myBank');
-Route::post('/bank/mybank/{bank}', 'BankController@changeBank')->name('bank.changeBank');
-Route::get('/bank/administration', 'BankController@administration')->name('bank.administration');
-Route::resource('bank', 'BankController');
+  Route::get('/bank/overdraft', 'BankController@overdraft')->name('bank.overdraft');
+  Route::post('/bank/transfer/getAccounts', 'BankController@getAccounts')->name('bank.getAccounts');
+  Route::post('/bank/groups/getUsers', 'BankGroupController@getUsers')->name('bank.getUsers');
+  Route::get('/bank/transfer', 'BankController@transfer')->name('bank.transfer');
+  Route::post('/bank/transfer', 'BankController@exchange')->name('bank.exchange');
+  Route::get('/bank/credits', 'CreditController@index')->name('bank.credits');
+  Route::post('/bank/credits', 'CreditController@add')->name('bank.addCredit');
+  Route::post('/bank/credits/pay', 'CreditController@pay')->name('bank.payCredit');
+  Route::get('/bank/groups', 'BankGroupController@index')->name('bank.groupIndex');
+  Route::post('/bank/groups', 'BankGroupController@store')->name('bank.groupStore');
+  Route::get('/bank/groups/{group}', 'BankGroupController@show')->name('bank.groupShow');
+  Route::delete('/bank/groups/{group}', 'BankGroupController@destroy')->name('bank.groupDestroy');
+  Route::patch('/bank/groups/{group}', 'BankGroupController@update')->name('bank.groupUpdate');
+  Route::post('/bank/groups/{group}', 'BankGroupController@quit')->name('bank.groupQuit');
+  Route::post('/bank/groups/{group}/add', 'BankGroupController@add')->name('bank.groupAdd');
+  Route::post('/bank/groups/{group}/manage', 'BankGroupController@manage')->name('bank.groupManage');
+  Route::post('/bank/liquidation', 'BankController@liquidation')->name('bank.liquidation');
+  Route::get('/bank/nova', 'BankController@nova')->name('bank.nova');
+  Route::get('/bank/mails', 'BankController@mails')->name('bank.mails');
+  Route::post('/bank/mails/read', 'BankController@readMail')->name('bank.readMail');
+  Route::post('/bank/mails/store', 'BankController@storeMail')->name('bank.storeMail');
+  Route::post('/bank/mails/refuse/{mail}', 'BankController@refuseMail')->name('bank.refuseMail');
+  Route::post('/bank/mails/accept/{mail}', 'BankController@acceptMail')->name('bank.acceptMail');
+  Route::get('/bank/mybank', function () {
+    return view('bank.mybank');
+  })->name('bank.myBank');
+  Route::post('/bank/mybank/{bank}', 'BankController@changeBank')->name('bank.changeBank');
+  Route::get('/bank/administration', 'BankController@administration')->name('bank.administration');
+  Route::resource('bank', 'BankController');
 
-Route::get('/immobilier', 'ImmoController@index')->name('immo.index');
-Route::get('/immobilier/carte', 'ImmoController@map')->name('immo.map');
-Route::get('/immobilier/achat/{id}', 'ImmoController@achat')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.achat');
-Route::post('/immobilier/store/{id}', 'ImmoController@store')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.store');
-Route::post('/immobilier/sell/{id}', 'ImmoController@sell')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.sell');
+  Route::get('/immobilier', 'ImmoController@index')->name('immo.index');
+  Route::get('/immobilier/carte', 'ImmoController@map')->name('immo.map');
+  Route::get('/immobilier/achat/{id}', 'ImmoController@achat')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.achat');
+  Route::post('/immobilier/store/{id}', 'ImmoController@store')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.store');
+  Route::post('/immobilier/sell/{id}', 'ImmoController@sell')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.sell');
 
-Route::get('/livemap', function () {
-  return view('livemap.show');
-})->name('livemap.show');
-Route::get('/livemap/server', 'LivemapController@server');
-Route::get('/livemap/refresh', 'LivemapController@refresh');
+  Route::get('/livemap', function () {
+    return view('livemap.show');
+  })->name('livemap.show');
+  Route::get('/livemap/server', 'LivemapController@server');
+  Route::get('/livemap/refresh', 'LivemapController@refresh');
 
-Route::get('/videos', function () {
-  return view('misc.videos');
-})->name('misc.videos');
+  Route::get('/videos', function () {
+    return view('misc.videos');
+  })->name('misc.videos');
+});
