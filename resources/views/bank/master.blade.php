@@ -21,7 +21,7 @@
         <div class="bank-info d-flex p-3">
           <div class="w-100 d-flex">
             <img class="float-left mx-2 p-1" src="/uploads/banque/user.svg" alt="Logo utilisateur" height="60" width="60">
-            <h3 class="float-left align-middle d-none d-xl-inline">{{ auth()->user()->firstname }}<br><strong>{{ auth()->user()->lastname }}</strong></h3>
+            <h3 class="float-left align-middle d-none d-xl-inline">{{ Auth::user()->character->firstname }}<br><strong>{{ Auth::user()->character->lastname }}</strong></h3>
           </div>
           <div class="flex-shrink-1">
             <a href="/" class="pr-3 d-lg-none">

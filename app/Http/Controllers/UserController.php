@@ -22,17 +22,18 @@ class UserController extends Controller
 
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', \Illuminate\Validation\Rule::unique('users')->ignore($user->id)],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'age' => ['required', 'numeric', 'gte:1', 'lte:120'],
+            'sex' => ['required', 'string', 'in:Homme,Femme'],
+            'story' => ['required', 'string', 'max:1500']
         ]);
 
         $user = User::find($user->id);
 
         $user->name = $request->name;
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
         $user->email = $request->email;
 
         if (isset($request->password)) {
@@ -40,6 +41,14 @@ class UserController extends Controller
         }
 
         $user->save();
+
+        $user->character->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'age' => $request->age,
+            'sex' => $request->sex,
+            'story' => $request->story
+        ]);
 
         return redirect()->route('user.edit');
     }
