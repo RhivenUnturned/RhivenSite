@@ -20,7 +20,7 @@
     <div class="form-group">
       <label for="firstname" class="col-lg-3 control-label">Prénom RP:</label>
       <div class="col-lg-8">
-        <input id="firstname" class="form-control @error('firstname') is-invalid @enderror" type="text" name="firstname" value="{{ Auth::user()->firstname }}">
+        <input id="firstname" class="form-control @error('firstname') is-invalid @enderror" type="text" name="firstname" value="{{ Auth::user()->character->firstname }}">
         @error('firstname')
         <div class="invalid-feedback">{{ $errors->first('firstname') }}</div>
         @enderror
@@ -30,7 +30,7 @@
     <div class="form-group">
       <label for="lastname" class="col-lg-3 control-label">Nom RP:</label>
       <div class="col-lg-8">
-        <input id="lastname" class="form-control @error('lastname') is-invalid @enderror" type="text" name="lastname" value="{{ Auth::user()->lastname }}">
+        <input id="lastname" class="form-control @error('lastname') is-invalid @enderror" type="text" name="lastname" value="{{ Auth::user()->character->lastname }}">
         @error('lastname')
         <div class="invalid-feedback">{{ $errors->first('lastname') }}</div>
         @enderror

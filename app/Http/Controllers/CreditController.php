@@ -120,7 +120,7 @@ class CreditController extends Controller
             $bankmail = new Bankmail;
             $bankmail->category = 'consolidation';
             $bankmail->title = 'Consolidation de dette accordée';
-            $bankmail->body = 'Bonjour M./Mme. ' . Auth::user()->lastname . ',
+            $bankmail->body = 'Bonjour M./Mme. ' . Auth::user()->character->lastname . ',
             
             Nous avons examiné votre dossier.
             Vous êtes bien éligible à notre offre de Consolidation de dette, et le solde du prêt à été crédité sur votre compte.
@@ -244,15 +244,15 @@ class CreditController extends Controller
                 $creditbank = Credit::where('name', $credit->name)->first()->bank;
 
                 if ($creditbank->acronym === 'FW') {
-                    $bodyHeader = 'Bonjour ' . Auth::user()->firstname . ',';
+                    $bodyHeader = 'Bonjour ' . Auth::user()->character->firstname . ',';
                     $bodyfooter = 'Sonia MIRINE
                     Service Client FastWallet';
                 } elseif ($creditbank->acronym === 'BUC') {
-                    $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->lastname . ',';
+                    $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->character->lastname . ',';
                     $bodyfooter = 'Antoine WOJTEK
                     Votre conseiller United Credit';
                 } elseif ($creditbank->acronym === 'IMPERIAL') {
-                    $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->lastname . ',';
+                    $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->character->lastname . ',';
                     $bodyfooter = 'Felix ROHATYN
                     Votre agent Imperial Bank';
                 }
@@ -330,15 +330,15 @@ class CreditController extends Controller
                 Auth::user()->credits()->detach(Credit::where('name', $credit->name)->first());
 
                 if (Auth::user()->bank->acronym === 'FW') {
-                    $bodyHeader = 'Bonjour ' . Auth::user()->firstname . ',';
+                    $bodyHeader = 'Bonjour ' . Auth::user()->character->firstname . ',';
                     $bodyfooter = 'Sonia MIRINE
                   Service Client FastWallet';
                 } elseif (Auth::user()->bank->acronym === 'BUC') {
-                    $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->lastname . ',';
+                    $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->character->lastname . ',';
                     $bodyfooter = 'Antoine WOJTEK
                   Votre conseiller United Credit';
                 } elseif (Auth::user()->bank->acronym === 'IMPERIAL') {
-                    $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->lastname . ',';
+                    $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->character->lastname . ',';
                     $bodyfooter = 'Felix ROHATYN
                   Votre agent Imperial Bank';
                 }

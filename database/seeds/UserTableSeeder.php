@@ -15,8 +15,6 @@ class UserTableSeeder extends Seeder
     {
         $user = new User;
         $user->name = 'Samuel Jackson';
-        $user->firstname = 'Samuel';
-        $user->lastname = 'Jackson';
         $user->email = 'samueljackson@jackson.com';
         $user->password = Hash::make('test');
         $user->bank()->associate(Bank::where('name', 'FastWallet')->first());
@@ -26,8 +24,6 @@ class UserTableSeeder extends Seeder
 
         $admin = new User;
         $admin->name = 'Ceans';
-        $admin->firstname = 'Kurpatov';
-        $admin->lastname = 'Yermolayevitch';
         $admin->email = 'ebriantais@orange.fr';
         $admin->password = Hash::make('test');
         $admin->steamid = '76561198143359760';

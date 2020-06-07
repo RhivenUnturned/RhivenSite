@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'firstname', 'lastname', 'email', 'password', 'steamid', 'steamavatar',
+        'name', 'email', 'password', 'steamid', 'steamavatar'
     ];
 
     /**
@@ -114,6 +114,11 @@ class User extends Authenticatable
     public function bank()
     {
         return $this->belongsTo(Bank::class);
+    }
+
+    public function character()
+    {
+        return $this->hasOne(Character::class);
     }
 
     public function credits()

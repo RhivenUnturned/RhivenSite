@@ -441,7 +441,7 @@ class BankController extends Controller
                   ],
                   [
                     'accountId' => $request->to,
-                    'text' => '<color=#FF3C3C>+' . round(($amount - $amount_costs), 2) . '€</color>: Virement de ' . Auth::user()->firstname . ' ' . Auth::user()->lastname,
+                    'text' => '<color=#FF3C3C>+' . round(($amount - $amount_costs), 2) . '€</color>: Virement de ' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname,
                     'lastUpdated' => Carbon::now()->toDateTimeString()
                   ]
                 ]);
@@ -510,17 +510,17 @@ class BankController extends Controller
         $sumCredit += $amount / $period * Carbon::parse($pivot->created_at)->addDays($period)->add(1, 'day')->diffInDays(Carbon::now()) - ($amount / $period) + ($amount / $period + ($amount / $period / 100 * $rate));
       }
 
-      $liquidationMessage = DB::table('topics')->where('title', 'Demande de saisie: ' . Auth::user()->firstname . ' ' . Auth::user()->lastname)->first();
+      $liquidationMessage = DB::table('topics')->where('title', 'Demande de saisie: ' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname)->first();
 
       if (!isset($liquidationMessage)) {
         $category = Category::where('name', 'Demandes de saisie')->first();
 
         $topic = new Topic;
 
-        $topic->title = 'Demande de saisie: ' . Auth::user()->firstname . ' ' . Auth::user()->lastname;
+        $topic->title = 'Demande de saisie: ' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname;
         $topic->body = 'Bonjour,
     
-          Un de nos utilisateurs est actuellement endetté, et a souhaité nous rembourser en mettant en vente ses biens. Merci de vous rendre au domicile de ' . Auth::user()->firstname . ' ' . Auth::user()->lastname . ' et d’effectuer la saisie de ses biens pour une valeur de:
+          Un de nos utilisateurs est actuellement endetté, et a souhaité nous rembourser en mettant en vente ses biens. Merci de vous rendre au domicile de ' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname . ' et d’effectuer la saisie de ses biens pour une valeur de:
           
           ' . number_format((-$sumBalance + $sumCredit), 2, ',', ' ') . ' €
           
@@ -538,7 +538,7 @@ class BankController extends Controller
         $topic->save(['timestamps' => false]);
       }
 
-      $deadline = DB::table('topics')->where('title', 'Demande de saisie: ' . Auth::user()->firstname . ' ' . Auth::user()->lastname)->pluck('created_at')->first();
+      $deadline = DB::table('topics')->where('title', 'Demande de saisie: ' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname)->pluck('created_at')->first();
 
       return view('bank.overdraft', compact('accounts', 'credits', 'accountsHistory', 'deadline'));
     } else {
@@ -591,7 +591,7 @@ class BankController extends Controller
         Auth::user()->credits()->detach($credit->id);
       }
 
-      $liquidationMessage = DB::table('topics')->where('title', 'Demande de saisie: ' . Auth::user()->firstname . ' ' . Auth::user()->lastname)->update(['created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+      $liquidationMessage = DB::table('topics')->where('title', 'Demande de saisie: ' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname)->update(['created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
 
       return redirect()->route('bank.overdraft');
     } else {
@@ -721,9 +721,9 @@ class BankController extends Controller
 
       $bankmail = new Bankmail;
       $bankmail->category = 'demande';
-      $bankmail->title = 'Demande de prêt d\'entreprise (' . Auth::user()->firstname . ' ' . Auth::user()->lastname . ')';
+      $bankmail->title = 'Demande de prêt d\'entreprise (' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname . ')';
       $bankmail->body = 'Demande: Prêt pour une entreprise
-      Envoyée par: ' . Auth::user()->firstname . ' ' . Auth::user()->lastname . '
+      Envoyée par: ' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname . '
       Entreprise: ' . $request->company . '
       Adresse du siège: ' . $request->address . '
       Montant demandé: ' . $request->amount . '
@@ -764,9 +764,9 @@ class BankController extends Controller
 
       $bankmail = new Bankmail;
       $bankmail->category = 'demande';
-      $bankmail->title = 'Réclamation d\'assurance (' . Auth::user()->firstname . ' ' . Auth::user()->lastname . ')';
+      $bankmail->title = 'Réclamation d\'assurance (' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname . ')';
       $bankmail->body = 'Demande: Remboursement par l\'assurance
-      Envoyée par: ' . Auth::user()->firstname . ' ' . Auth::user()->lastname . '
+      Envoyée par: ' . Auth::user()->character->firstname . ' ' . Auth::user()->character->lastname . '
 
       Biens à rembourser:
       ' . $objects . '
@@ -1004,15 +1004,15 @@ class BankController extends Controller
         Auth::user()->bank()->associate($bank)->save();
 
         if ($bank->acronym === 'FW') {
-          $bodyHeader = 'Bonjour ' . Auth::user()->firstname . ',';
+          $bodyHeader = 'Bonjour ' . Auth::user()->character->firstname . ',';
           $bodyfooter = 'Sonia MIRINE
         Service Client FastWallet';
         } elseif ($bank->acronym === 'BUC') {
-          $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->lastname . ',';
+          $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->character->lastname . ',';
           $bodyfooter = 'Antoine WOJTEK
         Votre conseiller United Credit';
         } elseif ($bank->acronym === 'IMPERIAL') {
-          $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->lastname . ',';
+          $bodyHeader = 'Bonjour M./Mme. ' . Auth::user()->character->lastname . ',';
           $bodyfooter = 'Felix ROHATYN
         Votre agent Imperial Bank';
         }
