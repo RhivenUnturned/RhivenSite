@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['reset' => false,'register' => false,'confirm' => false,'verify' => false]);
+Auth::routes(['reset' => false,'register' => true,'confirm' => false,'verify' => false]);
 
 Route::group(['middleware' => ['auth']], function () {
 

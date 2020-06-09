@@ -113,7 +113,7 @@ $otherSex = "Inconnu";
   @enderror
 
   <div class="form-group mt-2">
-    <label for="lastname" class="col-lg-3 control-label">Histoire:</label>
+    <label for="storyInput" class="col-lg-3 control-label">Histoire:</label>
     <div class="col-lg-8">
       <textarea class="form-control @error('story') is-invalid @enderror" aria-describedby="storyHelp" id="storyInput" name="story" maxlength="1500" rows="6">{{ Auth::user()->character->story }}</textarea>
       @error('story')
