@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Response;
 use App\User;
+use App\Character;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -25,13 +28,6 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::STEAM;
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -51,10 +47,13 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'age' => ['required', 'numeric', 'gte:1', 'lte:120'],
+            'sex' => ['required', 'string', 'in:Homme,Femme'],
+            'story' => ['required', 'string', 'max:1500']
         ]);
     }
 
@@ -64,18 +63,27 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-
     protected function create(array $data)
     {
         $user = User::create([
             'name'     => $data['name'],
-            'firstname'     => $data['firstname'],
-            'lastname'     => $data['lastname'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
         $user->bank()->associate(\App\Bank::where('name', 'FastWallet')->first())->save();
+
+        $character = Character::create([
+            'firstname'     => $data['firstname'],
+            'lastname'    => $data['lastname'],
+            'age' => $data['age'],
+            'sex'    => $data['sex'],
+            'story'    => $data['story'],
+        ]);
+
+        $character->user()->associate(User::where('id', $user->id)->first());
+        $character->save();
+
         $user->roles()->attach(\App\Role::where('name', 'user')->first());
 
         $bankmail = new \App\Bankmail;

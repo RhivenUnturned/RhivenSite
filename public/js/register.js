@@ -1,20 +1,3 @@
-$(function () {
-
-  $('form').on('submit', function (e) {
-    e.preventDefault();
-
-    $.ajax({
-      type: 'post',
-      url: '/register',
-      data: $('form').serialize(),
-      success: function () {
-        alert('form was submitted');
-      }
-    });
-  });
-});
-
-// Code By Webdevtrick ( https://webdevtrick.com )
 const DOMstrings = {
   stepsBtnClass: 'multisteps-form__progress-btn',
   stepsBtns: document.querySelectorAll(`.multisteps-form__progress-btn`),
@@ -27,7 +10,7 @@ const DOMstrings = {
   stepNextBtnClass: 'js-btn-next'
 };
 
-
+// Code By Webdevtrick ( https://webdevtrick.com )
 const removeClasses = (elemSet, className) => {
   elemSet.forEach(elem => {
     elem.classList.remove(className);
@@ -145,6 +128,62 @@ DOMstrings.stepsForm.addEventListener('click', e => {
   setActiveStep(activePanelNum);
   setActivePanel(activePanelNum);
 });
+
+let sent = false;
+
+document.getElementById('registration-form').addEventListener('submit', e => {
+  e.preventDefault();
+
+  if (!sent) {
+    axios
+      .post(document.getElementById('registration-form').action, {
+        'name': document.querySelector('input[name="name"]').value,
+        'email': document.querySelector('input[name="email"]').value,
+        'password': document.querySelector('input[name="password"]').value,
+        'password_confirmation': document.querySelector('input[name="password_confirmation"]').value,
+        'firstname': document.querySelector('input[name="firstname"]').value,
+        'lastname': document.querySelector('input[name="lastname"]').value,
+        'sex': document.querySelector('input[name="sex"]').value,
+        'age': document.querySelector('input[name="age"]').value,
+        'story': document.querySelector('textarea[name="story"]').value
+      })
+      .then((response) => {
+        clearErrors()
+        sent = true
+      })
+      .catch((error) => {
+        clearErrors()
+        setActiveStep(0)
+        setActivePanel(0)
+        const errorParent = document.getElementById('error-parent')
+        errorParent.innerHTML = `<div class="alert alert-danger mb-4" role="alert">Une ou plusieurs erreurs se sont produites</div>`
+
+        const errors = error.response.data.errors
+        for (let item of Object.keys(errors)) {
+          var error = errors[item];
+          const itemDOM = document.getElementById(item)
+          // show the error message
+          itemDOM.insertAdjacentHTML('afterend', `<div class="text-danger">${error}</div>`)
+          // highlight the form control with the error
+          itemDOM.classList.add('is-invalid')
+        }
+      });
+  }
+});
+
+function clearErrors() {
+  // remove error alert
+  var node = document.getElementById('error-parent');
+  if (node) {
+    node.querySelectorAll('*').forEach(n => n.remove());
+  }
+  // remove all error messages
+  const errorMessages = document.querySelectorAll('.text-danger')
+  errorMessages.forEach((element) => element.textContent = '')
+  // remove all form controls with highlighted error text box
+  const formControls = document.querySelectorAll('.form-control')
+  formControls.forEach((element) => element.classList.remove('is-invalid'))
+};
 
 window.addEventListener('load', setFormHeight, false);
 window.addEventListener('resize', setFormHeight, false);
