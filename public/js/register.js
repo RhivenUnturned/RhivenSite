@@ -1,3 +1,9 @@
+$('html').bind('keypress', function (e) {
+  if (e.keyCode == 13) {
+    return false;
+  }
+});
+
 const DOMstrings = {
   stepsBtnClass: 'multisteps-form__progress-btn',
   stepsBtns: document.querySelectorAll(`.multisteps-form__progress-btn`),
@@ -131,6 +137,7 @@ DOMstrings.stepsForm.addEventListener('click', e => {
 
 let sent = false;
 $(document).ready(function () {
+
   document.getElementById('registration-form').addEventListener('submit', e => {
     e.preventDefault();
 

@@ -19,7 +19,7 @@
 								<button class="multisteps-form__progress-btn js-active" type="button" title="Infos du compte">Infos du compte</button>
 								<button class="multisteps-form__progress-btn" type="button" title="Personnage RP">Personnage RP</button>
 								<button class="multisteps-form__progress-btn" type="button" title="Lier mes comptes">Lier mes comptes</button>
-								<button class="multisteps-form__progress-btn" type="button" title="Message">Message </button>
+								<button class="multisteps-form__progress-btn" type="button" title="Message">Dernière étape</button>
 							</div>
 						</div>
 					</div>
@@ -175,14 +175,14 @@
 							</div>
 
 							<div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="slideHorz">
-								<h3 class="multisteps-form__title">Additional Message</h3>
+								<h3 class="multisteps-form__title">C'est terminé !</h3>
 								<div class="multisteps-form__content">
 									<div class="form-row mt-4">
-										<textarea class="multisteps-form__textarea form-control" placeholder="Additional Message and Questions"></textarea>
+										<p>Il ne vous reste plus qu'une seule chose à faire: profiter de nos serveurs ! Bon jeu :)</p>
 									</div>
 									<div class="button-row d-flex mt-4">
-										<button class="btn btn-secondary js-btn-prev" type="button" title="Prev">Prev</button>
-										<button class="btn btn-success ml-auto" type="button" title="Send">Send</button>
+										<button class="btn btn-secondary js-btn-prev" type="button" title="Précédent">Précédent</button>
+										<a class="btn btn-success ml-auto" href="{{ route('home') }}" title="Accéder au site">Accéder au site</a>
 									</div>
 								</div>
 							</div>
