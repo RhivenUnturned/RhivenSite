@@ -10,11 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['reset' => false,'register' => true,'confirm' => false,'verify' => false]);
-
-Route::get('/discord', 'Auth\DiscordController@redirectToDiscord')->name('auth.discord');
-Route::get('/discord/handle', 'Auth\DiscordController@handle')->name('auth.discord.handle');
-Route::get('/discord/token', 'Auth\DiscordController@token')->name('auth.discord.token');
+Auth::routes(['reset' => false, 'register' => false, 'confirm' => false, 'verify' => false]);
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -52,6 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
 
   Route::get('/steam', 'Auth\SteamController@redirectToSteam')->name('auth.steam');
   Route::get('/steam/handle', 'Auth\SteamController@handle')->name('auth.steam.handle');
+  Route::get('/discord', 'Auth\DiscordController@redirectToDiscord')->name('auth.discord');
+  Route::get('/discord/handle', 'Auth\DiscordController@handle')->name('auth.discord.handle');
+  Route::get('/discord/token', 'Auth\DiscordController@token')->name('auth.discord.token');
 
   Route::get('/bank/overdraft', 'BankController@overdraft')->name('bank.overdraft');
   Route::post('/bank/transfer/getAccounts', 'BankController@getAccounts')->name('bank.getAccounts');
