@@ -22,13 +22,6 @@ class SteamController extends Controller
     protected $steam;
 
     /**
-     * The redirect URL.
-     *
-     * @var string
-     */
-    protected $redirectURL = '/';
-
-    /**
      * AuthController constructor.
      * 
      * @param SteamAuth $steam
@@ -70,18 +63,16 @@ class SteamController extends Controller
 
             if (!is_null($info)) {
                 $uniqueSteamID = DB::table('users')
-                    ->where('steamid', $info->steamid)
+                    ->where('steamid', $info->steamID64)
                     ->get();
 
-                if (!is_null($uniqueSteamID)) {
+                if (!$uniqueSteamID->isEmpty()) {
                     return redirect('/');
                 }
 
                 $user = $this->findOrNewUser($info);
 
-                Auth::login($user, true);
-
-                return redirect($this->redirectURL); // redirect to site
+                Auth::login($user, true); // redirect to site
             }
         }
         return $this->redirectToSteam();

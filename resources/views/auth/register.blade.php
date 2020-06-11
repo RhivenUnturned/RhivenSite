@@ -151,7 +151,7 @@
 												<div class="card-body">
 													<h5 class="card-title">Discord</h5>
 													<p class="card-text">Pour accéder au reste du serveur Discord</p>
-													<a class="btn btn-primary" href="#" title="Lier mon compte">Lier mon compte</a>
+													<button id="discord-btn" class="btn btn-primary" type="button" title="Lier mon compte Discord">Lier mon compte</button>
 												</div>
 											</div>
 										</div>
@@ -160,7 +160,7 @@
 												<div class="card-body">
 													<h5 class="card-title">Steam</h5>
 													<p class="card-text">Pour utiliser les fonctionnalités du site Internet</p>
-													<a class="btn btn-primary" href="#" title="Lier mon compte">Lier mon compte</a>
+													<button id="steam-btn" class="btn btn-primary" type="button" title="Lier mon compte Steam">Lier mon compte</button>
 												</div>
 											</div>
 										</div>
@@ -193,9 +193,26 @@
 		</div>
 	</div>
 </div>
+
+<div id="registration-success" class="toast" data-delay="15000" style="position: fixed; top: 4%; right: 3%;">
+	<div class="toast-header">
+		<img src="{{ asset('uploads/Logo_Rhiven_Transparent.png') }}" class="rounded mr-2" alt="Logo du site Rhiven" style="max-height: 25px;;">
+		<strong class="mr-auto">Rhiven</strong>
+		<small>À l'instant</small>
+		<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="toast-body">
+		Votre compte a bien été créé !
+	</div>
+</div>
+
 @endsection
 
 @section('extra-js')
-<script src="{{asset('js/jqueryui/jquery-ui.min.js')}}" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="{{ asset('js/register.js') }}" type="text/javascript"></script>
 @endsection

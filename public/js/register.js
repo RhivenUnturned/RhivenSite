@@ -130,45 +130,107 @@ DOMstrings.stepsForm.addEventListener('click', e => {
 });
 
 let sent = false;
+$(document).ready(function () {
+  document.getElementById('registration-form').addEventListener('submit', e => {
+    e.preventDefault();
 
-document.getElementById('registration-form').addEventListener('submit', e => {
-  e.preventDefault();
+    if (!sent) {
+      axios
+        .post(document.getElementById('registration-form').action, {
+          'name': document.querySelector('input[name="name"]').value,
+          'email': document.querySelector('input[name="email"]').value,
+          'password': document.querySelector('input[name="password"]').value,
+          'password_confirmation': document.querySelector('input[name="password_confirmation"]').value,
+          'firstname': document.querySelector('input[name="firstname"]').value,
+          'lastname': document.querySelector('input[name="lastname"]').value,
+          'sex': document.querySelector('input[name="sex"]').value,
+          'age': document.querySelector('input[name="age"]').value,
+          'story': document.querySelector('textarea[name="story"]').value
+        })
+        .then((response) => {
+          clearErrors()
+          sent = true
+          $("#registration-success").toast('show')
+        })
+        .catch((error) => {
+          clearErrors()
+          setActiveStep(0)
+          setActivePanel(0)
+          const errorParent = document.getElementById('error-parent')
+          errorParent.innerHTML = `<div class="alert alert-danger mb-4" role="alert">Une ou plusieurs erreurs se sont produites</div>`
 
-  if (!sent) {
-    axios
-      .post(document.getElementById('registration-form').action, {
-        'name': document.querySelector('input[name="name"]').value,
-        'email': document.querySelector('input[name="email"]').value,
-        'password': document.querySelector('input[name="password"]').value,
-        'password_confirmation': document.querySelector('input[name="password_confirmation"]').value,
-        'firstname': document.querySelector('input[name="firstname"]').value,
-        'lastname': document.querySelector('input[name="lastname"]').value,
-        'sex': document.querySelector('input[name="sex"]').value,
-        'age': document.querySelector('input[name="age"]').value,
-        'story': document.querySelector('textarea[name="story"]').value
+          const errors = error.response.data.errors
+          for (let item of Object.keys(errors)) {
+            var error = errors[item];
+            const itemDOM = document.getElementById(item)
+            // show the error message
+            itemDOM.insertAdjacentHTML('afterend', `<div class="text-danger">${error}</div>`)
+            // highlight the form control with the error
+            itemDOM.classList.add('is-invalid')
+          }
+        });
+    }
+  });
+
+  document.getElementById('steam-btn').addEventListener('click', e => {
+    openSteamWindow();
+
+    var steamAPICall = window.setInterval(function () {
+      // GET request for user's steamId
+      axios({
+        method: 'get',
+        url: '/user/steamid',
+        responseType: 'json'
       })
-      .then((response) => {
-        clearErrors()
-        sent = true
-      })
-      .catch((error) => {
-        clearErrors()
-        setActiveStep(0)
-        setActivePanel(0)
-        const errorParent = document.getElementById('error-parent')
-        errorParent.innerHTML = `<div class="alert alert-danger mb-4" role="alert">Une ou plusieurs erreurs se sont produites</div>`
+        .then(function (response) {
+          if (response.data.steamId != null) {
+            steamWindow.close()
+            clearInterval(steamAPICall)
+            var steamLinkButton = document.getElementById('steam-btn')
+            var steamSuccessButton = document.createElement("button")
+            steamSuccessButton.classList.add("btn", "btn-success")
+            steamSuccessButton.disabled = true
+            steamSuccessButton.setAttribute('type', 'button')
+            steamLinkButton.replaceWith(steamSuccessButton);
+            steamSuccessButton.innerText = "Compte lié !"
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+    }, 2700);
 
-        const errors = error.response.data.errors
-        for (let item of Object.keys(errors)) {
-          var error = errors[item];
-          const itemDOM = document.getElementById(item)
-          // show the error message
-          itemDOM.insertAdjacentHTML('afterend', `<div class="text-danger">${error}</div>`)
-          // highlight the form control with the error
-          itemDOM.classList.add('is-invalid')
-        }
-      });
-  }
+  });
+
+  document.getElementById('discord-btn').addEventListener('click', e => {
+    openDiscordWindow();
+
+    var discordAPICall = window.setInterval(function () {
+      // GET request for user's discordid
+      axios({
+        method: 'get',
+        url: '/user/discordid',
+        responseType: 'json'
+      })
+        .then(function (response) {
+          if (response.data.discordId != null) {
+            discordWindow.close()
+            clearInterval(discordAPICall)
+            var discordLinkButton = document.getElementById('discord-btn')
+            var discordSuccessButton = document.createElement("button")
+            discordSuccessButton.classList.add("btn", "btn-success")
+            discordSuccessButton.disabled = true
+            discordSuccessButton.setAttribute('type', 'button')
+            discordLinkButton.replaceWith(discordSuccessButton);
+            discordSuccessButton.innerText = "Compte lié !"
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        });
+    }, 2700);
+
+  });
 });
 
 function clearErrors() {
@@ -187,3 +249,12 @@ function clearErrors() {
 
 window.addEventListener('load', setFormHeight, false);
 window.addEventListener('resize', setFormHeight, false);
+
+var steamWindow, discordWindow;
+function openSteamWindow() {
+  steamWindow = window.open('/steam', '_blank', 'left=50vh,top=50%,height=570,width=520,scrollbars=yes');
+}
+
+function openDiscordWindow() {
+  discordWindow = window.open('/discord', '_blank', 'left=50vh,top=50%,height=570,width=520,scrollbars=yes');
+}

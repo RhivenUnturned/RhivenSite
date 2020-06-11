@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -51,5 +52,45 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('user.edit');
+    }
+
+    /**
+     * Get the authentificated user's steamID
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getSteamId(Request $request)
+    {
+        $user = Auth::user();
+
+        $steamId = DB::table('users')
+            ->select('steamid')
+            ->where('id', $user->id)
+            ->first();
+
+        return response()->json([
+            'steamId' => $steamId->steamid
+        ]);
+    }
+
+    /**
+     * Get the authentificated user's discordID
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getDiscordId(Request $request)
+    {
+        $user = Auth::user();
+
+        $discordId = DB::table('users')
+            ->select('discordid')
+            ->where('id', $user->id)
+            ->first();
+
+        return response()->json([
+            'discordId' => $discordId->discordid
+        ]);
     }
 }

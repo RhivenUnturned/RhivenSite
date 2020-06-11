@@ -12,12 +12,18 @@
 */
 Auth::routes(['reset' => false,'register' => true,'confirm' => false,'verify' => false]);
 
+Route::get('/discord', 'Auth\DiscordController@redirectToDiscord')->name('auth.discord');
+Route::get('/discord/handle', 'Auth\DiscordController@handle')->name('auth.discord.handle');
+Route::get('/discord/token', 'Auth\DiscordController@token')->name('auth.discord.token');
+
 Route::group(['middleware' => ['auth']], function () {
 
   Route::get('/posts/{post}', 'PostController@single');
 
   Route::view('/profil', 'user.edit')->name('user.edit');
   Route::patch('/profil', 'UserController@update')->name('user.update');
+  Route::get('/user/steamid', 'UserController@getSteamId');
+  Route::get('/user/discordid', 'UserController@getDiscordId');
 
   Route::get('/home', 'HomeController@index')->name('home');
 
