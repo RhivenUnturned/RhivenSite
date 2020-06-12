@@ -8,14 +8,20 @@ $from = DB::table('unt_bs_multi_accounts')
 @endphp
 
 <div class="card text-white bg-dark mb-4">
-  <div class="card-body p-1">
+  <div class="text-center bg-primary rounded-top" style="letter-spacing: 0.3em; margin: -1px;">RÉPUBLIQUE DE NEPETA</div>
+  <div class="card-body p-2">
     @if (Auth::user()->steamavatar != null)
-    <img class="card-img-top float-left w-25 m-1 rounded" src="{{ Auth::user()->steamavatar }}" alt="Card image cap">
+    <img class="card-img-top float-left w-25 mr-1 rounded" src="{{ Auth::user()->steamavatar }}" alt="Card image cap">
     @endif
     <h5 class="card-title">{{ Auth::user()->name }}</h5>
     <h6 class="card-subtitle mb-2">{{ Auth::user()->character->firstname }} {{ Auth::user()->character->lastname }}</h6>
-    <p class="card-text">Délivrée le: {{ Carbon\Carbon::parse(Auth::user()->created_at)->format('d/m/y') }}</p>
-    <a href="{{ route('user.edit') }}" class="btn btn-outline-light m-1">Modifier</a>
+    <div class="d-flex justify-content-between">
+      <p class="card-text mb-1">Né le: {{ Carbon\Carbon::parse(Auth::user()->created_at)->subYears(Auth::user()->character->age)->format('d/m/y') }}</p>
+      <p class="card-text mb-1">Sexe: {{ Auth::user()->character->sex[0] }}</p>
+    </div>
+  </div>
+  <div class="rounded-bottom p-2" style="letter-spacing: 0.3em; margin: -1px; background-color: #e5e5e5;">
+    <a href="{{ route('user.edit') }}" class="btn btn-outline-dark">Modifier</a>
   </div>
 </div>
 
@@ -44,15 +50,6 @@ $from = DB::table('unt_bs_multi_accounts')
   </div>
 </div>
 @endif
-
-<div class="rounded sticky-top p-3 text-white bg-dark">
-  <h5 class="text-primary">Menu</h5>
-  <div class="nav flex-column">
-    <a href="#" class="nav-link pl-0">Menu 1</a>
-    <a href="#" class="nav-link pl-0">Menu 2</a>
-    <a href="#" class="nav-link pl-0">Menu 3</a>
-  </div>
-</div>
 
 @if(isset($from))
 @section('extra-js')

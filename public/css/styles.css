@@ -176,3 +176,9 @@ nav {
     transition-delay: 0s;
     left: 0;
 }
+
+/* FIN */
+
+#editor-container {
+    min-height: 15vh;
+}

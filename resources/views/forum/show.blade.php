@@ -1,26 +1,5 @@
 @extends('layouts.master')
 
-@section('extra-js')
-<script>
-  window.addEventListener('load', function() {
-    console.log('chargé');
-
-    window.toggleReplyComment = function(id) {
-      var element = document.getElementById('replyCommentForm-' + id);
-      element.classList.toggle('d-none');
-    }
-
-    $(".reply-area").keypress(function(e) {
-      console.log('entrée');
-      if (e.which == 13 && !e.shiftKey) {
-        $(this).closest("form").submit();
-        e.preventDefault();
-      }
-    });
-  });
-</script>
-@endsection
-
 @section('content')
 <div class="col-md-12 mx-auto">
   <h1 class="my-4 text-center">Forum</h1>
@@ -108,4 +87,23 @@
     <button type="submit" class="btn btn-primary">Envoyer ma réponse</button>
   </form>
 </div>
+@endsection
+
+@section('extra-js')
+<script>
+  window.addEventListener('load', function() {
+
+    window.toggleReplyComment = function(id) {
+      var element = document.getElementById('replyCommentForm-' + id);
+      element.classList.toggle('d-none');
+    }
+
+    $(".reply-area").keypress(function(e) {
+      if (e.which == 13 && !e.shiftKey) {
+        $(this).closest("form").submit();
+        e.preventDefault();
+      }
+    });
+  });
+</script>
 @endsection

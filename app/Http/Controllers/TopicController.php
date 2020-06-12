@@ -59,6 +59,7 @@ class TopicController extends Controller
 
         $topic->title = $request->title;
         $topic->body = $request->body;
+        $topic->quill = $request->quill;
         $topic->user_id = auth()->user()->id;
 
         $topic->category()->associate($request->category)->save();

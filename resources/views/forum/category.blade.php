@@ -13,7 +13,7 @@
       @foreach ($topics as $topic)
       <li class="list-group-item">
         <a href="{{ route('topics.show', $topic) }}">{{ $topic->title }}</a>
-        <p>{{ \Illuminate\Support\Str::limit($topic->body, $limit = 280, $end = '...') }} </p>
+        <p>{{ strip_tags(\Illuminate\Support\Str::limit($topic->body, $limit = 280, $end = '...')) }} </p>
         <div class="d-flex justify-content-between">
           <div>
             <small>Posté {{ $topic->created_at->diffForHumans() }}</small>

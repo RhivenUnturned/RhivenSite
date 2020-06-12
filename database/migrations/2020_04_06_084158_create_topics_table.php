@@ -18,7 +18,8 @@ class CreateTopicsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->unsignedBigInteger('category_id')->index();
             $table->string('title');
-            $table->text('body');
+            $table->longText('body');
+            $table->longText('quill');
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories')
                 ->onDelete('cascade');

@@ -124,7 +124,11 @@ $otherSex = "Inconnu";
   </div>
 
   <hr>
+  <h2 class="mb-4">Comptes liés</h2>
 
+  <p>Pour modifier un compte lié, veuillez contacter un membre de l'équipe sur Discord, ou envoyer un mail à l'adresse suivante: <a href="mailto:ceans@rhiven.fr">ceans@rhiven.fr</a></p>
+
+  <hr>
   <div class="form-group">
     <label class="col-md-3 control-label"></label>
     <div class="col-md-8">
