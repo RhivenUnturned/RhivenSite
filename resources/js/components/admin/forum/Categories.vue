@@ -14,7 +14,6 @@
                 </router-link>
             </div>
         </div>
-        <hr />
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -78,6 +77,7 @@
 <script>
 export default {
     mounted() {
+        feather.replace();
         this.getCategories();
     },
     data() {

@@ -13,6 +13,12 @@ import Update from './components/admin/Update'
 import Categories from './components/admin/forum/Categories'
 import CategoriesUpdate from './components/admin/forum/CategoriesUpdate'
 import CategoriesCreate from './components/admin/forum/CategoriesCreate'
+import Tags from './components/admin/forum/Tags'
+import TagsUpdate from './components/admin/forum/TagsUpdate'
+import TagsCreate from './components/admin/forum/TagsCreate'
+import Jobs from './components/admin/forum/Jobs'
+import JobsUpdate from './components/admin/forum/JobsUpdate'
+import JobsCreate from './components/admin/forum/JobsCreate'
 
 Vue.use(VueRouter)
 
@@ -50,15 +56,51 @@ const router = new VueRouter({
             props: true
         },
         {
+            path: '/admin/forum/categories/create',
+            name: 'categoriescreate',
+            component: CategoriesCreate,
+            props: true
+        },
+        {
             path: '/admin/forum/categories/update',
             name: 'categoriesupdate',
             component: CategoriesUpdate,
             props: true
         },
         {
-            path: '/admin/forum/categories/create',
-            name: 'categoriescreate',
-            component: CategoriesCreate,
+            path: '/admin/forum/tags',
+            name: 'tags',
+            component: Tags,
+            props: true
+        },
+        {
+            path: '/admin/forum/tags/create',
+            name: 'tagscreate',
+            component: TagsCreate,
+            props: true
+        },
+        {
+            path: '/admin/forum/tags/update',
+            name: 'tagsupdate',
+            component: TagsUpdate,
+            props: true
+        },
+        {
+            path: '/admin/forum/jobs',
+            name: 'jobs',
+            component: Jobs,
+            props: true
+        },
+        {
+            path: '/admin/forum/jobs/create',
+            name: 'jobscreate',
+            component: JobsCreate,
+            props: true
+        },
+        {
+            path: '/admin/forum/jobs/update',
+            name: 'jobsupdate',
+            component: JobsUpdate,
             props: true
         },
     ],
@@ -66,6 +108,6 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
-    components: { Homepage, Comments},
+    components: { Homepage, Comments },
     router,
 });

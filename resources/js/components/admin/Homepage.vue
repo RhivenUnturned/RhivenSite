@@ -63,7 +63,6 @@
                                     Nouvel article
                                 </router-link>
                             </li>
-
                             <li class="nav-item dropdown">
                                 <a
                                     class="nav-link dropdown-toggle"
@@ -72,20 +71,37 @@
                                     role="button"
                                     aria-haspopup="true"
                                     aria-expanded="false"
-                                    ><i data-feather="file-text"></i>
-                                    Forum</a
+                                    ><i data-feather="file-text"></i> Forum</a
                                 >
                                 <div class="dropdown-menu">
                                     <router-link
-                                    class="dropdown-item"
-                                    :to="{
-                                        name: 'categories',
-                                        params: { userId }
-                                    }"
-                                >
-                                    Gérer les catégories
-                                </router-link>
+                                        class="dropdown-item"
+                                        :to="{
+                                            name: 'tags',
+                                            params: { userId }
+                                        }"
+                                    >
+                                        Gérer les étiquettes
+                                    </router-link>
+                                    <router-link
+                                        class="dropdown-item"
+                                        :to="{
+                                            name: 'categories',
+                                            params: { userId }
+                                        }"
+                                    >
+                                        Gérer les catégories
+                                    </router-link>
                                 </div>
+                            </li>
+                            <li class="nav-item">
+                                <router-link
+                                    class="nav-link"
+                                    :to="{ name: 'jobs' }"
+                                >
+                                    <i data-feather="tool"></i>
+                                    Gérer les métiers
+                                </router-link>
                             </li>
                         </ul>
                     </div>

@@ -8,7 +8,7 @@
                 ]"
             >
                 <span v-if="successful" class="label label-sucess"
-                    >Modifié!</span
+                    >Modifiée!</span
                 >
             </div>
 
