@@ -40,6 +40,7 @@ class PostController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
+            'quill' => 'required',
             'user_id' => 'required',            
             'image' => 'required|mimes:jpeg,png,jpg,gif,svg',
         ]);
@@ -58,6 +59,7 @@ class PostController extends Controller
         $post->user_id = $request->user_id;
         $post->title = $request->title;
         $post->body = $request->body;
+        $post->quill = $request->quill;
         $post->save();
 
         return new PostResource($post);
@@ -97,9 +99,10 @@ class PostController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
+            'quill' => 'required'
         ]);
 
-        $post->update($request->only(['title', 'body']));
+        $post->update($request->only(['title', 'body', 'quill']));
 
         return new PostResource($post);
     }

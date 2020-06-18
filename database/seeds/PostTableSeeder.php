@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use App\Post;
 use Illuminate\Database\Seeder;
@@ -21,6 +21,7 @@ class PostTableSeeder extends Seeder
             
         - Immobilier:
             - (en cours de restructuration)";
+        $post->quill = "test";
         $post->save();
     }
 }

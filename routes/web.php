@@ -43,8 +43,8 @@ Route::group(['middleware' => ['auth']], function () {
 
   Route::get('/showFromNotification/{topic}/{notification}', 'TopicController@showFromNotification')->name('topics.showFromNotification');
 
-  Route::get('/forum', 'TagController@index')->name('forum.index');
-  Route::get('/forum/{category}', 'CategoryController@index')->name('forum.category');
+  Route::get('/forum', 'TagController@list')->name('forum.index');
+  Route::get('/forum/{category}', 'CategoryController@list')->name('forum.category');
 
   Route::get('/steam', 'Auth\SteamController@redirectToSteam')->name('auth.steam');
   Route::get('/steam/handle', 'Auth\SteamController@handle')->name('auth.steam.handle');
