@@ -56,12 +56,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('login') }}">Se connecter</a>
         </li>
-
-        {{--
         <li class="nav-item">
           <a class="btn btn-primary" href="{{ route('register') }}">S'inscrire</a>
         </li>
-        --}}
 
         @endauth
         @endif
