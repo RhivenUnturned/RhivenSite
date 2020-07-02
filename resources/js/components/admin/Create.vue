@@ -157,7 +157,7 @@ export default {
                 });
 
             this.$refs.title.value = "";
-            this.$refs.body.value = "";
+            this.editor.root.innerHTML = "";
         },
         update() {
             this.$emit(

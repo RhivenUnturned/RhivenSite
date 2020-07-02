@@ -2149,7 +2149,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       this.$refs.title.value = "";
-      this.$refs.body.value = "";
+      this.editor.root.innerHTML = "";
     },
     update: function update() {
       this.$emit("input", this.editor.getText() ? this.editor.root.innerHTML : "");
