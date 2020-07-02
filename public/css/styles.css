@@ -6,15 +6,18 @@ header {
     overflow: hidden;
 }
 
-.jumbotron-banner {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.headerImgContainer {
+    position: relative;
     text-align: center;
+    color: white;
 }
 
-.jumbotron-banner-nepeta {
-    background-image: url("/uploads/rhiven_banner.webp");
+/* Centered text */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 nav {
@@ -182,10 +185,6 @@ nav {
 }
 
 /* FIN */
-
-#editor-container {
-    min-height: 15vh;
-}
 
 #article img {
     width: 60vw;

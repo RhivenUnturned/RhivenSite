@@ -17,6 +17,131 @@
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <style>
+    body {
+      font-size: 0.875rem;
+    }
+
+    .feather {
+      width: 16px;
+      height: 16px;
+      vertical-align: text-bottom;
+    }
+
+    /*
+ * Sidebar
+ */
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      /* Behind the navbar */
+      padding: 48px 0 0;
+      /* Height of navbar */
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar {
+        top: 5rem;
+      }
+    }
+
+    .sidebar-sticky {
+      position: relative;
+      top: 0;
+      height: calc(100vh - 48px);
+      padding-top: 0.5rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      /* Scrollable contents if viewport is shorter than content. */
+    }
+
+    @supports ((position: -webkit-sticky) or (position: sticky)) {
+      .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+      }
+    }
+
+    .sidebar .nav-link {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .sidebar .nav-link .feather {
+      margin-right: 4px;
+      color: #999;
+    }
+
+    .sidebar .nav-link.router-link-active,
+    .sidebar .nav-link.router-link-exact-active,
+    .sidebar .nav-link.active,
+    .sidebar .nav-link.active .feather {
+      color: #007bff;
+    }
+
+    .sidebar .nav-link:hover .feather {
+      color: inherit;
+    }
+
+    .sidebar-heading {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+
+    /*
+ * Navbar
+ */
+
+    .navbar-brand {
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      font-size: 1rem;
+      background-color: rgba(0, 0, 0, 0.25);
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+    }
+
+    .navbar .navbar-toggler {
+      top: 0.25rem;
+      right: 1rem;
+    }
+
+    .navbar .form-control {
+      padding: 0.75rem 1rem;
+      border-width: 0;
+      border-radius: 0;
+    }
+
+    .form-control-dark {
+      color: #fff;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .form-control-dark:focus {
+      border-color: transparent;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+    }
+
+    /*
+ * Quill
+ */
+
+    .ql-toolbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .ql-snow .ql-editor img {
+      max-height: 15em;
+    }
+  </style>
 </head>
 
 <body>
@@ -28,7 +153,7 @@
   <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
   <script src="{{ asset('js/app.js') }}"></script>
   <script>
-    feather.replace()
+    feather.replace();
   </script>
 </body>
 

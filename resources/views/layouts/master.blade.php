@@ -24,10 +24,16 @@
 
 <body>
 
-  <header class="jumbotron jumbotron-banner jumbotron-banner-nepeta jumbotron-fluid mb-0">
-    <div class="container">
-      <h1 class="display-2">Rhiven</h1>
-    </div>
+  <header class="headerImgContainer">
+      <h1 class="display-2 centered">Rhiven</h1>
+      <picture>
+        <source media="(max-width: 576px)" srcset="/uploads/banner-576.webp">
+        <source media="(max-width: 768px)" srcset="/uploads/banner-768.webp">
+        <source media="(max-width: 992px)" srcset="/uploads/banner-992.webp">
+        <source media="(max-width: 1200px)" srcset="/uploads/banner-1200.webp">
+        <source media="(min-width: 1201px)" srcset="/uploads/banner-2560.webp">
+        <img src="/uploads/banner-1200.webp">
+      </picture>
   </header>
 
   @yield('navbar', View::make('layouts.navbar'))
@@ -42,7 +48,7 @@
     </div>
     @else
     <div id="app">
-    @yield('content')
+      @yield('content')
     </div>
     @endif
   </div>

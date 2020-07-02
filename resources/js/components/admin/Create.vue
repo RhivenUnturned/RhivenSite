@@ -13,7 +13,7 @@
                     >Publié!</span
                 >
             </div>
-            <div :class="['form-group m-1 p-3', error ? 'alert-danger' : '']">
+            <div :class="['form-group m-3 p-3', error ? 'alert-danger' : '']">
                 <span v-if="errors.title" class="label label-danger">{{
                     errors.title[0]
                 }}</span>
@@ -36,8 +36,16 @@
                 />
             </div>
 
-            <div class="form-group">
-                <div ref="editor" style="min-height: 15vh;"></div>
+            <div class="my-2 position-relative border rounded">
+                <div
+                    id="editorcontainer"
+                    style="height:25em; min-height:100%; overflow-y:auto;margin-top:3em"
+                >
+                    <div
+                        ref="editor"
+                        style="min-height:100%; height:auto;"
+                    ></div>
+                </div>
             </div>
 
             <div class="custom-file mb-3">
@@ -48,7 +56,12 @@
                     class="custom-file-input"
                     id="image"
                 />
-                <label class="custom-file-label" for="image" data-browse="Parcourir">Choisir un fichier...</label>
+                <label
+                    class="custom-file-label"
+                    for="image"
+                    data-browse="Parcourir"
+                    >Choisir un fichier...</label
+                >
             </div>
 
             <button
@@ -67,8 +80,25 @@ export default {
         this.editor = new Quill(this.$refs.editor, {
             modules: {
                 toolbar: [
-                    ["bold", "italic"],
-                    ["link", "blockquote", "code-block", "image"],
+                    ["bold", "italic", "underline"],
+                    [
+                        {
+                            color: []
+                        },
+                        {
+                            background: []
+                        },
+                        {
+                            font: []
+                        },
+                        {
+                            size: []
+                        },
+                        {
+                            align: []
+                        }
+                    ],
+                    ["blockquote", "link", "image", "code-block"],
                     [
                         {
                             list: "ordered"
@@ -79,10 +109,9 @@ export default {
                     ]
                 ]
             },
+            scrollingContainer: "#editorcontainer",
             theme: "snow"
         });
-
-        this.editor.root.innerHTML = this.value;
 
         // We will add the update event here
         this.editor.on("text-change", () => this.update());
