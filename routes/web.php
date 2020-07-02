@@ -10,48 +10,51 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['reset' => false, 'register' => false, 'confirm' => false, 'verify' => false]);
+Auth::routes();
 
-Route::group(['middleware' => ['auth']], function () {
+Route::get('/posts/{post}', 'PostController@single');
 
-  Route::get('/posts/{post}', 'PostController@single');
+Route::view('/profil', 'user.edit')->name('user.edit');
+Route::patch('/profil', 'UserController@update')->name('user.update');
+Route::get('/user/steamid', 'UserController@getSteamId');
+Route::get('/user/discordid', 'UserController@getDiscordId');
 
-  Route::view('/profil', 'user.edit')->name('user.edit');
-  Route::patch('/profil', 'UserController@update')->name('user.update');
-  Route::get('/user/steamid', 'UserController@getSteamId');
-  Route::get('/user/discordid', 'UserController@getDiscordId');
+Route::get('/home', 'HomeController@index')->name('home');
 
-  Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');
 
-  Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');
+Route::get('/', 'PostController@all');
 
-  Route::get('/', 'PostController@all');
+Route::get('/{post}/comments', 'CommentController@index');
+Route::post('/{post}/comments', 'CommentController@store');
 
-  Route::get('/{post}/comments', 'CommentController@index');
-  Route::post('/{post}/comments', 'CommentController@store');
+Route::get('/topics', 'TopicController@index');
+Route::get('/topics/show/{topic}', 'TopicController@show')->name('topics.show');
+Route::get('/topics/{category}/create', 'TopicController@create')->name('topics.create');
+Route::post('/topics/{category}', 'TopicController@store')->name('topics.store');
+Route::get('/topics/edit/{topic}', 'TopicController@edit')->name('topics.edit');
+Route::delete('/topics/{topic}', 'TopicController@destroy')->name('topics.destroy');
+Route::patch('/topics/{topic}', 'TopicController@update')->name('topics.update');
 
-  Route::get('/topics', 'TopicController@index');
-  Route::get('/topics/show/{topic}', 'TopicController@show')->name('topics.show');
-  Route::get('/topics/{category}/create', 'TopicController@create')->name('topics.create');
-  Route::post('/topics/{category}', 'TopicController@store')->name('topics.store');
-  Route::get('/topics/edit/{topic}', 'TopicController@edit')->name('topics.edit');
-  Route::delete('/topics/{topic}', 'TopicController@destroy')->name('topics.destroy');
-  Route::patch('/topics/{topic}', 'TopicController@update')->name('topics.update');
+Route::post('/replies/{topic}', 'ReplyController@store')->name('replies.store');
+Route::post('/commentReply/{reply}', 'ReplyController@storeCommentReply')->name('replies.storeReply');
 
-  Route::post('/replies/{topic}', 'ReplyController@store')->name('replies.store');
-  Route::post('/commentReply/{reply}', 'ReplyController@storeCommentReply')->name('replies.storeReply');
+Route::get('/showFromNotification/{topic}/{notification}', 'TopicController@showFromNotification')->name('topics.showFromNotification');
 
-  Route::get('/showFromNotification/{topic}/{notification}', 'TopicController@showFromNotification')->name('topics.showFromNotification');
+Route::get('/forum', 'TagController@list')->name('forum.index');
+Route::get('/forum/{category}', 'CategoryController@list')->name('forum.category');
 
-  Route::get('/forum', 'TagController@list')->name('forum.index');
-  Route::get('/forum/{category}', 'CategoryController@list')->name('forum.category');
+Route::get('/steam', 'Auth\SteamController@redirectToSteam')->name('auth.steam');
+Route::get('/steam/handle', 'Auth\SteamController@handle')->name('auth.steam.handle');
+Route::get('/discord', 'Auth\DiscordController@redirectToDiscord')->name('auth.discord');
+Route::get('/discord/handle', 'Auth\DiscordController@handle')->name('auth.discord.handle');
+Route::get('/discord/token', 'Auth\DiscordController@token')->name('auth.discord.token');
 
-  Route::get('/steam', 'Auth\SteamController@redirectToSteam')->name('auth.steam');
-  Route::get('/steam/handle', 'Auth\SteamController@handle')->name('auth.steam.handle');
-  Route::get('/discord', 'Auth\DiscordController@redirectToDiscord')->name('auth.discord');
-  Route::get('/discord/handle', 'Auth\DiscordController@handle')->name('auth.discord.handle');
-  Route::get('/discord/token', 'Auth\DiscordController@token')->name('auth.discord.token');
+Route::get('/videos', function () {
+  return view('misc.videos');
+})->name('misc.videos');
 
+Route::group(['middleware' => ['App\Http\Middleware\IsAdmin']], function () {
   Route::get('/bank/overdraft', 'BankController@overdraft')->name('bank.overdraft');
   Route::post('/bank/transfer/getAccounts', 'BankController@getAccounts')->name('bank.getAccounts');
   Route::post('/bank/groups/getUsers', 'BankGroupController@getUsers')->name('bank.getUsers');
@@ -93,8 +96,4 @@ Route::group(['middleware' => ['auth']], function () {
   })->name('livemap.show');
   Route::get('/livemap/server', 'LivemapController@server');
   Route::get('/livemap/refresh', 'LivemapController@refresh');
-
-  Route::get('/videos', function () {
-    return view('misc.videos');
-  })->name('misc.videos');
 });

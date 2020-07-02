@@ -13,12 +13,16 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('forum.index') }}">Forum</a>
         </li>
+        @unless(!Auth::user())
+        @if(Auth::user()->hasRole('admin'))
         <li class="nav-item">
           <a class="nav-link" href="{{ route('bank.index') }}">Banque</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('immo.index') }}">Immobilier</a>
         </li>
+        @endif
+        @endunless
         <li class="nav-item">
           <a class="nav-link" href="{{ route('misc.videos') }}">Vidéos</a>
         </li>

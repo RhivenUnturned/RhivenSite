@@ -25,7 +25,7 @@ $from = DB::table('unt_bs_multi_accounts')
   </div>
 </div>
 
-@if(isset($from))
+@if(isset($from) && Auth::user()->hasRole('admin'))
 <div class="card text-white bg-dark mb-4">
   <div class="card-body p-2">
     <h5 class="card-title">Virement rapide</h5>
