@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 header {
     overflow: hidden;
 }
@@ -181,4 +185,12 @@ nav {
 
 #editor-container {
     min-height: 15vh;
+}
+
+#article img {
+    width: 60vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
