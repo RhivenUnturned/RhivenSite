@@ -2509,6 +2509,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var _this = this;
@@ -2516,12 +2524,23 @@ __webpack_require__.r(__webpack_exports__);
     this.getPost();
     this.editor = new Quill(this.$refs.editor, {
       modules: {
-        toolbar: [["bold", "italic"], ["link", "blockquote", "code-block", "image"], [{
+        toolbar: [["bold", "italic", "underline"], [{
+          color: []
+        }, {
+          background: []
+        }, {
+          font: []
+        }, {
+          size: []
+        }, {
+          align: []
+        }], ["blockquote", "link", "image", "code-block"], [{
           list: "ordered"
         }, {
           list: "bullet"
         }]]
       },
+      scrollingContainer: "#editorcontainer",
       theme: "snow"
     });
     this.editor.root.innerHTML = this.value; // We will add the update event here
@@ -49696,8 +49715,25 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("div", { ref: "editor", staticStyle: { "min-height": "15vh" } })
+      _c("div", { staticClass: "my-2 position-relative border rounded" }, [
+        _c(
+          "div",
+          {
+            staticStyle: {
+              height: "25em",
+              "min-height": "100%",
+              "overflow-y": "auto",
+              "margin-top": "3em"
+            },
+            attrs: { id: "editorcontainer" }
+          },
+          [
+            _c("div", {
+              ref: "editor",
+              staticStyle: { "min-height": "100%", height: "auto" }
+            })
+          ]
+        )
       ]),
       _vm._v(" "),
       _c(

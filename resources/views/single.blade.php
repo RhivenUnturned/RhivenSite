@@ -27,7 +27,7 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <div id="article">
+    <div id="article" class="ql-editor" style="height: auto;">
       <p>{!! nl2br($post->body) !!}</p>
     </div>
 
