@@ -32,8 +32,16 @@
                 />
             </div>
 
-            <div class="form-group">
-                <div ref="editor" style="min-height: 15vh;"></div>
+            <div class="my-2 position-relative border rounded">
+                <div
+                    id="editorcontainer"
+                    style="height:25em; min-height:100%; overflow-y:auto;margin-top:3em"
+                >
+                    <div
+                        ref="editor"
+                        style="min-height:100%; height:auto;"
+                    ></div>
+                </div>
             </div>
 
             <button
@@ -55,8 +63,25 @@ export default {
         this.editor = new Quill(this.$refs.editor, {
             modules: {
                 toolbar: [
-                    ["bold", "italic"],
-                    ["link", "blockquote", "code-block", "image"],
+                    ["bold", "italic", "underline"],
+                    [
+                        {
+                            color: []
+                        },
+                        {
+                            background: []
+                        },
+                        {
+                            font: []
+                        },
+                        {
+                            size: []
+                        },
+                        {
+                            align: []
+                        }
+                    ],
+                    ["blockquote", "link", "image", "code-block"],
                     [
                         {
                             list: "ordered"
@@ -67,6 +92,7 @@ export default {
                     ]
                 ]
             },
+            scrollingContainer: "#editorcontainer",
             theme: "snow"
         });
 
