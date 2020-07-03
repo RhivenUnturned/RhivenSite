@@ -130,6 +130,10 @@
     /*
  * Quill
  */
+    .ql-editor {
+      position: absolute;
+      width: 100%;
+    }
 
     .ql-toolbar {
       position: absolute;

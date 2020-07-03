@@ -75,12 +75,15 @@
     </div>
 </template>
 <script>
+import { ImageDrop } from "quill-image-drop-module";
 export default {
     mounted() {
+        Quill.register("modules/imageDrop", ImageDrop);
+
         this.editor = new Quill(this.$refs.editor, {
             modules: {
                 toolbar: [
-                    ["bold", "italic", "underline"],
+                    ["bold", "italic", "underline", "strike"],
                     [
                         {
                             color: []
@@ -107,7 +110,8 @@ export default {
                             list: "bullet"
                         }
                     ]
-                ]
+                ],
+                imageDrop: true
             },
             scrollingContainer: "#editorcontainer",
             theme: "snow"

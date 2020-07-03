@@ -63,7 +63,7 @@ export default {
         this.editor = new Quill(this.$refs.editor, {
             modules: {
                 toolbar: [
-                    ["bold", "italic", "underline"],
+                    ["bold", "italic", "underline", "strike"],
                     [
                         {
                             color: []
