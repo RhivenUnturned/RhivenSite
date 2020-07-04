@@ -97,10 +97,8 @@ import Quill from "quill";
 import Parchment from "parchment";
 import "quill/dist/quill.snow.css";
 import ImageUploader from "quill-image-uploader";
-import { ImageDrop } from "quill-image-drop-module";
 export default {
     mounted() {
-        Quill.register("modules/imageDrop", ImageDrop);
         Quill.register("modules/imageUploader", ImageUploader);
 
         document.addEventListener("click", e => {
@@ -168,8 +166,7 @@ export default {
                         }
                     ],
                     ["clean"]
-                ],
-                imageDrop: true
+                ]
             },
             scrollingContainer: "#editorcontainer",
             theme: "snow"
@@ -177,6 +174,15 @@ export default {
 
         // We will add the update event here
         this.editor.on("text-change", () => this.update());
+
+        /* show file value after file select */
+        document
+            .querySelector(".custom-file-input")
+            .addEventListener("change", function(e) {
+                var fileName = document.getElementById("image").files[0].name;
+                var nextSibling = e.target.nextElementSibling;
+                nextSibling.innerText = fileName;
+            });
     },
     props: {
         userId: {

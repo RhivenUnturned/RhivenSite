@@ -3,8 +3,8 @@
         <form>
             <div
                 :class="[
-                    'form-group m-1 p-3',
-                    successful ? 'alert-success' : ''
+                    'form-group m-1',
+                    successful ? 'alert-success p-3' : 'invisible'
                 ]"
             >
                 <span v-if="successful" class="label label-sucess"
@@ -12,7 +12,12 @@
                 >
             </div>
 
-            <div :class="['form-group m-1 p-3', error ? 'alert-danger' : '']">
+            <div
+                :class="[
+                    'form-group m-1',
+                    error ? 'alert-danger p-3' : 'invisible'
+                ]"
+            >
                 <span v-if="errors.title" class="label label-danger">{{
                     errors.title[0]
                 }}</span>
@@ -29,6 +34,7 @@
                     id="title"
                     placeholder="Entrer un titre"
                     required
+                    @keydown.enter.prevent
                 />
             </div>
 
@@ -44,6 +50,18 @@
                 </div>
             </div>
 
+            <div class="form-group invisible">
+                <input
+                    type="alt"
+                    ref="alt"
+                    class="form-control"
+                    id="alt"
+                    placeholder="Entrer une description"
+                    @keydown.enter.prevent="setAlt"
+                    @keyup="setAlt"
+                />
+            </div>
+
             <button
                 type="submit"
                 @click.prevent="update"
@@ -56,15 +74,23 @@
 </template>
 <script>
 import Quill from "quill";
+import Parchment from "parchment";
 import "quill/dist/quill.snow.css";
 import ImageUploader from "quill-image-uploader";
-import { ImageDrop } from "quill-image-drop-module";
 export default {
     mounted() {
-        Quill.register("modules/imageDrop", ImageDrop);
         Quill.register("modules/imageUploader", ImageUploader);
 
         this.getPost();
+
+        document.addEventListener("click", e => {
+            if (e.target.tagName.toUpperCase() === "IMG") {
+                this.image = Quill.find(e.target);
+
+                this.$refs.alt.value = this.image.domNode.alt;
+                this.$refs.alt.parentNode.classList.toggle("invisible");
+            }
+        });
 
         this.editor = new Quill(this.$refs.editor, {
             modules: {
@@ -122,8 +148,7 @@ export default {
                         }
                     ],
                     ["clean"]
-                ],
-                imageDrop: true
+                ]
             },
             scrollingContainer: "#editorcontainer",
             theme: "snow"
@@ -142,6 +167,7 @@ export default {
     },
     data() {
         return {
+            image: null,
             editor: null,
             error: false,
             successful: false,
@@ -182,6 +208,9 @@ export default {
                 "input",
                 this.editor.getText() ? this.editor.root.innerHTML : ""
             );
+        },
+        setAlt(e) {
+            this.image.format("alt", e.target.value);
         }
     }
 };

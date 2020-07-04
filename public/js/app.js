@@ -2012,7 +2012,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! quill/dist/quill.snow.css */ "./node_modules/quill/dist/quill.snow.css");
 /* harmony import */ var quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var quill_image_uploader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! quill-image-uploader */ "./node_modules/quill-image-uploader/src/quill.imageUploader.js");
-/* harmony import */ var quill_image_drop_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! quill-image-drop-module */ "./node_modules/quill-image-drop-module/index.js");
 //
 //
 //
@@ -2107,7 +2106,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 
@@ -2116,7 +2114,6 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    quill__WEBPACK_IMPORTED_MODULE_0___default.a.register("modules/imageDrop", quill_image_drop_module__WEBPACK_IMPORTED_MODULE_4__["ImageDrop"]);
     quill__WEBPACK_IMPORTED_MODULE_0___default.a.register("modules/imageUploader", quill_image_uploader__WEBPACK_IMPORTED_MODULE_3__["default"]);
     document.addEventListener("click", function (e) {
       if (e.target.tagName.toUpperCase() === "IMG") {
@@ -2162,8 +2159,7 @@ __webpack_require__.r(__webpack_exports__);
           list: "ordered"
         }, {
           list: "bullet"
-        }], ["clean"]],
-        imageDrop: true
+        }], ["clean"]]
       },
       scrollingContainer: "#editorcontainer",
       theme: "snow"
@@ -2171,6 +2167,13 @@ __webpack_require__.r(__webpack_exports__);
 
     this.editor.on("text-change", function () {
       return _this.update();
+    });
+    /* show file value after file select */
+
+    document.querySelector(".custom-file-input").addEventListener("change", function (e) {
+      var fileName = document.getElementById("image").files[0].name;
+      var nextSibling = e.target.nextElementSibling;
+      nextSibling.innerText = fileName;
     });
   },
   props: {
@@ -2528,10 +2531,29 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! quill */ "./node_modules/quill/dist/quill.js");
 /* harmony import */ var quill__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(quill__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! quill/dist/quill.snow.css */ "./node_modules/quill/dist/quill.snow.css");
-/* harmony import */ var quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var quill_image_uploader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! quill-image-uploader */ "./node_modules/quill-image-uploader/src/quill.imageUploader.js");
-/* harmony import */ var quill_image_drop_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! quill-image-drop-module */ "./node_modules/quill-image-drop-module/index.js");
+/* harmony import */ var parchment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! parchment */ "./node_modules/parchment/dist/parchment.js");
+/* harmony import */ var parchment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(parchment__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! quill/dist/quill.snow.css */ "./node_modules/quill/dist/quill.snow.css");
+/* harmony import */ var quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(quill_dist_quill_snow_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var quill_image_uploader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! quill-image-uploader */ "./node_modules/quill-image-uploader/src/quill.imageUploader.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2596,9 +2618,16 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    quill__WEBPACK_IMPORTED_MODULE_0___default.a.register("modules/imageDrop", quill_image_drop_module__WEBPACK_IMPORTED_MODULE_3__["ImageDrop"]);
-    quill__WEBPACK_IMPORTED_MODULE_0___default.a.register("modules/imageUploader", quill_image_uploader__WEBPACK_IMPORTED_MODULE_2__["default"]);
+    quill__WEBPACK_IMPORTED_MODULE_0___default.a.register("modules/imageUploader", quill_image_uploader__WEBPACK_IMPORTED_MODULE_3__["default"]);
     this.getPost();
+    document.addEventListener("click", function (e) {
+      if (e.target.tagName.toUpperCase() === "IMG") {
+        _this.image = quill__WEBPACK_IMPORTED_MODULE_0___default.a.find(e.target);
+        _this.$refs.alt.value = _this.image.domNode.alt;
+
+        _this.$refs.alt.parentNode.classList.toggle("invisible");
+      }
+    });
     this.editor = new quill__WEBPACK_IMPORTED_MODULE_0___default.a(this.$refs.editor, {
       modules: {
         imageUploader: {
@@ -2635,8 +2664,7 @@ __webpack_require__.r(__webpack_exports__);
           list: "ordered"
         }, {
           list: "bullet"
-        }], ["clean"]],
-        imageDrop: true
+        }], ["clean"]]
       },
       scrollingContainer: "#editorcontainer",
       theme: "snow"
@@ -2655,6 +2683,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      image: null,
       editor: null,
       error: false,
       successful: false,
@@ -2696,6 +2725,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateQuill: function updateQuill() {
       this.$emit("input", this.editor.getText() ? this.editor.root.innerHTML : "");
+    },
+    setAlt: function setAlt(e) {
+      this.image.format("alt", e.target.value);
     }
   }
 });
@@ -49225,118 +49257,6 @@ runtime.setup(pusher_Pusher);
 
 /***/ }),
 
-/***/ "./node_modules/quill-image-drop-module/index.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/quill-image-drop-module/index.js ***!
-  \*******************************************************/
-/*! exports provided: ImageDrop */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ImageDrop", function() { return ImageDrop; });
-/**
- * Custom module for quilljs to allow user to drag images from their file system into the editor
- * and paste images from clipboard (Works on Chrome, Firefox, Edge, not on Safari)
- * @see https://quilljs.com/blog/building-a-custom-module/
- */
-class ImageDrop {
-
-	/**
-	 * Instantiate the module given a quill instance and any options
-	 * @param {Quill} quill
-	 * @param {Object} options
-	 */
-	constructor(quill, options = {}) {
-		// save the quill reference
-		this.quill = quill;
-		// bind handlers to this instance
-		this.handleDrop = this.handleDrop.bind(this);
-		this.handlePaste = this.handlePaste.bind(this);
-		// listen for drop and paste events
-		this.quill.root.addEventListener('drop', this.handleDrop, false);
-		this.quill.root.addEventListener('paste', this.handlePaste, false);
-	}
-
-	/**
-	 * Handler for drop event to read dropped files from evt.dataTransfer
-	 * @param {Event} evt
-	 */
-	handleDrop(evt) {
-		evt.preventDefault();
-		if (evt.dataTransfer && evt.dataTransfer.files && evt.dataTransfer.files.length) {
-			if (document.caretRangeFromPoint) {
-				const selection = document.getSelection();
-				const range = document.caretRangeFromPoint(evt.clientX, evt.clientY);
-				if (selection && range) {
-					selection.setBaseAndExtent(range.startContainer, range.startOffset, range.startContainer, range.startOffset);
-				}
-			}
-			this.readFiles(evt.dataTransfer.files, this.insert.bind(this));
-		}
-	}
-
-	/**
-	 * Handler for paste event to read pasted files from evt.clipboardData
-	 * @param {Event} evt
-	 */
-	handlePaste(evt) {
-		if (evt.clipboardData && evt.clipboardData.items && evt.clipboardData.items.length) {
-			this.readFiles(evt.clipboardData.items, dataUrl => {
-				const selection = this.quill.getSelection();
-				if (selection) {
-					// we must be in a browser that supports pasting (like Firefox)
-					// so it has already been placed into the editor
-				}
-				else {
-					// otherwise we wait until after the paste when this.quill.getSelection()
-					// will return a valid index
-					setTimeout(() => this.insert(dataUrl), 0);
-				}
-			});
-		}
-	}
-
-	/**
-	 * Insert the image into the document at the current cursor position
-	 * @param {String} dataUrl  The base64-encoded image URI
-	 */
-	insert(dataUrl) {
-		const index = (this.quill.getSelection() || {}).index || this.quill.getLength();
-		this.quill.insertEmbed(index, 'image', dataUrl, 'user');
-	}
-
-	/**
-	 * Extract image URIs a list of files from evt.dataTransfer or evt.clipboardData
-	 * @param {File[]} files  One or more File objects
-	 * @param {Function} callback  A function to send each data URI to
-	 */
-	readFiles(files, callback) {
-		// check each file for an image
-		[].forEach.call(files, file => {
-			if (!file.type.match(/^image\/(gif|jpe?g|a?png|svg|webp|bmp|vnd\.microsoft\.icon)/i)) {
-				// file is not an image
-				// Note that some file formats such as psd start with image/* but are not readable
-				return;
-			}
-			// set up file reader
-			const reader = new FileReader();
-			reader.onload = (evt) => {
-				callback(evt.target.result);
-			};
-			// read the clipboard item or file
-			const blob = file.getAsFile ? file.getAsFile() : file;
-			if (blob instanceof Blob) {
-				reader.readAsDataURL(blob);
-			}
-		});
-	}
-
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/quill-image-uploader/src/blots/image.js":
 /*!**************************************************************!*\
   !*** ./node_modules/quill-image-uploader/src/blots/image.js ***!
@@ -62710,7 +62630,10 @@ var render = function() {
       _c(
         "div",
         {
-          class: ["form-group m-1 p-3", _vm.successful ? "alert-success" : ""]
+          class: [
+            "form-group m-1",
+            _vm.successful ? "alert-success p-3" : "invisible"
+          ]
         },
         [
           _vm.successful
@@ -62723,7 +62646,12 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { class: ["form-group m-1 p-3", _vm.error ? "alert-danger" : ""] },
+        {
+          class: [
+            "form-group m-1",
+            _vm.error ? "alert-danger p-3" : "invisible"
+          ]
+        },
         [
           _vm.errors.title
             ? _c("span", { staticClass: "label label-danger" }, [
@@ -62748,6 +62676,17 @@ var render = function() {
             id: "title",
             placeholder: "Entrer un titre",
             required: ""
+          },
+          on: {
+            keydown: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              $event.preventDefault()
+            }
           }
         })
       ]),
@@ -62771,6 +62710,31 @@ var render = function() {
             })
           ]
         )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group invisible" }, [
+        _c("input", {
+          ref: "alt",
+          staticClass: "form-control",
+          attrs: {
+            type: "alt",
+            id: "alt",
+            placeholder: "Entrer une description"
+          },
+          on: {
+            keydown: function($event) {
+              if (
+                !$event.type.indexOf("key") &&
+                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+              ) {
+                return null
+              }
+              $event.preventDefault()
+              return _vm.setAlt($event)
+            },
+            keyup: _vm.setAlt
+          }
+        })
       ]),
       _vm._v(" "),
       _c(
