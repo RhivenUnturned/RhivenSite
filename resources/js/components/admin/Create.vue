@@ -32,7 +32,7 @@
 
             <div class="form-group">
                 <input
-                    type="title"
+                    type="text"
                     ref="title"
                     class="form-control"
                     id="title"
@@ -56,12 +56,12 @@
 
             <div class="form-group invisible">
                 <input
-                    type="alt"
+                    type="text"
                     ref="alt"
                     class="form-control"
                     id="alt"
                     placeholder="Entrer une description"
-                    @keydown.enter.prevent="setAlt"
+                    @keydown.enter.prevent="closeAlt"
                     @keyup="setAlt"
                 />
             </div>
@@ -107,6 +107,7 @@ export default {
 
                 this.$refs.alt.value = this.image.domNode.alt;
                 this.$refs.alt.parentNode.classList.remove("invisible");
+            } else if (e.target === this.$refs.alt) {
             } else if (
                 !this.$refs.alt.parentNode.classList.contains("invisible")
             ) {
@@ -240,6 +241,9 @@ export default {
         },
         setAlt(e) {
             this.image.format("alt", e.target.value);
+        },
+        closeAlt() {
+            this.$refs.alt.parentNode.classList.add("invisible");
         }
     }
 };

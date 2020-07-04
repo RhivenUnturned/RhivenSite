@@ -2121,7 +2121,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.$refs.alt.value = _this.image.domNode.alt;
 
         _this.$refs.alt.parentNode.classList.remove("invisible");
-      } else if (!_this.$refs.alt.parentNode.classList.contains("invisible")) {
+      } else if (e.target === _this.$refs.alt) {} else if (!_this.$refs.alt.parentNode.classList.contains("invisible")) {
         _this.$refs.alt.parentNode.classList.add("invisible");
       }
     });
@@ -2224,6 +2224,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     setAlt: function setAlt(e) {
       this.image.format("alt", e.target.value);
+    },
+    closeAlt: function closeAlt() {
+      this.$refs.alt.parentNode.classList.add("invisible");
     }
   }
 });
@@ -2628,7 +2631,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.$refs.alt.value = _this.image.domNode.alt;
 
         _this.$refs.alt.parentNode.classList.remove("invisible");
-      } else if (!_this.$refs.alt.parentNode.classList.contains("invisible")) {
+      } else if (e.target === _this.$refs.alt) {} else if (!_this.$refs.alt.parentNode.classList.contains("invisible")) {
         _this.$refs.alt.parentNode.classList.add("invisible");
       }
     });
@@ -2732,6 +2735,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     setAlt: function setAlt(e) {
       this.image.format("alt", e.target.value);
+    },
+    closeAlt: function closeAlt() {
+      this.$refs.alt.parentNode.classList.add("invisible");
     }
   }
 });
@@ -62046,7 +62052,7 @@ var render = function() {
           ref: "title",
           staticClass: "form-control",
           attrs: {
-            type: "title",
+            type: "text",
             id: "title",
             placeholder: "Entrer un titre",
             required: ""
@@ -62091,7 +62097,7 @@ var render = function() {
           ref: "alt",
           staticClass: "form-control",
           attrs: {
-            type: "alt",
+            type: "text",
             id: "alt",
             placeholder: "Entrer une description"
           },
@@ -62104,7 +62110,7 @@ var render = function() {
                 return null
               }
               $event.preventDefault()
-              return _vm.setAlt($event)
+              return _vm.closeAlt($event)
             },
             keyup: _vm.setAlt
           }
@@ -62734,7 +62740,7 @@ var render = function() {
                 return null
               }
               $event.preventDefault()
-              return _vm.setAlt($event)
+              return _vm.closeAlt($event)
             },
             keyup: _vm.setAlt
           }
