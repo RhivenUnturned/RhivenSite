@@ -22,7 +22,7 @@
     <hr>
     <img class="img-fluid rounded" src="{!! !empty($post->image) ? '/uploads/posts/' . $post->image : 'https://placehold.it/750x300' !!}" alt="Couverture de l'article '{{ $post->title }}' ">
     <hr>
-    <div id=" loading" class="text-center my-4">
+    <div id="loading" class="text-center my-4">
     <div class="spinner-border text-secondary" role="status">
       <span class="sr-only">Loading...</span>
     </div>
