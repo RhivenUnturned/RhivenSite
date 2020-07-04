@@ -2120,7 +2120,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.image = quill__WEBPACK_IMPORTED_MODULE_0___default.a.find(e.target);
         _this.$refs.alt.value = _this.image.domNode.alt;
 
-        _this.$refs.alt.parentNode.classList.toggle("invisible");
+        _this.$refs.alt.parentNode.classList.remove("invisible");
+      } else if (!_this.$refs.alt.parentNode.classList.contains("invisible")) {
+        _this.$refs.alt.parentNode.classList.add("invisible");
       }
     });
     this.editor = new quill__WEBPACK_IMPORTED_MODULE_0___default.a(this.$refs.editor, {
@@ -2625,7 +2627,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.image = quill__WEBPACK_IMPORTED_MODULE_0___default.a.find(e.target);
         _this.$refs.alt.value = _this.image.domNode.alt;
 
-        _this.$refs.alt.parentNode.classList.toggle("invisible");
+        _this.$refs.alt.parentNode.classList.remove("invisible");
+      } else if (!_this.$refs.alt.parentNode.classList.contains("invisible")) {
+        _this.$refs.alt.parentNode.classList.add("invisible");
       }
     });
     this.editor = new quill__WEBPACK_IMPORTED_MODULE_0___default.a(this.$refs.editor, {

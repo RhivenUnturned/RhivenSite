@@ -106,7 +106,11 @@ export default {
                 this.image = Quill.find(e.target);
 
                 this.$refs.alt.value = this.image.domNode.alt;
-                this.$refs.alt.parentNode.classList.toggle("invisible");
+                this.$refs.alt.parentNode.classList.remove("invisible");
+            } else if (
+                !this.$refs.alt.parentNode.classList.contains("invisible")
+            ) {
+                this.$refs.alt.parentNode.classList.add("invisible");
             }
         });
 
