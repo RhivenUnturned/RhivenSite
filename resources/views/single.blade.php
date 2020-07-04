@@ -27,7 +27,7 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-  <div id="article" class="ql-editor invisible" style="height: auto;">
+  <div id="article" class="ql-editor invisible" style="height: 0px;">
     <p>{!! nl2br($post->body) !!}</p>
   </div>
 
@@ -54,6 +54,7 @@
 
     document.querySelector("#loading").classList.add('d-none');
     articleContainer.classList.remove('invisible');
+    articleContainer.style.height = 'auto';
   }
 </script>
 <script type="application/ld+json">
