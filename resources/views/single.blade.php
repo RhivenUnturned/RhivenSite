@@ -27,7 +27,7 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-  <div id="article" class="ql-editor" style="height: auto;">
+  <div id="article" class="ql-editor invisible" style="height: auto;">
     <p>{!! nl2br($post->body) !!}</p>
   </div>
 
@@ -44,7 +44,6 @@
 @section('extra-js')
 <script type="text/javascript">
   var articleContainer = document.querySelector("#article");
-  articleContainer.classList.add('d-none');
   window.onload = function() {
     var images = articleContainer.querySelectorAll("p > img");
 
@@ -54,7 +53,7 @@
     }
 
     document.querySelector("#loading").classList.add('d-none');
-    articleContainer.classList.remove('d-none');
+    articleContainer.classList.remove('invisible');
   }
 </script>
 <script type="application/ld+json">
