@@ -54,14 +54,45 @@
         </form>
     </div>
 </template>
-
 <script>
+import Quill from "quill";
+import "quill/dist/quill.snow.css";
+import ImageUploader from "quill-image-uploader";
+import { ImageDrop } from "quill-image-drop-module";
 export default {
     mounted() {
+        Quill.register("modules/imageDrop", ImageDrop);
+        Quill.register("modules/imageUploader", ImageUploader);
+
         this.getPost();
 
         this.editor = new Quill(this.$refs.editor, {
             modules: {
+                imageUploader: {
+                    upload: file => {
+                        return new Promise((resolve, reject) => {
+                            const formData = new FormData();
+                            formData.append("image", file);
+
+                            fetch(
+                                "https://api.imgbb.com/1/upload?key=1fe8de127c43d082b9d15a4e7a977f1c",
+                                {
+                                    method: "POST",
+                                    body: formData
+                                }
+                            )
+                                .then(response => response.json())
+                                .then(result => {
+                                    console.log(result);
+                                    resolve(result.data.url);
+                                })
+                                .catch(error => {
+                                    reject("Upload failed");
+                                    console.error("Error:", error);
+                                });
+                        });
+                    }
+                },
                 toolbar: [
                     ["bold", "italic", "underline", "strike"],
                     [
@@ -89,8 +120,10 @@ export default {
                         {
                             list: "bullet"
                         }
-                    ]
-                ]
+                    ],
+                    ["clean"]
+                ],
+                imageDrop: true
             },
             scrollingContainer: "#editorcontainer",
             theme: "snow"
@@ -109,7 +142,7 @@ export default {
     },
     data() {
         return {
-          editor: null,
+            editor: null,
             error: false,
             successful: false,
             errors: []

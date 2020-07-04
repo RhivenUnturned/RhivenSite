@@ -50,6 +50,7 @@
 
     for (var i = 0; i < images.length; i++) {
       images[i].parentNode.classList.add('text-center');
+      images[i].loading = "lazy";
     }
 
     document.querySelector("#loading").classList.add('d-none');

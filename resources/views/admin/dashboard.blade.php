@@ -16,7 +16,6 @@
   <title>Administration | Rhiven [FR]</title>
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <style>
     body {
       font-size: 0.875rem;
@@ -127,6 +126,11 @@
       box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
     }
 
+    .invisible {
+      height: 0px;
+    }
+
+
     /*
  * Quill
  */
@@ -154,7 +158,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-  <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
   <script src="{{ asset('js/app.js') }}"></script>
   <script>
     feather.replace();
