@@ -206,9 +206,19 @@ export default {
     },
     methods: {
         create() {
+            let html = this.editor.root;
+            console.log(html);
+            var images = html.getElementsByTagName("img");
+
+            for (var i = 0; i < images.length; i++) {
+                images[i].setAttribute("ci-src", images[i].src);
+                images[i].setAttribute("ci-ratio", "1.5");
+                images[i].removeAttribute("src");
+            }
+            console.log(html.innerHTML);
             const formData = new FormData();
             formData.append("title", this.$refs.title.value);
-            formData.append("body", this.editor.root.innerHTML);
+            formData.append("body", html.innerHTML);
             formData.append("quill", JSON.stringify(this.editor.getContents()));
             formData.append("user_id", this.userId);
             formData.append("image", this.$refs.image.files[0]);

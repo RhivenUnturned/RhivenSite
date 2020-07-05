@@ -22,40 +22,33 @@
     <hr>
     <img class="img-fluid rounded" src="{!! !empty($post->image) ? '/uploads/posts/' . $post->image : 'https://placehold.it/750x300' !!}" alt="Couverture de l'article '{{ $post->title }}' ">
     <hr>
-    <div id="loading" class="text-center my-4">
-    <div class="spinner-border text-secondary" role="status">
-      <span class="sr-only">Loading...</span>
+    <div id="article" class="ql-editor h-auto">
+      <p>{!! nl2br($post->body) !!}</p>
     </div>
-  </div>
-  <div id="article" class="ql-editor invisible" style="height: 0px;overflow-y:visible;">
-    <p>{!! nl2br($post->body) !!}</p>
-  </div>
 
-  <hr>
+    <hr>
 
-  @auth
-  <Comments :post-id='@json($post->id)' :user-name='@json(auth()->user()->name)'>
-  </Comments>
-  @endauth
-</div>
+    @auth
+    <Comments :post-id='@json($post->id)' :user-name='@json(auth()->user()->name)'>
+    </Comments>
+    @endauth
+  </div>
 </div>
 @endsection
 
 @section('extra-js')
+<script>
+  window.lazySizesConfig = window.lazySizesConfig || {};
+  window.lazySizesConfig.init = false;
+</script>
+<script src="https://cdn.scaleflex.it/filerobot/js-cloudimage-responsive/lazysizes.min.js"></script>
+<script src="https://cdn.scaleflex.it/plugins/js-cloudimage-responsive/4.5.0/js-cloudimage-responsive.min.js"></script>
 <script type="text/javascript">
-  var articleContainer = document.querySelector("#article");
-  window.onload = function() {
-    var images = articleContainer.querySelectorAll("p > img");
-
-    for (var i = 0; i < images.length; i++) {
-      images[i].parentNode.classList.add('text-center');
-      images[i].loading = "lazy";
-    }
-
-    document.querySelector("#loading").classList.add('d-none');
-    articleContainer.classList.remove('invisible');
-    articleContainer.style.height = 'auto';
-  }
+  const ciResponsive = new window.CIResponsive({
+    token: 'awkzqfrgoo',
+    lazyLoading: true
+  });
+  window.lazySizes.init();
 </script>
 <script type="application/ld+json">
   {
