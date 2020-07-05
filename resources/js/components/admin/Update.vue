@@ -181,19 +181,9 @@ export default {
     },
     methods: {
         update() {
-            let html = this.editor.root;
-            var images = html.getElementsByTagName("img");
-            for (var i = 0; i < images.length; i++) {
-                images[i].setAttribute("ci-src", images[i].src);
-                images[i].setAttribute("ci-ratio", "1.5");
-                images[i].removeAttribute("src");
-            }
-
             let title = this.$refs.title.value;
-            let body = html.innerHTML;
+            let body = this.editor.root.innerHTML;
             let quill = JSON.stringify(this.editor.getContents());
-
-            console.log(body);
 
             axios
                 .put("/api/posts/" + this.postId, { title, body, quill })
@@ -201,7 +191,6 @@ export default {
                     this.successful = true;
                     this.error = false;
                     this.errors = [];
-                    this.getPost();
                 })
                 .catch(error => {
                     if (!_.isEmpty(error.response)) {
@@ -216,9 +205,7 @@ export default {
         getPost() {
             axios.get("/api/posts/" + this.postId).then(response => {
                 this.$refs.title.value = response.data.data.title;
-                var re = /ci-src/gi;
-                var html = response.data.data.body.replace(re, "src");
-                this.editor.root.innerHTML = html;
+                this.editor.root.innerHTML = response.data.data.body;
             });
         },
         updateQuill() {

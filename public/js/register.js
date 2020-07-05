@@ -135,22 +135,11 @@ DOMstrings.stepsForm.addEventListener('click', e => {
   setActivePanel(activePanelNum);
 });
 
-let sex,sent = false;
+let sent = false;
 $(document).ready(function () {
 
   document.getElementById('registration-form').addEventListener('submit', e => {
     e.preventDefault();
-
-    var radios = document.getElementsByName('sex');
-
-    console.log(radios);
-
-    for (var i = 0, length = radios.length; i < length; i++) {
-      if (radios[i].checked) {
-        sex = radios[i].value;
-        break;
-      }
-    }
 
     if (!sent) {
       axios
@@ -161,7 +150,7 @@ $(document).ready(function () {
           'password_confirmation': document.querySelector('input[name="password_confirmation"]').value,
           'firstname': document.querySelector('input[name="firstname"]').value,
           'lastname': document.querySelector('input[name="lastname"]').value,
-          'sex': sex,
+          'sex': document.querySelector('input[name="sex"]').value,
           'age': document.querySelector('input[name="age"]').value,
           'story': document.querySelector('textarea[name="story"]').value
         })

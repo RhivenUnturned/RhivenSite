@@ -45,7 +45,7 @@ $otherSex = "Inconnu";
   <div class="form-group">
     <label for="password" class="col-lg-3 control-label">Nouveau mot de passe:</label>
     <div class="col-lg-8">
-      <input id="password" class="form-control @error('password') is-invalid @enderror" aria-describedby="passwordHelp" type="password" name="password" autocomplete="off">
+      <input id="password" class="form-control @error('password') is-invalid @enderror" aria-describedby="passwordHelp" type="password" name="password">
       @error('password')
       <div class="invalid-feedback">{{ $errors->first('password') }}</div>
       @enderror
@@ -56,7 +56,7 @@ $otherSex = "Inconnu";
   <div class="form-group">
     <label for="password_confirmation" class="col-lg-3 control-label">Confirmation du mot de passe:</label>
     <div class="col-lg-8">
-      <input id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation" autocomplete="off">
+      <input id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" type="password" name="password_confirmation">
       @error('password_confirmation')
       <div class="invalid-feedback">{{ $errors->first('password_confirmation') }}</div>
       @enderror
