@@ -2198,7 +2198,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var html = this.editor.root;
-      console.log(html);
       var images = html.getElementsByTagName("img");
 
       for (var i = 0; i < images.length; i++) {
@@ -2207,7 +2206,6 @@ __webpack_require__.r(__webpack_exports__);
         images[i].removeAttribute("src");
       }
 
-      console.log(html.innerHTML);
       var formData = new FormData();
       formData.append("title", this.$refs.title.value);
       formData.append("body", html.innerHTML);
@@ -2712,9 +2710,19 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this2 = this;
 
+      var html = this.editor.root;
+      var images = html.getElementsByTagName("img");
+
+      for (var i = 0; i < images.length; i++) {
+        images[i].setAttribute("ci-src", images[i].src);
+        images[i].setAttribute("ci-ratio", "1.5");
+        images[i].removeAttribute("src");
+      }
+
       var title = this.$refs.title.value;
-      var body = this.editor.root.innerHTML;
+      var body = html.innerHTML;
       var quill = JSON.stringify(this.editor.getContents());
+      console.log(body);
       axios.put("/api/posts/" + this.postId, {
         title: title,
         body: body,
@@ -2723,6 +2731,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.successful = true;
         _this2.error = false;
         _this2.errors = [];
+
+        _this2.getPost();
       })["catch"](function (error) {
         if (!_.isEmpty(error.response)) {
           if (error.response.status = 422) {
@@ -2738,7 +2748,9 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get("/api/posts/" + this.postId).then(function (response) {
         _this3.$refs.title.value = response.data.data.title;
-        _this3.editor.root.innerHTML = response.data.data.body;
+        var re = /ci-src/gi;
+        var html = response.data.data.body.replace(re, "src");
+        _this3.editor.root.innerHTML = html;
       });
     },
     updateQuill: function updateQuill() {
