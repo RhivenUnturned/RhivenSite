@@ -115,6 +115,18 @@ export default {
             }
         });
 
+        let Embed = Quill.import("blots/block/embed");
+
+        class Picture extends Embed {
+            static create(value) {
+                let node = super.create(value);
+                return node;
+            }
+        }
+        Picture.blotName = "picture";
+        Picture.tagName = "picture";
+        Quill.register({ "formats/picture": Picture });
+
         this.editor = new Quill(this.$refs.editor, {
             modules: {
                 imageUploader: {
@@ -206,6 +218,25 @@ export default {
     },
     methods: {
         create() {
+            //<img src=\"https://i.ibb.co/W2qTYTV/Wills-Burger.jpg\" srcset=\"https://awkzqfrgoo.cloudimg.io/v7/https://i.ibb.co/W2qTYTV/Wills-Burger.jpg?width=320 320w, https://awkzqfrgoo.cloudimg.io/v7/https://i.ibb.co/W2qTYTV/Wills-Burger.jpg?width=640 640w, https://awkzqfrgoo.cloudimg.io/v7/https://i.ibb.co/W2qTYTV/Wills-Burger.jpg?width=1024 1024w, https://awkzqfrgoo.cloudimg.io/v7/https://i.ibb.co/W2qTYTV/Wills-Burger.jpg?width=1920 1920w\" alt=\"Test\" />
+
+            let src,
+            srcset,
+                sizes = ["320", "640", "1024", "1920"],
+                html = this.editor.root,
+                images = html.querySelectorAll("img"),
+                link = "https://awkzqfrgoo.cloudimg.io/v7/";
+
+            for (var i = 0; i < images.length; i++) {
+                src = images[i].src;
+                srcset = "";
+
+                for (var j = 0; j < sizes.length; j++) {
+                    srcset += link + src + '?width=' + sizes[j] + ' ' + sizes[j] + 'w, ';
+                }
+                images[i].srcset = srcset;
+            }
+
             const formData = new FormData();
             formData.append("title", this.$refs.title.value);
             formData.append("body", this.editor.root.innerHTML);
@@ -219,6 +250,8 @@ export default {
                     this.successful = true;
                     this.error = false;
                     this.errors = [];
+                    this.$refs.title.value = "";
+                    this.editor.root.innerHTML = "";
                 })
                 .catch(error => {
                     if (!_.isEmpty(error.response)) {
@@ -229,9 +262,6 @@ export default {
                         }
                     }
                 });
-
-            this.$refs.title.value = "";
-            this.editor.root.innerHTML = "";
         },
         update() {
             this.$emit(

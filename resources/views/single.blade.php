@@ -23,21 +23,21 @@
     <img class="img-fluid rounded" src="{!! !empty($post->image) ? '/uploads/posts/' . $post->image : 'https://placehold.it/750x300' !!}" alt="Couverture de l'article '{{ $post->title }}' ">
     <hr>
     <div id="loading" class="text-center my-4">
-    <div class="spinner-border text-secondary" role="status">
-      <span class="sr-only">Loading...</span>
+      <div class="spinner-border text-secondary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
-  </div>
-  <div id="article" class="ql-editor invisible" style="height: 0px;overflow-y:visible;">
-    <p>{!! nl2br($post->body) !!}</p>
-  </div>
+    <div id="article" class="ql-editor invisible" style="height: 0px;overflow-y:visible;">
+      <p>{!! nl2br($post->body) !!}</p>
+    </div>
 
-  <hr>
+    <hr>
 
-  @auth
-  <Comments :post-id='@json($post->id)' :user-name='@json(auth()->user()->name)'>
-  </Comments>
-  @endauth
-</div>
+    @auth
+    <Comments :post-id='@json($post->id)' :user-name='@json(auth()->user()->name)'>
+    </Comments>
+    @endauth
+  </div>
 </div>
 @endsection
 
@@ -49,7 +49,6 @@
 
     for (var i = 0; i < images.length; i++) {
       images[i].parentNode.classList.add('text-center');
-      images[i].loading = "lazy";
     }
 
     document.querySelector("#loading").classList.add('d-none');
