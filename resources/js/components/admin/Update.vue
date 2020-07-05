@@ -97,6 +97,17 @@ export default {
             }
         });
 
+        let Embed = Quill.import("blots/block/embed");
+        class Picture extends Embed {
+            static create(value) {
+                let node = super.create(value);
+                return node;
+            }
+        }
+        Picture.blotName = "picture";
+        Picture.tagName = "picture";
+        Quill.register({ "formats/picture": Picture });
+
         this.editor = new Quill(this.$refs.editor, {
             modules: {
                 imageUploader: {
@@ -181,6 +192,34 @@ export default {
     },
     methods: {
         update() {
+            let src,
+                srcset,
+                sizes = ["320", "640", "1024", "1920"],
+                html = this.editor.root,
+                images = html.querySelectorAll(
+                    "img:not([srcset]), img[srcset='']"
+                ),
+                link = "https://awkzqfrgoo.cloudimg.io/v7/";
+
+            console.log(images);
+
+            for (var i = 0; i < images.length; i++) {
+                src = images[i].src;
+                srcset = "";
+
+                for (var j = 0; j < sizes.length; j++) {
+                    srcset +=
+                        link +
+                        src +
+                        "?width=" +
+                        sizes[j] +
+                        " " +
+                        sizes[j] +
+                        "w, ";
+                }
+                images[i].srcset = srcset;
+            }
+
             let title = this.$refs.title.value;
             let body = this.editor.root.innerHTML;
             let quill = JSON.stringify(this.editor.getContents());

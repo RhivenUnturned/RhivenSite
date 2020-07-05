@@ -116,7 +116,6 @@ export default {
         });
 
         let Embed = Quill.import("blots/block/embed");
-
         class Picture extends Embed {
             static create(value) {
                 let node = super.create(value);
@@ -218,10 +217,8 @@ export default {
     },
     methods: {
         create() {
-            //<img src=\"https://i.ibb.co/W2qTYTV/Wills-Burger.jpg\" srcset=\"https://awkzqfrgoo.cloudimg.io/v7/https://i.ibb.co/W2qTYTV/Wills-Burger.jpg?width=320 320w, https://awkzqfrgoo.cloudimg.io/v7/https://i.ibb.co/W2qTYTV/Wills-Burger.jpg?width=640 640w, https://awkzqfrgoo.cloudimg.io/v7/https://i.ibb.co/W2qTYTV/Wills-Burger.jpg?width=1024 1024w, https://awkzqfrgoo.cloudimg.io/v7/https://i.ibb.co/W2qTYTV/Wills-Burger.jpg?width=1920 1920w\" alt=\"Test\" />
-
             let src,
-            srcset,
+                srcset,
                 sizes = ["320", "640", "1024", "1920"],
                 html = this.editor.root,
                 images = html.querySelectorAll("img"),
@@ -232,7 +229,14 @@ export default {
                 srcset = "";
 
                 for (var j = 0; j < sizes.length; j++) {
-                    srcset += link + src + '?width=' + sizes[j] + ' ' + sizes[j] + 'w, ';
+                    srcset +=
+                        link +
+                        src +
+                        "?width=" +
+                        sizes[j] +
+                        " " +
+                        sizes[j] +
+                        "w, ";
                 }
                 images[i].srcset = srcset;
             }
