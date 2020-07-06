@@ -39,6 +39,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('Bank:weeklycharge')->weeklyOn(1, '18:00');
 
         $schedule->command('Bank:creditdelete')->everyMinute();
+
+        $schedule->command('sitemap:generate')->daily();
     }
 
     /**
