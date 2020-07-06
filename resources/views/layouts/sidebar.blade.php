@@ -16,7 +16,7 @@ $from = DB::table('unt_bs_multi_accounts')
     <h5 class="card-title">{{ Auth::user()->name }}</h5>
     <h6 class="card-subtitle mb-2">{{ Auth::user()->character->firstname }} {{ Auth::user()->character->lastname }}</h6>
     <div class="d-flex justify-content-between">
-      <p class="card-text mb-1">Né le: {{ Carbon\Carbon::parse(Auth::user()->created_at)->subYears(Auth::user()->character->age)->format('d/m/y') }}</p>
+      <p class="card-text mb-1">Né le: {{ Carbon\Carbon::parse(Auth::user()->created_at)->subYears(Auth::user()->character->age)->format('d/m/Y') }}</p>
       <p class="card-text mb-1">Sexe: {{ Auth::user()->character->sex[0] }}</p>
     </div>
   </div>
