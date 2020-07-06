@@ -32,7 +32,7 @@
         <source media="(max-width: 992px)" srcset="/uploads/banner-992.webp">
         <source media="(max-width: 1200px)" srcset="/uploads/banner-1200.webp">
         <source media="(min-width: 1201px)" srcset="/uploads/banner-2560.webp">
-        <img src="/uploads/banner-1200.webp">
+        <img src="/uploads/banner-1200.webp" alt="La bannière du site, montrant une route passant entre des immeubles Unturned">
       </picture>
   </header>
 

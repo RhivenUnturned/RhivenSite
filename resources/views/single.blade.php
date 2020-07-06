@@ -78,7 +78,7 @@
     "inLanguage": "fr-FR",
     "isFamilyFriendly": "true",
     "articleSection": "categorie",
-    "articleBody": "{!! nl2br($post->body) !!}",
+    "articleBody": "{!! strip_tags(nl2br($post->body)) !!}",
     "mainEntityOfPage": "True",
     "author": {
       "@type": "Person",

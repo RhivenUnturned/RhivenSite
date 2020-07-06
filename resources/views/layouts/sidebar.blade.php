@@ -37,7 +37,7 @@ $from = DB::table('unt_bs_multi_accounts')
         <input type="text" class="form-control" id="account_search" placeholder="Destinataire" required>
       </div>
       <div class="input-group mb-3">
-        <input type="currency" class="form-control" name="amount" id="transfer_amount" aria-describedby="transferHelp" placeholder="Montant" aria-label="Montant" aria-describedby="info-montant" required>
+        <input type="currency" class="form-control" name="amount" id="transfer_amount" placeholder="Montant" aria-label="Montant" aria-describedby="info-montant" required>
         <div class="input-group-append">
           <span class="input-group-text" id="info-montant">€</span>
         </div>
