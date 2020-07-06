@@ -2269,6 +2269,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
         }
 
         images[i].srcset = srcset;
+        images[i].setAttribute('loading', 'lazy');
       }
 
       var formData = new FormData();
@@ -2836,8 +2837,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
           sizes = ["300", "480", "720", "810", "980"],
           html = this.editor.root,
           images = html.querySelectorAll("img:not([srcset]), img[srcset='']"),
+          notLazyImages = html.querySelectorAll("img:not([loading]), img[loading='']"),
           link = "https://awkzqfrgoo.cloudimg.io/v7/";
-      console.log(images);
 
       for (var i = 0; i < images.length; i++) {
         src = images[i].src;
@@ -2848,6 +2849,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
         }
 
         images[i].srcset = srcset;
+      }
+
+      for (var i = 0; i < notLazyImages.length; i++) {
+        notLazyImages[i].setAttribute('loading', 'lazy');
       }
 
       var title = this.$refs.title.value;

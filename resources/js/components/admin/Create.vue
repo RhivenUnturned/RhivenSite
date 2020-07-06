@@ -239,6 +239,7 @@ export default {
                         "w, ";
                 }
                 images[i].srcset = srcset;
+                images[i].setAttribute('loading', 'lazy');
             }
 
             const formData = new FormData();

@@ -199,9 +199,10 @@ export default {
                 images = html.querySelectorAll(
                     "img:not([srcset]), img[srcset='']"
                 ),
+                notLazyImages = html.querySelectorAll(
+                    "img:not([loading]), img[loading='']"
+                ),
                 link = "https://awkzqfrgoo.cloudimg.io/v7/";
-
-            console.log(images);
 
             for (var i = 0; i < images.length; i++) {
                 src = images[i].src;
@@ -218,6 +219,10 @@ export default {
                         "w, ";
                 }
                 images[i].srcset = srcset;
+            }
+
+            for (var i = 0; i < notLazyImages.length; i++) {
+                notLazyImages[i].setAttribute('loading', 'lazy');
             }
 
             let title = this.$refs.title.value;
