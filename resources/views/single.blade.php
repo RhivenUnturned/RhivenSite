@@ -61,7 +61,7 @@
     "@context": "http://schema.org",
     "@type": "BlogPosting",
     "headline": "{{ $post->title }}",
-    "image": "{!! !empty($post->image) ? '/uploads/posts/' . $post->image : 'https://placehold.it/750x300' !!}",
+    "image": "{!! !empty($post->image) ? $post->image : 'https://placehold.it/750x300' !!}",
     "discussionUrl": "{{ url()->full() }}",
     "url": "{{ url()->full() }}",
     "keywords": [
