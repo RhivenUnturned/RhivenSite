@@ -25,10 +25,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-            ->everyThirtyMinutes()
-            ->appendOutputTo(base_path() . '/test.txt');
-
         $schedule->command('Misc:videos')->everyThirtyMinutes();
 
         $schedule->command('Bank:balancehistory')->everyFiveMinutes();
