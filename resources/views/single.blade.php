@@ -20,7 +20,7 @@
         @endif
     </p>
     <hr>
-    <img class="img-fluid rounded" src="{!! !empty($post->image) ? '/uploads/posts/' . $post->image : 'https://placehold.it/750x300' !!}" alt="Couverture de l'article '{{ $post->title }}' ">
+    <img class="img-fluid rounded" alt="Couverture de l'article '{{ $post->title }}'" src="{!! !empty($post->image) ? $post->image : 'https://placehold.it/750x300' !!}" srcset="https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=300 300w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=450 450w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=510 510w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=570 570w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=683 683w">
     <hr>
     <div id="loading" class="text-center my-4">
       <div class="spinner-border text-secondary" role="status">

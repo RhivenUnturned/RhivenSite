@@ -194,7 +194,7 @@ export default {
         update() {
             let src,
                 srcset,
-                sizes = ["320", "640", "1024", "1920"],
+                sizes = ["300", "480", "720", "810", "980"],
                 html = this.editor.root,
                 images = html.querySelectorAll(
                     "img:not([srcset]), img[srcset='']"

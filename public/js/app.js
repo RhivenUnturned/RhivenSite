@@ -2255,7 +2255,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
       var src,
           srcset,
-          sizes = ["320", "640", "1024", "1920"],
+          sizes = ["300", "480", "720", "810", "980"],
           html = this.editor.root,
           images = html.querySelectorAll("img"),
           link = "https://awkzqfrgoo.cloudimg.io/v7/";
@@ -2833,7 +2833,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
       var src,
           srcset,
-          sizes = ["320", "640", "1024", "1920"],
+          sizes = ["300", "480", "720", "810", "980"],
           html = this.editor.root,
           images = html.querySelectorAll("img:not([srcset]), img[srcset='']"),
           link = "https://awkzqfrgoo.cloudimg.io/v7/";

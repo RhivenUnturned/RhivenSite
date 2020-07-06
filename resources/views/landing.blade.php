@@ -8,7 +8,7 @@
 
     @foreach ($posts as $post)
     <div class="card mb-4">
-      <img class="card-img-top" src=" {!! !empty($post->image) ? '/uploads/posts/' . $post->image :  'https://placehold.it/750x300' !!} " alt="Image de l'article">
+      <img class="card-img-top" alt="Couverture de l'article '{{ $post->title }}'" src="{!! !empty($post->image) ? $post->image : 'https://placehold.it/750x300' !!}" srcset="https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=250 250w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=300 300w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=463 463w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=628 628w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=752 752w">
       <div class="card-body">
         <h2 class="card-title text-center">{{ $post->title }}</h2>
         <p class="card-text"> {{ strip_tags(\Illuminate\Support\Str::limit($post->body, $limit = 280, $end = '...')) }} </p>

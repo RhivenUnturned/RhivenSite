@@ -2,7 +2,7 @@
   <div class="ip bg-dark">IP: 000.000.000.000</div>
   <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">
-      <img src="{{ asset('uploads/Logo_Rhiven_Transparent.png') }}" width="30" height="30" class="d-inline-block align-top" alt="Logo de Rhiven">
+      <img src="{{ asset('uploads/Logo_Rhiven_Transparent_30x30px.png') }}" width="30" height="30" class="d-inline-block align-top" alt="Logo de Rhiven">
       Rhiven
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
