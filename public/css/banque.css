@@ -275,7 +275,6 @@ aside,
     display: none;
 }
 
-
 /* || Button style */
 
 .bank-button {
@@ -501,5 +500,11 @@ aside,
 @media (max-width: 992px) {
     .bank-info {
         max-height: 96px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .bank-navbar {
+        margin: auto;
     }
 }

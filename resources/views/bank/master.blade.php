@@ -33,7 +33,7 @@
           </div>
         </div>
         <nav class="navbar navbar-expand navbar-dark flex-lg-column flex-row align-items-start px-1 py-2">
-          <div class="collapse navbar-collapse ">
+          <div class="bank-navbar collapse navbar-collapse ">
             <ul class="flex-lg-column flex-row navbar-nav w-100 justify-content-between">
               <li class="nav-item">
                 <a class="nav-link pl-0 my-1 text-nowrap" href="{{ route('bank.index') }}"><i class="bank-icon icon-drawer"></i> <span class="d-none d-xl-inline">Mes comptes</span></a>
