@@ -13,3 +13,4 @@ yarn-error.log
 test.txt
 cron.bat
 /public/uploads/posts
+/public/js/app.js
