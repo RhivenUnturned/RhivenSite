@@ -16,7 +16,7 @@ class LivemapController extends Controller
      */
     public function api(Request $request)
     {
-        $request = json_encode($request);
+        //$request = json_encode($request);
 
         Storage::disk('public')->put('livemap.json', $request);
     }
