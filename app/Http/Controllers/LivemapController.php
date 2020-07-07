@@ -2,11 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Storage;
 use Response;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class LivemapController extends Controller
 {
+    /**
+     * Post livemap data.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function api(Request $request)
+    {
+        $request = json_encode($request);
+
+        Storage::disk('public')->put('livemap.json', $request);
+    }
+
     /**
      * Send to livemap current server data.
      *

@@ -90,10 +90,11 @@ Route::group(['middleware' => ['App\Http\Middleware\IsAdmin']], function () {
   Route::get('/immobilier/achat/{id}', 'ImmoController@achat')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.achat');
   Route::post('/immobilier/store/{id}', 'ImmoController@store')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.store');
   Route::post('/immobilier/sell/{id}', 'ImmoController@sell')->middleware('auth', 'App\Http\Middleware\SteamId')->name('immo.sell');
-
-  Route::get('/livemap', function () {
-    return view('livemap.show');
-  })->name('livemap.show');
-  Route::get('/livemap/server', 'LivemapController@server');
-  Route::get('/livemap/refresh', 'LivemapController@refresh');
 });
+
+Route::get('/livemap', function () {
+  return view('livemap.show');
+})->name('livemap.show');
+Route::get('/livemap/server', 'LivemapController@server');
+Route::get('/livemap/refresh', 'LivemapController@refresh');
+Route::post('/livemap/api', 'LivemapController@api');
