@@ -97,4 +97,4 @@ Route::get('/livemap', function () {
 })->name('livemap.show');
 Route::get('/livemap/server', 'LivemapController@server');
 Route::get('/livemap/refresh', 'LivemapController@refresh');
-Route::post('/livemap/api', 'LivemapController@api');
+Route::post('/livemap/store', 'LivemapController@store');

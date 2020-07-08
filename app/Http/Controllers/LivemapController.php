@@ -9,43 +9,47 @@ use Illuminate\Http\Request;
 class LivemapController extends Controller
 {
     /**
-     * Post livemap data.
+     * Store livemap data.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function api(Request $request)
+    public function store(Request $request)
     {
         Storage::disk('public')->put('livemap.json', $request->getContent());
     }
 
     /**
-     * Send to livemap current server data.
+     * Post server data.
      *
      * @return \Illuminate\Http\Response
      */
     public function server()
     {
-        $serverData = DB::table('unt_livemap_server')
-            ->first();
+        $exists = Storage::disk('public')->exists('livemap.json');
 
-        return response()->json(['Server' => $serverData]);
+        if ($exists) {
+            $json = json_decode(Storage::disk('public')->get('livemap.json'), true);
+            return response()->json(['Server' => $json['Server']]);
+        } else {
+            abort(404);
+        }
     }
 
     /**
-     * Send updated livemap data.
+     * Post players data.
      *
      * @return \Illuminate\Http\Response
      */
     public function refresh()
     {
+        $exists = Storage::disk('public')->exists('livemap.json');
 
-        $playerData = DB::table('unt_livemap_data')
-            ->get();
-
-        $chatData = DB::table('unt_livemap_chat')
-            ->get();
-
-        return response()->json(['Players' => $playerData, 'Chat' => $chatData]);
+        if ($exists) {
+            $json = json_decode(Storage::disk('public')->get('livemap.json'), true);
+            return response()->json(['Server' => $json]);
+        } else {
+            abort(404);
+        }
     }
 }
