@@ -1,20 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-<video loop muted autoplay poster="uploads/carte/fbg.jpg" class="fullscreen-bg__video">
-  <source src="uploads/carte/tnr1.mp4" type="video/mp4">
-</video>
-
 <div class="container">
   <div class="livemaps"></div>
 </div>
 
-<div class="author"><small>Livemaps v0.3 by <a href="mailto:nexis@nexisrealms.com">Nexis</a></small></div>
+<div class="author"><small>Livemaps v0.3.2.1 par <a href="mailto:nexis@nexisrealms.com">Nexis</a> et <a href="mailto:ceansbzh@gmail.com">Ceans</a></small></div>
 @endsection
 
 @section('extra-css')
 <link href="{{asset('css/map.css')}}" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="{{asset('js/jqueryui/jquery-ui.min.css')}}">
 @endsection
 
 @section('extra-js')

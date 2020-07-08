@@ -47,7 +47,7 @@ class LivemapController extends Controller
 
         if ($exists) {
             $json = json_decode(Storage::disk('public')->get('livemap.json'), true);
-            return response()->json(['Server' => $json]);
+            return response()->json(['Server' => $json['Server'], 'Players' => $json['Players']]);
         } else {
             abort(404);
         }

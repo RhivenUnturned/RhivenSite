@@ -2,19 +2,6 @@
  * author: Nexis <mrtwidget@gmail.com>
  */
 
-/* elements */
-html, body { height: 100%; }
-body { background: url("../uploads/carte/fbg.jpg") no-repeat; } 
-h2 small { 
-    color: white;
-    font-size: 14px;
-}
-p { color: white }
-small { color: #e0bdbd }
-/* hyperlinks */
-a {color: #9ad0ff; font-weight: bold; }
-a:hover {color: whitesmoke; text-decoration: none }
-
 /* livemap labels */
 .livemap-labels {
     position: absolute;
@@ -333,7 +320,7 @@ a:hover {color: whitesmoke; text-decoration: none }
     }
 
     .livemap-chat img { width: 14px; height: auto }
-    .livemap-chat p { font-size: 10px; margin: 0 }
+    .livemap-chat p { font-size: 0.7em; margin: 0 }
         .livemap-chat .admin { color: cyan }
 
     .livemap-chat::-webkit-scrollbar,

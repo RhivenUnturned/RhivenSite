@@ -28,7 +28,7 @@
                     <div class="livemap-static"></div>
                 </div>
                 <!-- map image -->
-                <img class="img-responsive" src="uploads/carte/maps/<?php echo strtolower($_GET["Map"]); ?>/Map.png" alt="">
+                <img class="img-fluid" src="uploads/carte/maps/<?php echo strtolower($_GET["Map"]); ?>/Map.png" alt="">
                 <div class="livemap-time">
                     <img src="uploads/carte/icons/cycle.png" alt="">
                 </div>
