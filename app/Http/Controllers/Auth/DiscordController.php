@@ -20,16 +20,12 @@ class DiscordController extends Controller
      */
     public function redirectToDiscord()
     {
-        // https://discord.com/api/oauth2/authorize?client_id=720555005790126112&redirect_uri=http%3A%2F%2Frhiven.localhost%2Fdiscord%2Fhandle&response_type=code&scope=identify
-
         $user = Auth::user();
 
         if (!is_null($user)) {
             $userid = $user->discordid;
 
             if (is_null($userid)) {
-                // Rediriger vers page de connexion Discord
-
                 return redirect('https://discord.com/api/oauth2/authorize?client_id=720555005790126112&redirect_uri=' . rawurlencode(\URL::to('/discord/handle')) . '&response_type=code&scope=identify');
             }
             return redirect('/');
