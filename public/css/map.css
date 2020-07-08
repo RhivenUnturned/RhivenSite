@@ -5,8 +5,10 @@
 /* livemap labels */
 .livemap-labels {
     position: absolute;
-    width: 100%; height: 100%;
-    top: 0; z-index: 99;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 99;
 }
 .livemap-labels .label {
     position: absolute;
@@ -15,7 +17,8 @@
 /* bottom right message */
 .author {
     position: fixed;
-    bottom: 1em; right: 1em;
+    bottom: 1em;
+    right: 1em;
     color: lightslategray;
     opacity: 0.8;
     z-index: 999;
@@ -23,26 +26,30 @@
 
 /* Title Nav */
 .title-nav {
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0, 0, 0, 0.75);
     width: 100%;
     border-radius: 3px 3px 0 0;
     margin-top: 1em;
     text-align: left;
 }
 
-    .title-nav h1 {
-        color: white;
-        font-size: 16px;
-        font-weight: bold;
-        margin: 0; padding: 0.5em;
-    }
+.title-nav h1 {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.5em;
+}
 
-    .title-nav a { margin: 5px; }
+.title-nav a {
+    margin: 5px;
+}
 
 /* Cycle Time */
 .livemap-time {
     position: absolute;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     top: 1em;
 }
 
@@ -54,291 +61,363 @@
     margin-bottom: 1em;
     overflow: hidden;
     display: inline-block;
-	margin: 1em;
+    margin: 1em;
 }
 .server-version,
 .server-port,
 .server-map,
 .server-players {
     position: absolute;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     z-index: 999;
 }
 
-    .server-map { padding-left: 0.3em }
-    .server-version { 
-        top: 16px;
-        font-size: 10px;
-        padding-left: 0.5em;
-        color: #3af500;
-    }
-    /* online player count */
-    .server-players { 
-        right:0; top: 5px;
-        font-size: 62px;
-        line-height: 80px;
-        width: 110px;
-        text-align: center;
-    }
-    /* max players count */
-    .server-max-players {
-        position: absolute;
-        bottom: 0;
-        right: 1px;
-        color: #0abb0a;
-        z-index: 1;
-        line-height: 16px;
-    }
-    /* status overlay */
-    .status-overlay {
-        position: absolute;
-    }
+.server-map {
+    padding-left: 0.3em;
+}
+.server-version {
+    top: 16px;
+    font-size: 10px;
+    padding-left: 0.5em;
+    color: #3af500;
+}
+/* online player count */
+.server-players {
+    right: 0;
+    top: 5px;
+    font-size: 62px;
+    line-height: 80px;
+    width: 110px;
+    text-align: center;
+}
+/* max players count */
+.server-max-players {
+    position: absolute;
+    bottom: 0;
+    right: 1px;
+    color: #0abb0a;
+    z-index: 1;
+    line-height: 16px;
+}
+/* status overlay */
+.status-overlay {
+    position: absolute;
+}
 
 /* livemap */
-.livemaps { text-align: center }
+.livemaps {
+    text-align: center;
+}
 
 .livemap,
 .livemap-badge-container,
 .livemap-online-players {
     position: relative;
-    padding: 0.5em; margin: 0 0 0.5em 0;
+    padding: 0.5em;
+    margin: 0 0 0.5em 0;
     border-radius: 5px;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0, 0, 0, 0.4);
     color: white;
     text-align: center;
     max-height: 755px;
     overflow: hidden;
 }
 
-    .livemap { border-radius: 0 0 5px 5px; }
-    .livemap-badge-container { display: hidden }
+.livemap {
+    border-radius: 0 0 5px 5px;
+}
+.livemap-badge-container {
+    display: hidden;
+}
 
-    /* livemap map */
-    .livemap-map { 
-        position: relative;
-        overflow: hidden;
-    }
+/* livemap map */
+.livemap-map {
+    position: relative;
+    overflow: hidden;
+}
 
-    /* livemap loading */
-    .livemap-loading {
-        position: absolute;
-        width: 100%; height: 100%;
-        opacity: 0.6;
-        /* background: rgb(17,17,17); */
-    }
-        .livemap-loading-container {
-            position: absolute;
-            bottom: 0; right: 0;
-        }
-        /* loading gif size */
-        .livemap-loading img {
-            width: 18px; height: auto;
-        }
-        /* loading text */
-        .livemap-loading p { 
-            color: rgba(255,255,255,0.6);
-            font-size: 75%;
-            text-transform: uppercase;
-        }
+/* livemap loading */
+.livemap-loading {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    /* background: rgb(17,17,17); */
+}
+.livemap-loading-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+/* loading gif size */
+.livemap-loading img {
+    width: 18px;
+    height: auto;
+}
+/* loading text */
+.livemap-loading p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 75%;
+    text-transform: uppercase;
+}
 
-    /* livemap static */
-    .livemap-static-container {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 9999;
-    }
-        .livemap-static-container h1 { font-family: 'Gloria Hallelujah', cursive; color: white }
-        .livemap-static-container p { color: wheat; font-weight: bold }
+/* livemap static */
+.livemap-static-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
+.livemap-static-container h1 {
+    font-family: "Gloria Hallelujah", cursive;
+    color: white;
+}
+.livemap-static-container p {
+    color: wheat;
+    font-weight: bold;
+}
 
-    .livemap-static {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: url('../uploads/carte/icons/static.gif') repeat;
-        opacity: 0.15;
-        z-index: 9998;
-    }
+.livemap-static {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../uploads/carte/icons/static.gif") repeat;
+    opacity: 0.15;
+    z-index: 9998;
+}
 
-    .livemap-static-header {
-        padding: 2em; padding-top: 10%;
-        background-color: rgba(0,0,0,0.6);
-        position: absolute;
-        top: 0; left: 0; bottom: 0; right: 0;
-    }
+.livemap-static-header {
+    padding: 2em;
+    padding-top: 10%;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
 
-    /* player nodes */
-    .livemap-nodes {
-        position: absolute;
-        width: 100%; height: 100%;
-        top: 0; z-index: 999;
-        overflow: hidden;
-    }
+/* player nodes */
+.livemap-nodes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 999;
+    overflow: hidden;
+}
 
-    .node-info {
-        position: absolute;
-        bottom: 3px; right: 6px;
-        padding: 5px 10px 5px 4px;
-        border-radius: 3px;
-        background-color: rgba(0,0,0,0.3);
-        min-width: 100px;
-        z-index: 999;
-        display: none;
-    }
+.node-info {
+    position: absolute;
+    bottom: 3px;
+    right: 6px;
+    padding: 5px 10px 5px 4px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.3);
+    min-width: 100px;
+    z-index: 999;
+    display: none;
+}
 
-        .node-info img {
-            float: left;
-            width: 12px;
-        }
+.node-info img {
+    float: left;
+    width: 12px;
+}
 
-        .progress {
-            height: 12px;
-            margin-bottom: 2px;
-            border-radius: 0;
-        }
+.progress {
+    height: 12px;
+    margin-bottom: 2px;
+    border-radius: 0;
+}
 
-        .progress-bar-yellow {
-            background-color: yellow;
-        }
+.progress-bar-yellow {
+    background-color: yellow;
+}
 
-    .livemap-node-container { 
-        position: absolute;
-        margin: 0 auto;
-        text-align: center;
-        display: none;
-     }
+.livemap-node-container {
+    position: absolute;
+    margin: 0 auto;
+    text-align: center;
+    display: none;
+}
 
-    .livemap-node-icon {
-        /* outline: 1px solid #333; */
-        width: 20px;
-        height: 20px;
-        margin: 0 auto;
-    }
-        .livemap-node-icon:hover { 
-            /* outline: 1px solid rgba(255,255,255,0.6); */
-            cursor: pointer 
-        }
-        /* player node face */
-        .livemap-node-icon img {
-           /*display: block;*/
-        }
+.livemap-node-icon {
+    /* outline: 1px solid #333; */
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+}
+.livemap-node-icon:hover {
+    outline: 1px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+/* player node face */
+.livemap-node-icon img {
+    display: block;
+}
 
-    .livemap-node-name {
-        color: wheat;
-        font-size: 10px;
-        max-width: 75px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
+.livemap-node-name {
+    color: wheat;
+    font-size: 10px;
+    max-width: 75px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    position: absolute;
+    left: calc(-50% - 10px);
+    bottom: 20px;
+}
 
+/* player badges */
+.livemap-badges-container {
+    padding: 0.2em;
+    max-height: 690px;
+    overflow-y: auto;
+}
+.livemap-badge-container {
+    max-height: 46px;
+    display: none;
+}
+.livemap-badge-container:hover,
+.steam-avatar:hover {
+    border: 1px solid #aaa;
+}
 
-    /* player badges */
-    .livemap-badges-container {
-        padding: 0.2em;
-        max-height: 690px;
-        overflow-y: auto;
-    }
-    .livemap-badge-container { 
-        max-height: 46px;
-        display: none;
-    }
-    .livemap-badge-container:hover,
-    .steam-avatar:hover 
-    { border: 1px solid #aaa; }
+/* player avatar & reputation icons */
+.livemap-badge-container img {
+    width: 30px;
+    height: auto;
+    margin-right: 4px;
+    float: left;
+}
+/* remove margin from last image element */
+.livemap-badge-container img:last-child {
+    margin-right: 0;
+}
 
-        /* player avatar & reputation icons */
-        .livemap-badge-container img {
-            width: 30px; height: auto;
-            margin-right: 4px;
-            float: left;
-        }
-        /* remove margin from last image element */
-        .livemap-badge-container img:last-child { margin-right: 0; }
-        
-        /* permission & skillset icons */
-        img.livemap-permission,
-        img.livemap-skillset { 
-            float: right; 
-            width: 16px 
-        }
+/* permission & skillset icons */
+img.livemap-permission,
+img.livemap-skillset {
+    float: right;
+    width: 16px;
+}
 
-        /* player name & reputation */
-        .player-name,
-        .player-reputation  {
-            margin: 0;
-            font-size: 12px;
-            font-weight: bold;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-            /* player name & reputation colors */
-            .player-name.normal { color: white }
-            .player-name.admin { color: cyan }
-            .player-name.gold { color: gold }
-            .player-reputation.neutral { color: white }
-            .player-reputation.bandit { color: yellow }
-            .player-reputation.constable { color: yellowgreen }
-            .player-reputation.deputy { color: green }
-            .player-reputation.gangster { color: lightcoral }
-            .player-reputation.outlaw { color: orangered }
-            .player-reputation.paragon { color: greenyellow }
-            .player-reputation.thug { color: crimson }
-            .player-reputation.villain { color: darkred }
+/* player name & reputation */
+.player-name,
+.player-reputation {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/* player name & reputation colors */
+.player-name.normal {
+    color: white;
+}
+.player-name.admin {
+    color: cyan;
+}
+.player-name.gold {
+    color: gold;
+}
+.player-reputation.neutral {
+    color: white;
+}
+.player-reputation.bandit {
+    color: yellow;
+}
+.player-reputation.constable {
+    color: yellowgreen;
+}
+.player-reputation.deputy {
+    color: green;
+}
+.player-reputation.gangster {
+    color: lightcoral;
+}
+.player-reputation.outlaw {
+    color: orangered;
+}
+.player-reputation.paragon {
+    color: greenyellow;
+}
+.player-reputation.thug {
+    color: crimson;
+}
+.player-reputation.villain {
+    color: darkred;
+}
 
+/* Livemap HUD */
+.livemap-hud {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 99;
+}
 
-    /* Livemap HUD */
-    .livemap-hud {
-        position: absolute;
-        width: 100%; height: 100%;
-        top: 0; z-index: 99;
-    }
+.livemap-hud .livemap-hud-map {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+}
 
-        .livemap-hud .livemap-hud-map {
-            position: absolute;
-            top: 1em; left: 1em;
-        }
+.livemap-hud .livemap-hud-online-players {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
 
-        .livemap-hud .livemap-hud-online-players {
-            position: absolute;
-            top: 1em; right: 1em;
-        }
-        
-    /* World Chat */
-    .livemap-chat {
-        position: absolute;
-        bottom: 4px; left: 6px;
-        text-align: left;
-        padding: 0.5em;
-        max-height: 8em;
-        overflow: auto;
-        max-width: 60%;
-        z-index: 9999;
-        background: rgba(0,0,0,0.3);
-        border-radius: 4px;
-    }
+/* World Chat */
+.livemap-chat {
+    position: absolute;
+    bottom: 4px;
+    left: 6px;
+    text-align: left;
+    padding: 0.5em;
+    max-height: 8em;
+    overflow: auto;
+    max-width: 60%;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
 
-    .livemap-chat img { width: 14px; height: auto }
-    .livemap-chat p { font-size: 0.7em; margin: 0 }
-        .livemap-chat .admin { color: cyan }
+.livemap-chat img {
+    width: 14px;
+    height: auto;
+}
+.livemap-chat p {
+    font-size: 0.7em;
+    margin: 0;
+}
+.livemap-chat .admin {
+    color: cyan;
+}
 
-    .livemap-chat::-webkit-scrollbar,
-    .livemap-badges-container::-webkit-scrollbar {
-        width: 8px;
-    }
-    .livemap-chat::-webkit-scrollbar-track,
-    .livemap-badges-container::-webkit-scrollbar-track {
-        background-color: rgba(0,0,0,0.15);
-        border: 4px solid transparent;
-        border-radius: 12px;
-    }
-    .livemap-chat::-webkit-scrollbar-thumb,
-    .livemap-badges-container::-webkit-scrollbar-thumb {
-        background-color: rgba(0,0,0,0.6);
-        border-radius: 25px;
-        width: 12px;
-    }
+.livemap-chat::-webkit-scrollbar,
+.livemap-badges-container::-webkit-scrollbar {
+    width: 8px;
+}
+.livemap-chat::-webkit-scrollbar-track,
+.livemap-badges-container::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.15);
+    border: 4px solid transparent;
+    border-radius: 12px;
+}
+.livemap-chat::-webkit-scrollbar-thumb,
+.livemap-badges-container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 25px;
+    width: 12px;
+}
 
 /* Fullscreen background video */
 .fullscreen-bg {
@@ -361,14 +440,14 @@
     min-height: 100%;
     z-index: -100;
     -webkit-transform: translate(-50%, -50%);
-       -moz-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-	    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 @media (max-width: 767px) {
     .fullscreen-bg {
-        background: url('uploads/carte/bg.jpg') center center / cover no-repeat;
+        background: url("uploads/carte/bg.jpg") center center / cover no-repeat;
     }
 
     .fullscreen-bg__video {
@@ -377,4 +456,6 @@
 }
 
 /* Bootstrap */
-.media { margin-top:2px!important }
+.media {
+    margin-top: 2px !important;
+}
