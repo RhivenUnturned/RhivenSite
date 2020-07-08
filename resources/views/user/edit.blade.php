@@ -87,9 +87,9 @@ $otherSex = "Inconnu";
   </div>
 
   <div class="form-group">
-    <label for="lastname" class="col-lg-3 control-label">Âge:</label>
+    <label for="age" class="col-lg-3 control-label">Âge:</label>
     <div class="col-lg-8">
-      <input id="lastname" class="form-control @error('age') is-invalid @enderror" type="number" min="1" max="120" name="age" value="{{ Auth::user()->character->age }}">
+      <input id="age" class="form-control @error('age') is-invalid @enderror" type="number" min="1" max="120" name="age" value="{{ Auth::user()->character->age }}">
       @error('age')
       <div class="invalid-feedback">{{ $errors->first('age') }}</div>
       @enderror
@@ -126,7 +126,7 @@ $otherSex = "Inconnu";
   <hr>
   <h2 class="mb-4">Comptes liés</h2>
 
-  <p>Pour modifier un compte lié, veuillez contacter un membre de l'équipe sur Discord, ou envoyer un mail à l'adresse suivante: <a href="mailto:ceans@rhiven.fr">ceans@rhiven.fr</a></p>
+  <p>Pour modifier un compte lié, veuillez contacter un membre de l'équipe sur Discord, ou envoyer un mail à l'adresse suivante: <a href="mailto:ceansbzh@gmail.com">ceansbzh@gmail.com</a></p>
 
   <hr>
   <div class="form-group">
