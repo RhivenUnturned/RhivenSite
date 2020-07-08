@@ -77,7 +77,7 @@ function AjaxErrorHandler(request, status, error) {
  * @param {obj} data JSON server data
  */
 function LoadLivemap(data) {
-    console.log("Loading Livemap...");
+    console.log("Chargement de la carte...");
 
     axios
         .get("/templates/layout.livemap.php", {
@@ -547,6 +547,8 @@ function CalculateVectorPosition(server_id, map, vector3) {
     //vector3 = vector3.substring(0, vector3.length - 1); // remove )
     vector3 = vector3.replace(/\(|\)/g, '');
     vector3 = vector3.split(",");
+
+    console.log(vector3);
 
     // calculate the map aspect ratio [dependent on screen/map dimensions]
     var aspectRatio = (mapsize - offset) / livemap.width();
