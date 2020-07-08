@@ -530,7 +530,7 @@ function CalculateVectorPosition(server_id, map, vector3) {
      * 1983.5 on all four sides of the map. 1983.5 * 2 = 3967, so...
      * offset calculation (washington): 4096 - (1983.5 * 2) = 129
      */
-    var offset = 129; //(eval(map.toLowerCase()) * 2) / 960 * 100;
+    var offset = (eval(map.toLowerCase()) * 2) / 960 * 100;
 
     // store the targeted livemap element for safe keeping
     var livemap = $(".livemap[data-server-id='" + server_id + "'] .livemap-nodes");
