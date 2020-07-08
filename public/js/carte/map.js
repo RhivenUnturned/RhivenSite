@@ -172,15 +172,15 @@ function RefreshTimeout(data) {
     if ((now - lastRefresh) > 30000) {
         console.log("SERVER TIMEOUT");
 
-        if ($(".livemap-static-container").hasClass("hidden")) {
+        if ($(".livemap-static-container").hasClass("invisible")) {
             Timeout = true;
-            $(".livemap-static-container").removeClass("hidden");
+            $(".livemap-static-container").removeClass("invisible");
             ChatWorld(data.Server.ID, "Server", "Livemap connection has been lost!", "yellow");
         }        
     } else {
-        if (!$(".livemap-static-container").hasClass("hidden")) {
+        if (!$(".livemap-static-container").hasClass("invisible")) {
             Timeout = false;
-            $(".livemap-static-container").addClass("hidden");
+            $(".livemap-static-container").addClass("invisible");
             ChatWorld(data.Server.ID, "Server", "Livemap connection has been restored!", "yellow");
         }           
     }
