@@ -342,8 +342,16 @@ function UpdatePlayerNodes(data) {
             $(".livemap[data-server-id='" + data.Server.ID + "'] .livemap-node-container[data-steam-id='" + index + "'] img.livemap-node").css({ "background-color": returnNodeFaceColor(player) });
         }
 
+        // (-768,6, 73,9, -692,6) => -768.6,73.9,-692.6
+
+        let playerPositions = player.Position.split(', ');
+        for (var i = 0; i < playerPositions.length; i++) {
+            playerPositions[i] = playerPositions[i].replace(',', '.');
+        }
+        let playerPosition = playerPositions[0] + "," + playerPositions[1] + "," + playerPositions[2];
+
         // calculate new player position
-        var calcPos = CalculateVectorPosition(data.Server.ID, data.Server.Map, player.Position);
+        let calcPos = CalculateVectorPosition(data.Server.ID, data.Server.Map, playerPosition);
 
         // animate player node to new position
         $(".livemap[data-server-id='" + data.Server.ID + "'] .livemap-node-container[data-steam-id='" + index + "']").velocity({
@@ -573,9 +581,16 @@ function CalculateVectorPosition(server_id, map, vector3) {
  * @param {string} Vector3 position data
  */
 function returnNodePositionStyle(server_id, map, vector3) {
+    let playerPositions = vector3.split(', ');
+    for (var i = 0; i < playerPositions.length; i++) {
+        playerPositions[i] = playerPositions[i].replace(',', '.');
+    }
+    let playerPosition = playerPositions[0] + "," + playerPositions[1] + "," + playerPositions[2];
+
     // get the player position
-    var vector = CalculateVectorPosition(server_id, map, vector3);
+    var vector = CalculateVectorPosition(server_id, map, playerPosition);
     // return styled position data
+    console.log(vector);
     return "left:" + vector[0] + "px;bottom:" + vector[1] + "px";
 }
 
