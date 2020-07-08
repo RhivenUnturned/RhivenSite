@@ -521,7 +521,7 @@ function CalculateVectorPosition(server_id, map, vector3) {
     var germany = 4096;
     var belgium = 4096;
     var riodejaneiro = 4096;
-    var rhivendev = 4096;
+    var rhivendev = 2048;
 
     /**
      * this offset is needed due to the difference between map
