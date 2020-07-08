@@ -105,7 +105,6 @@ function LoadLivemap(data) {
 }
 
 function LoadMapLabels(data) {
-    console.log('Chargement des points d\'intérêts...');
     axios
         .get("uploads/carte/maps/" + data.Server.Map.toLowerCase() + "/labels.json")
         .then(function (response) {
@@ -556,8 +555,6 @@ function CalculateVectorPosition(server_id, map, vector3) {
     vector3 = vector3.replace(/\(|\)/g, '');
     vector3 = vector3.split(",");
 
-    console.log(vector3);
-
     // calculate the map aspect ratio [dependent on screen/map dimensions]
     var aspectRatio = (mapsize - offset) / livemap.width();
 
@@ -590,7 +587,6 @@ function returnNodePositionStyle(server_id, map, vector3) {
     // get the player position
     var vector = CalculateVectorPosition(server_id, map, playerPosition);
     // return styled position data
-    console.log(vector);
     return "left:" + vector[0] + "px;bottom:" + vector[1] + "px";
 }
 
