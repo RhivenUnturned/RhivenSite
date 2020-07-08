@@ -20,7 +20,7 @@
                         <img class="heartbeat" src="uploads/carte/icons/heart/10.png" alt="heart">
                     </div>
                 </div>
-                <div class="livemap-static-container hidden">
+                <div class="livemap-static-container invisible">
                     <div class="livemap-static-header">
                         <h1>TIMEOUT</h1>
                         <p>The Livemap has timed out. The server may be offline...</p>

@@ -17,7 +17,7 @@
                 <?php if (isset($_GET["TypeIcon"])) { ?>
                     <img class="livemap-permission" src="uploads/carte/icons/<?php echo $_GET["TypeIcon"]; ?>.png" alt="permissions">
                 <?php } ?>
-                <img class="livemap-skillset hidden" src="uploads/carte/icons/skillsets/thief.png" alt="skillset">
+                <img class="livemap-skillset invisible" src="uploads/carte/icons/skillsets/thief.png" alt="skillset">
             </div>
         </div>
     </div><!-- /player badge -->
