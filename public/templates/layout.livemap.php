@@ -17,7 +17,7 @@
                 <!-- loading screen -->
                 <div class="livemap-loading">
                     <div class="livemap-loading-container">
-                        <img class="heartbeat" src="uploads/carte/icons/heart/10.png" alt="heart">
+                        <img class="heartbeat" src="uploads/carte/icons/heart/10.png" alt="Une icône de coeur">
                     </div>
                 </div>
                 <div class="livemap-static-container invisible">
@@ -28,9 +28,9 @@
                     <div class="livemap-static"></div>
                 </div>
                 <!-- map image -->
-                <img class="img-fluid" src="uploads/carte/maps/<?php echo strtolower($_GET["Map"]); ?>/Map.png" alt="">
+                <img class="img-fluid" src="uploads/carte/maps/<?php echo strtolower($_GET["Map"]); ?>/Map.png" alt="La carte de Nepeta sur le serveur RhivenRP" srcset="uploads/carte/maps/<?php echo strtolower($_GET["Map"]); ?>/Map_300.png 300w, uploads/carte/maps/<?php echo strtolower($_GET["Map"]); ?>/Map_465.png 465w, uploads/carte/maps/<?php echo strtolower($_GET["Map"]); ?>/Map_475.png 475w, uploads/carte/maps/<?php echo strtolower($_GET["Map"]); ?>/Map_580.png 580w, uploads/carte/maps/<?php echo strtolower($_GET["Map"]); ?>/Map_700.png 700w">
                 <div class="livemap-time">
-                    <img src="uploads/carte/icons/cycle.png" alt="">
+                    <img src="uploads/carte/icons/cycle.png" alt="Une icône du soleil représentant le cycle jour/nuit dans le jeu Unturned">
                 </div>
                 <!-- player nodes -->
                 <div class="livemap-nodes"></div>
@@ -47,7 +47,7 @@
                 <div class="node-info">
                     <p class="name"></p>
                     <img src="uploads/carte/icons/health.png" alt="">
-                    <div class="progress health">                        
+                    <div class="progress health">
                         <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                     </div>
                     <img src="uploads/carte/icons/hunger.png" alt="">
@@ -67,13 +67,13 @@
                         <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
         <div class="col-lg-4 col-md-3 hidden-xs" style="padding-left:0">
             <div class="livemap-badges">
                 <div class="livemap-online-players">
                     <div class="livemap-badge-player">
-                        <img src="uploads/carte/icons/players-online.png" alt=""> 
+                        <img src="uploads/carte/icons/players-online.png" alt="Une icône de personnages Unturned">
                         <span class="livemap-badges-online-players">Players: <span class="player-count">0/0</span></span>
                     </div>
                 </div>
