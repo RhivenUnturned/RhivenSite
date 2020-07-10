@@ -66,7 +66,7 @@ class GetVideos extends Command
         $response = json_encode($response['items']);
         $response = json_decode($response, true);
 
-        $videosIdsToExclude = array('s8Ph9nmphyQ');
+        $videosIdsToExclude = array('s8Ph9nmphyQ', '8zZbLc8l6Rg');
 
         foreach ($response as $key => $item) {
             if (in_array($item['id']['videoId'], $videosIdsToExclude, true)) {
