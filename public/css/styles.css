@@ -202,5 +202,6 @@ nav {
 @media (min-width: 768px) {
     #article img {
         width: 150%;
+        max-width: calc(100vw - 200px);
     }
 }
