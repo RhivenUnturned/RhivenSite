@@ -55,7 +55,7 @@ class GetVideos extends Command
 
         $queryParams = [
             'maxResults' => 15,
-            'q' => 'Rhiven Unturned|Serveur Rhiven RP -omega -layoka -gadu -mg',
+            'q' => 'Rhiven Unturned|Serveur Rhiven RP -omega -layoka -gadu -mg -beno -troll -freekill -mamdon -klervi -ryad -drama',
             'regionCode' => 'FR',
             'relevanceLanguage' => 'fr',
             'type' => 'video'
