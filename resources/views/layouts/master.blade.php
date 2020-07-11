@@ -17,7 +17,6 @@
     html,
     body {
       background-color: #fdfdff;
-      padding-bottom: 60px;
     }
   </style>
 </head>
@@ -25,15 +24,15 @@
 <body>
 
   <header class="headerImgContainer">
-      <h1 class="display-2 centered">Rhiven</h1>
-      <picture>
-        <source media="(max-width: 576px)" srcset="/uploads/banner-576.webp">
-        <source media="(max-width: 768px)" srcset="/uploads/banner-768.webp">
-        <source media="(max-width: 992px)" srcset="/uploads/banner-992.webp">
-        <source media="(max-width: 1200px)" srcset="/uploads/banner-1200.webp">
-        <source media="(min-width: 1201px)" srcset="/uploads/banner-2560.webp">
-        <img src="/uploads/banner-1200.webp" alt="La bannière du site, montrant une route passant entre des immeubles Unturned">
-      </picture>
+    <h1 class="display-2 centered">Rhiven</h1>
+    <picture>
+      <source media="(max-width: 576px)" srcset="/uploads/banner-576.webp">
+      <source media="(max-width: 768px)" srcset="/uploads/banner-768.webp">
+      <source media="(max-width: 992px)" srcset="/uploads/banner-992.webp">
+      <source media="(max-width: 1200px)" srcset="/uploads/banner-1200.webp">
+      <source media="(min-width: 1201px)" srcset="/uploads/banner-2560.webp">
+      <img src="/uploads/banner-1200.webp" alt="La bannière du site, montrant une route passant entre des immeubles Unturned">
+    </picture>
   </header>
 
   @yield('navbar', View::make('layouts.navbar'))
@@ -52,6 +51,8 @@
     </div>
     @endif
   </div>
+
+  @yield('footer', View::make('layouts.footer'))
 
   <script src="{{ asset('js/app.js') }}"></script>
   @yield('extra-js')

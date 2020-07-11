@@ -50,6 +50,10 @@ Route::get('/discord', 'Auth\DiscordController@redirectToDiscord')->name('auth.d
 Route::get('/discord/handle', 'Auth\DiscordController@handle')->name('auth.discord.handle');
 Route::get('/discord/token', 'Auth\DiscordController@token')->name('auth.discord.token');
 
+Route::get('/mentions-legales', function () {
+  return view('misc.legal');
+})->name('misc.legal');
+
 Route::get('/videos', function () {
   return view('misc.videos');
 })->name('misc.videos');
