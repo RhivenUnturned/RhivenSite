@@ -37,7 +37,7 @@
 
   @yield('navbar', View::make('layouts.navbar'))
 
-  <div class="container">
+  <div class="container" style="margin-bottom:100px;">
     @if (Auth::user() != null && Request::path() != 'livemap')
     <div class="row">
       <div class="col-md-9" id="app">
