@@ -111,7 +111,7 @@
                     role="main"
                     class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4"
                 >
-                    <router-view></router-view>
+                    <router-view v-bind:userId="userId"></router-view>
                 </main>
             </div>
         </div>
@@ -130,7 +130,8 @@ export default {
         }
     },
     data() {
-        return {};
+        return {
+        };
     },
     methods: {
         logout() {
