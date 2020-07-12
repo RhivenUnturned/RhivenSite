@@ -373,31 +373,31 @@ function UpdatePlayerNodes(data) {
  * @param {obj} server Server data
  */
 function AddPlayerNode(id, player, server) {
-    $.ajax({
-        type: "GET",
-        url: "templates/node.livemap.php",
-        data: {
-            // send player data
-            CSteamID: id,
-            CharacterName: player.CharacterName,
-            Position: returnNodePositionStyle(server.ID, server.Map, player.Position),
-            SkinColor: "background-color:" + returnNodeFaceColor(player),
-            Face: returnNodeFace(player),
-            Health: player.Health,
-            Hunger: player.Hunger,
-            Thirst: player.Thirst,
-            Infection: player.Infection,
-            Stamina: player.Stamina
-        },
-        success: function (data) {
+
+    axios
+        .get("templates/node.livemap.php", {
+            params: {
+                // send player data
+                CSteamID: id,
+                CharacterName: player.CharacterName,
+                Position: returnNodePositionStyle(server.ID, server.Map, player.Position),
+                SkinColor: "background-color:" + returnNodeFaceColor(player),
+                Face: returnNodeFace(player),
+                Health: player.Health,
+                Hunger: player.Hunger,
+                Thirst: player.Thirst,
+                Infection: player.Infection,
+                Stamina: player.Stamina
+            }
+        })
+        .then(function (response) {
             // add node to Livemap and animate
-            $(".livemap[data-server-id='" + server.ID + "'] .livemap-nodes").append(data);
+            $(".livemap[data-server-id='" + server.ID + "'] .livemap-nodes").append(response.data);
             $(".livemap[data-server-id='" + server.ID + "'] .livemap-node-container[data-steam-id='" + id + "']").velocity("transition.bounceDownIn", { drag: true });
-        },
-        error: function (xhr, status, error) {
-            AjaxErrorHandler(xhr, status, error);
-        }
-    });
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 }
 /** REMOVE PLAYER NODE */
 function RemovePlayerNode(steam_id) {
@@ -433,28 +433,27 @@ function UpdatePlayerBadges(data) {
  * @param {obj} server Server data
  */
 function AddPlayerBadge(id, player, server) {
-    $.ajax({
-        type: "GET",
-        url: "templates/badge.livemap.php",
-        data: {
-            // send player data
-            CSteamID: id,
-            CharacterName: player.CharacterName,
-            Reputation: returnPlayerBadgeReputationString(player.Reputation),
-            ReputationName: returnPlayerBadgeReputationName(player.Reputation),
-            Avatar: player.Avatar,
-            BadgeColor: returnPlayerType(player),
-            TypeIcon: returnPlayerBadgeTypeIcon(player)
-        },
-        success: function (data) {
+    axios
+        .get("templates/badge.livemap.php", {
+            params: {
+                // send player data
+                CSteamID: id,
+                CharacterName: player.CharacterName,
+                Reputation: returnPlayerBadgeReputationString(player.Reputation),
+                ReputationName: returnPlayerBadgeReputationName(player.Reputation),
+                Avatar: player.Avatar,
+                BadgeColor: returnPlayerType(player),
+                TypeIcon: returnPlayerBadgeTypeIcon(player)
+            }
+        })
+        .then(function (response) {
             // add badge to livemap and animate
-            $(".livemap[data-server-id='" + server.ID + "'] .livemap-badges-container").append(data);
+            $(".livemap[data-server-id='" + server.ID + "'] .livemap-badges-container").append(response.data);
             $(".livemap[data-server-id='" + server.ID + "'] .livemap-badge-container[data-steam-id='" + id + "']").velocity("transition.flipBounceYIn", { drag: true });
-        },
-        error: function (xhr, status, error) {
-            AjaxErrorHandler(xhr, status, error);
-        }
-    });
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
 }
 /** REMOVE PLAYER BADGE */
 function RemovePlayerBadge(steam_id) {
