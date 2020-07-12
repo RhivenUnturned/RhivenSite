@@ -367,30 +367,30 @@ class BankController extends Controller
           $fromBalance = $from->balance;
           $toBalance = $to->balance;
 
-          if ($fromBalance >= $amount) {
+          if ($fromBalance >= ($amount + $amount_costs)) {
 
             $amount_costs = ($amount / 100 * $user->bank->properties['transfer_costs']);
 
-            if (($toBalance + ($amount - $amount_costs)) <= $toUser->bank->properties['account_ceiling']) {
+            if (($toBalance + $amount) <= $toUser->bank->properties['account_ceiling']) {
 
               if (strlen($request->from) === 14) {
                 DB::table('unt_bs_group_accounts')
                   ->where('accountId', $request->from)
-                  ->decrement('balance', $amount);
+                  ->decrement('balance', ($amount + $amount_costs));
               } elseif (strlen($request->from) === 20) {
                 DB::table('unt_bs_multi_accounts')
                   ->where('accountId', $request->from)
-                  ->decrement('balance', $amount);
+                  ->decrement('balance', ($amount + $amount_costs));
               }
 
               if (strlen($request->to) === 14) {
                 DB::table('unt_bs_group_accounts')
                   ->where('accountId', $request->to)
-                  ->increment('balance', ($amount - $amount_costs));
+                  ->increment('balance', $amount);
               } elseif (strlen($request->to) === 20) {
                 DB::table('unt_bs_multi_accounts')
                   ->where('accountId', $request->to)
-                  ->increment('balance', ($amount - $amount_costs));
+                  ->increment('balance', $amount);
               }
             } else {
               $amount = ($toUser->bank->properties['account_ceiling'] - $toBalance);
@@ -453,7 +453,7 @@ class BankController extends Controller
               return redirect()->route('bank.show', $request->from);
             }
           } else {
-            return back()->withError('Vous ne pouvez pas transférer autant.');
+            return back()->withError('Vous ne pouvez pas transférer autant. N\'oubliez pas les frais de transfert.');
           }
         } else {
           return redirect('/');
