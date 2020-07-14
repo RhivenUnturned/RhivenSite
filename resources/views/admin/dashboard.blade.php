@@ -28,8 +28,8 @@
     }
 
     /*
- * Sidebar
- */
+    * Sidebar
+    */
 
     .sidebar {
       position: fixed;
@@ -93,8 +93,8 @@
     }
 
     /*
- * Navbar
- */
+    * Navbar
+    */
 
     .navbar-brand {
       padding-top: 0.75rem;
@@ -132,8 +132,8 @@
 
 
     /*
- * Quill
- */
+    * Quill
+    */
     .ql-editor {
       position: absolute;
       width: 100%;
@@ -154,7 +154,7 @@
 
 <body>
   <div id="app">
-    <Homepage :user-name='@json(auth()->user()->name)' :user-id='@json(auth()->user()->id)'></Homepage>
+    <Homepage :user-name='@json(auth()->user()->name)' :user-id='@json(auth()->user()->id)' :collection="{{ $collection }}"></Homepage>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
