@@ -24,7 +24,7 @@ class AdminController extends Controller
 
             $balancehistory = DB::table('balance_history')
                 ->where('lastUpdated', '>=', Carbon::today()->subWeek())
-                ->orderBy('lastUpdated', 'desc')
+                ->orderBy('lastUpdated', 'asc')
                 ->get()
                 ->groupBy(function ($val) {
                     return Carbon::parse($val->lastUpdated)->format('d/m/y');
@@ -39,7 +39,7 @@ class AdminController extends Controller
             }
 
             $collection = collect(['userCount' => $userCount, 'topicCount' => $topicCount, 'postCount' => $postCount, 'moneyCount' => $moneyCount]);
-
+            
             return view('admin.dashboard', compact('collection'));
         } else {
             return redirect('/home');
