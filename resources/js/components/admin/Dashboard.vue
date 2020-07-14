@@ -76,6 +76,9 @@ export default {
               scaleLabel: {
                 display: true,
                 labelString: "Argent"
+              },
+              ticks: {
+                beginAtZero: true
               }
             }
           ]
