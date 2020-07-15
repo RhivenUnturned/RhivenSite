@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
 
+        "Cocur\Slugify\Bridge\Laravel\SlugifyServiceProvider",
+
         /*
          * Application Service Providers...
          */
@@ -221,6 +223,7 @@ return [
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
+        'Slugify' => 'Cocur\Slugify\Bridge\Laravel\SlugifyFacade',
         'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,

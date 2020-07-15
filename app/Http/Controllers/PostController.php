@@ -134,8 +134,12 @@ class PostController extends Controller
         ]);
     }
 
-    public function single(Post $post)
+    public function single(Post $post, $slug)
     {
+        if ($slug !== $post->slug) {
+            return redirect()->to($post->url, 301);
+        }
+
         return view('single', compact('post'));
     }
 }

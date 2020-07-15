@@ -12,7 +12,7 @@
       <div class="card-body">
         <h2 class="card-title text-center">{{ $post->title }}</h2>
         <p class="card-text"> {{ strip_tags(\Illuminate\Support\Str::limit($post->body, $limit = 280, $end = '...')) }} </p>
-        <a href="articles/{{ $post->id }}" class="btn btn-primary">Lire la suite</a>
+        <a href="{{ route('post.single',[$post->id, $post->slug])}}" class="btn btn-primary">Lire la suite</a>
       </div>
       <div class="card-footer text-muted">
         Posté {{ $post->created_at->diffForHumans() }} par <strong class="text-danger">{{ $post->user->name }}</strong>
