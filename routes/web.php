@@ -12,7 +12,7 @@
 */
 Auth::routes();
 
-Route::get('/posts/{post}', 'PostController@single');
+Route::get('/articles/{post}', 'PostController@single');
 
 Route::view('/profil', 'user.edit')->name('user.edit');
 Route::patch('/profil', 'UserController@update')->name('user.update');
