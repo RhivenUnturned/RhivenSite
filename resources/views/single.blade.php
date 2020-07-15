@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@section('extra-css')
-<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-@endsection
-
 @section('content')
 <div class="row">
   <div class="col-lg-10 mx-auto">
