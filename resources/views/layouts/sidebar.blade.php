@@ -34,6 +34,7 @@ $from = DB::table('unt_bs_multi_accounts')
       <input type="hidden" name="from" value="{{ $from->accountId }}" readonly>
       <input type="hidden" id="account_id" name="to" readonly>
       <div class="form-group">
+        <label for="account_search" class="sr-only">Destinataire du virement</label>
         <input type="text" class="form-control" id="account_search" placeholder="Destinataire" required>
       </div>
       <div class="input-group mb-3">
