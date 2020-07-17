@@ -8,6 +8,7 @@
   <meta name="author" content="Ceans">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>[FR] Rhiven | Unturned RP</title>
+  @yield('extra-head')
   <link rel="icon" href="/favicon.ico" />
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">

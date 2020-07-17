@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('extra-head')
+<link rel="canonical" href="https://rhiven.fr">
+@endsection
+
 @section('content')
 
 <div class="row align-items-center">
