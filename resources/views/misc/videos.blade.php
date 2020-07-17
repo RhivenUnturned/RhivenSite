@@ -5,9 +5,14 @@ $path = storage_path() . "/app/public/videos.json";
 $json = json_decode(file_get_contents($path), true);
 
 usort($json, function($a, $b) {
-return $b['snippet']['publishedAt'] <=> $a['snippet']['publishedAt'];
-  });
-  @endphp
+  return $b['snippet']['publishedAt'] <=> $a['snippet']['publishedAt'];
+});
+@endphp
+
+@section('title')
+Vidéos de la communauté | Rhiven Unturned
+@endsection
+
 
   @section('content')
   <div class="w-100 p-3 rounded bg-dark text-light">

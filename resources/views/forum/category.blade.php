@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+Forum: {{ $category->name }} | Rhiven Unturned
+@endsection
+
 @section('content')
 <div class="col-md-12 mx-auto">
   <h1 class="my-4 text-center">Forum</h1>

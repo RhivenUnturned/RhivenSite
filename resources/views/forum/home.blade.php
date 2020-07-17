@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+Forum: Discutez, partagez ! | Rhiven Unturned
+@endsection
+
 @section('content')
 <div class="col-md-12 mx-auto">
   <h1 class="my-4 text-center">Forum</h1>

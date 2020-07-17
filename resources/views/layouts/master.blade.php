@@ -7,7 +7,7 @@
   <meta name="description" content="L'expérience RP Unturned francophone la plus poussée. Plugins, Mods, Site Internet innovant, découvrez Rhiven !">
   <meta name="author" content="Ceans">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>[FR] Rhiven | Unturned RP</title>
+  <title>@yield('title', 'Rhiven | Serveur Unturned RP Francophone')</title>
   @yield('extra-head')
   <link rel="icon" href="/favicon.ico" />
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">

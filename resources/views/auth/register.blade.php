@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+Inscription | Rhiven Unturned
+@endsection
+
 @section('content')
 <div class="container">
 	<div class="row">

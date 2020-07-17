@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+Nos mentions légales | Rhiven Unturned
+@endsection
+
 @section('content')
 <h2>Mentions légales</h2>
 <h3>Informations sur l'hébergeur de ce site internet:</h3>
