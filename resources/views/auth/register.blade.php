@@ -4,6 +4,10 @@
 Inscription | Rhiven Unturned
 @endsection
 
+@section('description')
+Créez votre espace personnel. Posséder un compte Rhiven est très important: de nombreuses fonctionnalités en dépendent !
+@endsection
+
 @section('content')
 <div class="container">
 	<div class="row">

@@ -4,6 +4,10 @@
 Nos mentions légales | Rhiven Unturned
 @endsection
 
+@section('description')
+En savoir plus sur l'utilisation de vos données personnelles. L'équipde de Rhiven s'engage à être transparent sur les services qu'elle propose, y compris son site Internet.
+@endsection
+
 @section('content')
 <h2>Mentions légales</h2>
 <h3>Informations sur l'hébergeur de ce site internet:</h3>

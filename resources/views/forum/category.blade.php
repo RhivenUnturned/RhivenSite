@@ -4,6 +4,10 @@
 Forum: {{ $category->name }} | Rhiven Unturned
 @endsection
 
+@section('description')
+Catégorie {{ $category->name }} sur le forum Rhiven. Rejoins-nous !
+@endsection
+
 @section('content')
 <div class="col-md-12 mx-auto">
   <h1 class="my-4 text-center">Forum</h1>

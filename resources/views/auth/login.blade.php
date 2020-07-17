@@ -4,6 +4,10 @@
 Connexion | Rhiven Unturned
 @endsection
 
+@section('description')
+Accédez à votre espace personnel. Posséder un compte Rhiven est très important: de nombreuses fonctionnalités en dépendent !
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-md-8 py-5 border">

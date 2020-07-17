@@ -4,13 +4,15 @@
 $path = storage_path() . "/app/public/videos.json";
 $json = json_decode(file_get_contents($path), true);
 
-usort($json, function($a, $b) {
-  return $b['snippet']['publishedAt'] <=> $a['snippet']['publishedAt'];
-});
+usort($json, function($a, $b) {return $b['snippet']['publishedAt'] <=> $a['snippet']['publishedAt'];});
 @endphp
 
 @section('title')
 Vidéos de la communauté | Rhiven Unturned
+@endsection
+
+@section('description')
+Découvrez toutes les vidéos de la communauté Rhiven. Vous êtes un Youtubeur ? Ajoutez votre vidéo à cette page simplement !
 @endsection
 
 
