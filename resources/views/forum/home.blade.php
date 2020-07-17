@@ -4,6 +4,10 @@
 Forum: Discutez, partagez ! | Rhiven Unturned
 @endsection
 
+@section('description')
+Le forum de Rhiven est le meilleur endroit pour échanger avec d'autre membres de la communauté à propos du serveur Unturned RP.
+@endsection
+
 @section('content')
 <div class="col-md-12 mx-auto">
   <h1 class="my-4 text-center">Forum</h1>
