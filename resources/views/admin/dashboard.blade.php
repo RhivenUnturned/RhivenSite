@@ -149,6 +149,13 @@
     .ql-snow .ql-editor img {
       max-height: 15em;
     }
+
+    .ql-clipboard {
+      position: fixed !important;
+      left: 50% !important;
+      top: 50% !important;
+      opacity: 0;
+    }
   </style>
 </head>
 

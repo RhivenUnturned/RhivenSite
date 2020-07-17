@@ -171,7 +171,10 @@ export default {
     });
 
     // We will add the update event here
-    this.editor.on("text-change", () => this.update());
+    this.editor.on("text-change", () => {
+      this.update();
+      this.editor.scrollingContainer = this.findEditorScrollContainer(this.editor);
+    });
 
     /* show file value after file select */
     document
@@ -254,6 +257,16 @@ export default {
     },
     closeAlt() {
       this.$refs.alt.parentNode.classList.add("invisible");
+    },
+    findEditorScrollContainer(quill) {
+      let el = quill.root;
+      while (el) {
+        if (el.scrollTop > 0) {
+          break;
+        }
+        el = el.parentElement;
+      }
+      return el;
     }
   }
 };
