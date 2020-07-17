@@ -22,17 +22,17 @@ return [
          * The number of seconds to wait while trying to connect to a server.
          * Use 0 to wait indefinitely.
          */
-        RequestOptions::CONNECT_TIMEOUT => 10,
+        RequestOptions::CONNECT_TIMEOUT => 0,
 
         /*
          * The timeout of the request in seconds. Use 0 to wait indefinitely.
          */
-        RequestOptions::TIMEOUT => 10,
+        RequestOptions::TIMEOUT => 0,
 
         /*
          * Describes the redirect behavior of a request.
          */
-        RequestOptions::ALLOW_REDIRECTS => false,
+        RequestOptions::ALLOW_REDIRECTS => true,
     ],
 
     /*
