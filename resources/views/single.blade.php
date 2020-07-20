@@ -1,5 +1,13 @@
 @extends('layouts.master')
 
+@section('title')
+{{ $post->title }} | Rhiven Unturned
+@endsection
+
+@section('description')
+{{ strip_tags(\Illuminate\Support\Str::limit($post->body . ' | Article du site Rhiven. Notre serveur Unturned RP est le plus poussé de la communauté. Essaie-le !', 200)) }}
+@endsection
+
 @section('content')
 <div class="row">
   <div class="col-lg-10 mx-auto">
