@@ -98,6 +98,10 @@ Route::group(['middleware' => ['App\Http\Middleware\IsAdmin']], function () {
   Route::get('/livemap', function () {
     return view('livemap.show');
   })->name('livemap.show');
+
+  Route::get('/accueil', function () {
+    return view('misc.accueil');
+  })->name('misc.accueil');
 });
 Route::get('/livemap/server', 'LivemapController@server');
 Route::get('/livemap/refresh', 'LivemapController@refresh');

@@ -216,3 +216,9 @@ nav {
         max-width: calc(100vw - 200px);
     }
 }
+
+@media (min-width: 1200px) {
+    .container-xl {
+        max-width: 1300px;
+    }
+}

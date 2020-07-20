@@ -38,25 +38,30 @@
 
   @yield('navbar', View::make('layouts.navbar'))
 
-  <div class="container" style="margin-bottom:100px;">
-    @if (Auth::user() != null && Request::path() != 'livemap')
-    <div class="row">
-      <div class="col-md-9" id="app">
+  @if(in_array(Request::path(), ['livemap','accueil'], true ))
+  <div class="container-xl" style="margin-bottom:100px;">
+    @else
+    <div class="container" style="margin-bottom:100px;">
+      @endif
+
+      @if (Auth::user() != null && !in_array(Request::path(), ['livemap','accueil'], true ))
+      <div class="row">
+        <div class="col-md-9" id="app">
+          @yield('content')
+        </div>
+        <div class="col-md-3 p-0">@yield('sidebar', View::make('layouts.sidebar'))</div>
+      </div>
+      @else
+      <div id="app">
         @yield('content')
       </div>
-      <div class="col-md-3 p-0">@yield('sidebar', View::make('layouts.sidebar'))</div>
+      @endif
     </div>
-    @else
-    <div id="app">
-      @yield('content')
-    </div>
-    @endif
-  </div>
 
-  @yield('footer', View::make('layouts.footer'))
+    @yield('footer', View::make('layouts.footer'))
 
-  <script src="{{ asset('js/app.js') }}"></script>
-  @yield('extra-js')
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('extra-js')
 </body>
 
 </html>

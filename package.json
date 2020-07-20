@@ -26,6 +26,7 @@
     "dependencies": {
         "chart.js": "^2.9.3",
         "laravel-echo": "^1.8.0",
+        "parallax-js": "^3.1.0",
         "parchment": "^2.0.0-dev.2",
         "puppeteer": "^5.1.0",
         "pusher-js": "^5.1.1",
