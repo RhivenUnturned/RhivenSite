@@ -16,18 +16,18 @@
         "fideloper/proxy": "^4.0",
         "google/apiclient": "^2.0",
         "invisnik/laravel-steam-auth": "^4.2",
-        "laravel/framework": "^6.2",
+        "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "1.*",
+        "laravel/ui": "^2.0",
         "pusher/pusher-php-server": "^4.1",
         "spatie/laravel-sitemap": "^5.7"
     },
     "require-dev": {
-        "facade/ignition": "^1.4",
+        "facade/ignition": "^2.0",
         "fzaninotto/faker": "^1.9.1",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "nunomaduro/collision": "^4.1",
+        "phpunit/phpunit": "^8.5"
     },
     "config": {
         "optimize-autoloader": true,
