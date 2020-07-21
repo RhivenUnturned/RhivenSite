@@ -15,7 +15,9 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (!auth()->user()->hasRole('admin')) {
+        if (!auth()->user()) {
+            return redirect('/');
+        } elseif (!auth()->user()->hasRole('admin')) {
             return redirect('/');
         }
 
