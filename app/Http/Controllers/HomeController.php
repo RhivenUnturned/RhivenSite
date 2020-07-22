@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\PostResource;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index']]);
     }
 
     /**
@@ -23,12 +27,32 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->user()->hasRole('user')) {
-            return redirect('/');
+        if (!Auth::user()) {
+            return redirect('/blog');
         }
 
-        if ($request->user()->hasRole('admin')){
-            return redirect('/admin/dashboard');
+        if ($request->user()->hasRole('user')) {
+            return redirect('/blog');
         }
+
+        if ($request->user()->hasRole('admin')) {
+            return view('misc.accueil', [
+                'posts' => Post::latest()->take(3)->get(),
+                'users' => User::count()
+            ]);
+        }
+    }
+
+    /**
+     * Show the application new user page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function welcome(Request $request)
+    {
+        return view('misc.accueil', [
+            'posts' => Post::latest()->take(3)->get(),
+            'users' => User::count()
+        ]);
     }
 }

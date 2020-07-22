@@ -19,11 +19,10 @@ Route::patch('/profil', 'UserController@update')->name('user.update');
 Route::get('/user/steamid', 'UserController@getSteamId');
 Route::get('/user/discordid', 'UserController@getDiscordId');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');
 
-Route::get('/', 'PostController@all');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/blog', 'PostController@all')->name('blog.index');
 
 Route::get('/{post}/comments', 'CommentController@index');
 Route::post('/{post}/comments', 'CommentController@store');
@@ -99,9 +98,7 @@ Route::group(['middleware' => ['App\Http\Middleware\IsAdmin']], function () {
     return view('livemap.show');
   })->name('livemap.show');
 
-  Route::get('/accueil', function () {
-    return view('misc.accueil');
-  })->name('misc.accueil');
+  Route::get('/accueil', 'HomeController@welcome')->name('misc.accueil');
 });
 Route::get('/livemap/server', 'LivemapController@server');
 Route::get('/livemap/refresh', 'LivemapController@refresh');
