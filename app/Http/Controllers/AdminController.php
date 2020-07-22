@@ -42,7 +42,7 @@ class AdminController extends Controller
             
             return view('admin.dashboard', compact('collection'));
         } else {
-            return redirect('/home');
+            return redirect('/');
         }
     }
 }
