@@ -22,6 +22,10 @@ Route::get('/user/discordid', 'UserController@getDiscordId');
 Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/nepeta', function () {
+  return view('misc.nepeta');
+})->name('misc.nepeta');
+
 Route::get('/blog', 'PostController@all')->name('blog.index');
 
 Route::get('/{post}/comments', 'CommentController@index');

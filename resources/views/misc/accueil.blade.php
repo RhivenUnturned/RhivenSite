@@ -10,51 +10,8 @@
   <meta name="description" content="L'expérience RP Unturned francophone la plus poussée. Plugins, Mods, Site Internet innovant, découvrez Rhiven !">
   <link rel="icon" href="/favicon.ico" />
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('css/styles.css') }}" rel="stylesheet" type="text/css">
   <style>
-    html,
-    body {
-      background-color: #fdfdff;
-    }
-
-    .invitation-container {
-      position: relative;
-      text-align: center;
-      color: rgb(228, 228, 228);
-      cursor: pointer;
-    }
-
-    .invitation-container:after {
-      content: "\A";
-      position: absolute;
-      width: 100%;
-      height: calc(100% - 3px);
-      top: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      transition: all 0.5s;
-      -webkit-transition: all 0.5s;
-    }
-
-    .invitation {
-      opacity: 0;
-      visibility: hidden;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      z-index: 1;
-      transform: translate(-50%, -50%);
-      -webkit-transition: opacity 600ms, visibility 600ms;
-      transition: opacity 600ms, visibility 600ms;
-      font-weight: 700;
-    }
-
-    .invitation-parent:hover .invitation,
-    .invitation-parent:hover .invitation-container:after {
-      visibility: visible;
-      opacity: 1;
-    }
-
     /*
  * Header
  */
@@ -223,7 +180,7 @@
 
 <body>
 
-  <div class="bg-light py-4">
+  <div class="bg-white py-4">
     <div class="container">
       <div class="row justify-content-around text-center">
         <div class="col-4">
@@ -260,81 +217,62 @@
   <hr class="mt-0 mb-3">
   <div id="app">
 
-    <div class="container-xl my-4">
-      <div class="scaled my-4">
-        <figure id="scene">
-          <img class="img-fluid" src="/uploads/test_1.png" alt="image-1" data-depth="0.2">
-          <img class="img-fluid" src="/uploads/test_2.png" alt="image-2" data-depth="0.25">
-          <div class="para-text" data-depth="0.4">
-            <h2 class="para-title" style="left: 25%; top: 25%; position: absolute; color: #fff;">Wow, ce chantier est très sécurisé !</h2>
-          </div>
-          <img class="img-fluid" src="/uploads/test_3.png" alt="image-3" data-depth="0.5">
-        </figure>
-      </div>
-    </div>
-    <div id="rhi-stats" class="row justify-content-center text-center w-100 bg-light p-4 m-0">
-      <div class="col-sm">
-        <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-truck" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5v7h-1v-7a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5v1A1.5 1.5 0 0 1 0 10.5v-7zM4.5 11h6v1h-6v-1z" />
-          <path fill-rule="evenodd" d="M11 5h2.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5h-1v-1h1a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4.5h-1V5zm-8 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-          <path fill-rule="evenodd" d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-        </svg>
-        <div class="to-animate mt-1 display-4">30 véhicules</div>
-      </div>
-      <div class="col-sm">
-        <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M0 1l1-1 3.081 2.2a1 1 0 0 1 .419.815v.07a1 1 0 0 0 .293.708L10.5 9.5l.914-.305a1 1 0 0 1 1.023.242l3.356 3.356a1 1 0 0 1 0 1.414l-1.586 1.586a1 1 0 0 1-1.414 0l-3.356-3.356a1 1 0 0 1-.242-1.023L9.5 10.5 3.793 4.793a1 1 0 0 0-.707-.293h-.071a1 1 0 0 1-.814-.419L0 1zm11.354 9.646a.5.5 0 0 0-.708.708l3 3a.5.5 0 0 0 .708-.708l-3-3z" />
-          <path fill-rule="evenodd" d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z" />
-        </svg>
-        <div class="to-animate mt-1 display-4">53 métiers</div>
-      </div>
-      <div class="col-sm">
-        <svg width="3em" height="3em" viewBox="0 0 16 16" class="bi bi-building" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694L1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z" />
-          <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z" />
-        </svg>
-        <div class="to-animate mt-1 display-4">42 bâtiments</div>
-      </div>
-    </div>
-
-    <div class="container-xl my-4">
-      <div class="card-group">
-        @foreach ($posts as $post)
-        <div class="card invitation-parent">
-          <a href="{{ route('post.single',[$post->id, $post->slug])}}">
-            <div class="invitation-container">
-              <img class="card-img-top" alt="Couverture de l'article '{{ $post->title }}'" src="{!! !empty($post->image) ? $post->image : 'https://placehold.it/750x300' !!}" srcset="https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=250 250w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=300 300w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=463 463w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=628 628w, https://awkzqfrgoo.cloudimg.io/v7/{!! $post->image !!}?width=752 752w">
-              <div class="invitation">Lire la suite</div>
+    <div class="container-xl my-4 py-4">
+      <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="scaled my-4">
+              <figure class="scene">
+                <img class="img-fluid" src="/uploads/test_1.png" alt="image-1" data-depth="0.2">
+                <img class="img-fluid" src="/uploads/test_2.png" alt="image-2" data-depth="0.25">
+                <div class="para-text" data-depth="0.4">
+                  <h2 class="para-title" style="left: 25%; top: 25%; position: absolute; color: #fff;">Wow, ce chantier est très sécurisé !</h2>
+                </div>
+                <img class="img-fluid" src="/uploads/test_3.png" alt="image-3" data-depth="0.5">
+              </figure>
             </div>
-          </a>
-          <div class="card-body">
-            <a class="text-dark" href="{{ route('post.single',[$post->id, $post->slug])}}">
-              <h2 class="card-title">{{ $post->title }}</h2>
-            </a>
-            <p class="card-text"> {{ strip_tags(\Illuminate\Support\Str::limit($post->body, $limit = 280, $end = '...')) }} </p>
           </div>
-          <div class="card-footer text-muted">
-            Posté {{ $post->created_at->diffForHumans() }} par <strong class="text-danger">{{ $post->user->name }}</strong>
+          <div class="carousel-item">
+            <div class="scaled my-4">
+              <figure class="scene">
+                <img class="img-fluid" src="/uploads/test_1.png" alt="image-1" data-depth="0.2">
+                <img class="img-fluid" src="/uploads/test_2.png" alt="image-2" data-depth="0.25">
+                <div class="para-text" data-depth="0.4">
+                  <h2 class="para-title" style="left: 25%; top: 25%; position: absolute; color: #fff;">Wow, ce chantier est très sécurisé !</h2>
+                </div>
+                <img class="img-fluid" src="/uploads/test_3.png" alt="image-3" data-depth="0.5">
+              </figure>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="scaled my-4">
+              <figure class="scene">
+                <img class="img-fluid" src="/uploads/test_1.png" alt="image-1" data-depth="0.2">
+                <img class="img-fluid" src="/uploads/test_2.png" alt="image-2" data-depth="0.25">
+                <div class="para-text" data-depth="0.4">
+                  <h2 class="para-title" style="left: 25%; top: 25%; position: absolute; color: #fff;">Wow, ce chantier est très sécurisé !</h2>
+                </div>
+                <img class="img-fluid" src="/uploads/test_3.png" alt="image-3" data-depth="0.5">
+              </figure>
+            </div>
           </div>
         </div>
-        @endforeach
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Précédent</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Suivant</span>
+        </a>
       </div>
     </div>
-
-    <div class="text-justify text-light" style="height: 250px; background: url(https://awkzqfrgoo.cloudimg.io/v7/https://i.ibb.co/hH36rMJ/pompe-1.png?width=980) no-repeat center fixed; -webkit-background-size: cover; background-size: cover;">
-      <div class="container p-4">
-        <p class="lead">
-          Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
-        </p>
-        <p class="lead">
-          Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus. ivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
-        </p>
-      </div>
-
-    </div>
-
   </div>
-
   @yield('footer', View::make('layouts.footer'))
 
   <script src="{{ asset('js/app.js') }}"></script>
@@ -354,16 +292,18 @@
       );
     };
 
-    // Parallax
-    var scene = document.getElementById('scene');
-    var parallaxInstance = new parallax(scene, {
-      relativeInput: true,
-      hoverOnly: true,
-      invertX: true,
-      limitY: 50,
-      limitX: 50,
-      frictionX: 0.08,
-    });
+
+    var scenes = document.getElementsByClassName("scene");
+    for (var i = 0; i < scenes.length; i++) {
+      new parallax(scenes[i], {
+        relativeInput: true,
+        hoverOnly: true,
+        invertX: true,
+        limitY: 50,
+        limitX: 50,
+        frictionX: 0.08,
+      });
+    }
 
     axios
       .get("/livemap/server")
@@ -380,60 +320,6 @@
       .catch(function(error) {
         console.log(error);
       })
-
-    // Animation des comptes
-    function animateValue(obj, start = 0, end = null, duration = 3000) {
-      if (obj) {
-
-        // save starting text for later (and as a fallback text if JS not running and/or google)
-        var textStarting = obj.innerHTML;
-
-        // remove non-numeric from starting text if not specified
-        end = end || parseInt(textStarting.replace(/\D/g, ""));
-        var range = end - start;
-
-        // no timer shorter than 50ms (not really visible any way)
-        var minTimer = 50;
-
-        // calc step time to show all interediate values
-        var stepTime = Math.abs(Math.floor(duration / range));
-
-        // never go below minTimer
-        stepTime = Math.max(stepTime, minTimer);
-
-        // get current time and calculate desired end time
-        var startTime = new Date().getTime();
-        var endTime = startTime + duration;
-        var timer;
-
-        function run() {
-          var now = new Date().getTime();
-          var remaining = Math.max((endTime - now) / duration, 0);
-          var value = Math.round(end - (remaining * range));
-          // replace numeric digits only in the original string
-          obj.innerHTML = textStarting.replace(/([0-9]+)/g, value);
-          if (value == end) {
-            clearInterval(timer);
-          }
-        }
-
-        timer = setInterval(run, stepTime);
-        run();
-      }
-    }
-
-    ['DOMContentLoaded', 'scroll'].forEach(evt =>
-      window.addEventListener(evt, function(event) {
-        if (isInViewport(rhiStats)) {
-          if (!animated) {
-            for (let element of toAnimate) {
-              animateValue(element);
-            }
-            animated = true;
-          }
-        }
-      }, false)
-    );
   </script>
 </body>
 
