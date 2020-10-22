@@ -7,7 +7,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class Bank extends Command
+class BankDailyCharge extends Command
 {
     /**
      * The name and signature of the console command.
