@@ -129,7 +129,7 @@
       source: function(request, response) {
         // Fetch data
         $.ajax({
-          url: "{{route('bank.getAccounts')}}",
+          url: "https://rhiven.fr/bank/transfer/getAccounts",
           type: 'post',
           dataType: "json",
           data: {
